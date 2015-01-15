@@ -1,0 +1,18 @@
+Package: EchoviewR
+Type: Package
+Title: Control of Echoview via COM
+Version: 1.0
+Date: 2015-01-13
+Author: Lisa-Marie Harrison and Martin Cox
+Maintainer: Lisa-Marie Harrison <lisa-marie-katarina.harriso@students.mq.edu.au>
+Description: Automation of active acoustic data processing by controlling
+    Echoview using Component Object Model (COM) scripting
+License: GPL (>= 2)
+Depends:
+    fields,
+    sp,
+    geosphere,
+    maptools,
+    RDCOMClient,
+    rgeos
+LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
