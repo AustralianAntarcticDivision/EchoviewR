@@ -7,7 +7,7 @@ Author: Lisa-Marie Harrison and Martin Cox
 Maintainer: Lisa-Marie Harrison <lisa-marie-katarina.harriso@students.mq.edu.au>
 Description: Automation of active acoustic data processing by controlling
     Echoview using Component Object Model (COM) scripting
-License: GPL (>= 2)
+License: GPL 3
 Depends:
     fields,
     sp,
