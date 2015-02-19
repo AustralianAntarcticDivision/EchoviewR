@@ -332,8 +332,8 @@ EVAddRawData <- function (EVFile, filesetName, dataFiles) {
 #'                  CloseOnSave = TRUE)
 #'}
 EVCreateNew <- function (EVAppObj, templateFn = NULL, EVFileName, 
-                                 filesetName, dataFiles,
-                                 CloseOnSave=TRUE) {
+                         filesetName, dataFiles,
+                         CloseOnSave=TRUE) {
   msgV <- paste(Sys.time(), ' : Creating new EV file', sep = '')
   message(msgV)
   
@@ -382,7 +382,7 @@ EVminThresholdSet <- function (varObj, thres) {
                  varObj$Name(), sep = '')
     stop(msg)
   }
-    
+  
   #set threshold value
   preMinThresVal <- varDat$MinimumThreshold()
   varDat[['MinimumThreshold']] <- thres
@@ -818,7 +818,7 @@ EVIntegrationByRegionsExport <- function (EVFile, acoVarName, regionClassName, e
 msDATEConversion <- function (dateObj) {
   
   eTimeStamp <- as.numeric(dateObj)
-  eDate <- as.Date(eTimeStamp,origin = "1899-12-30")
+  eDate <- as.Date(eTimeStamp, origin = "1899-12-30")
   second(eDate) <- ddays(eTimeStamp - floor(eTimeStamp))
   return(eDate)
   
@@ -1039,7 +1039,7 @@ EVImportRegionDef <- function (EVFile, evrFile, regionName) {
     
     if (is.null(CheckName) == FALSE) {
       msg <- paste(Sys.time(), ' : Imported region definitions: Region ', regionName, 
-                    ' added', sep = '')
+                   ' added', sep = '')
     } else {
       msg <- paste(Sys.time(), ' : Failed to import region definitions' , sep = '')
     }
@@ -1080,7 +1080,7 @@ EVExportRegionSv <- function (EVFile, variableName, regionName, filePath) {
   
   if (export.data) {
     msg <- paste(Sys.time(), ' : Exported data for Region ', regionName, ' in Variable ', 
-                  variableName, sep = '')
+                 variableName, sep = '')
   } else {
     msg <- paste(Sys.time(), ' : Failed to export data' , sep = "")
   }
@@ -1127,7 +1127,7 @@ EVAdjustDataRngBitmap <- function (varObj, minRng, maxRng) {
   #change data range
   postMinrangeFlag = rngAttrib[['RangeMinimum']] <- minRng
   postMaxrangeFlag = rngAttrib[['RangeMaximum']] <- maxRng
-    
+  
   #check post min and max values
   postMinrange <- rngAttrib$RangeMinimum()
   postMaxrange <- rngAttrib$RangeMaximum()
@@ -2050,7 +2050,7 @@ exportMIF=function(coords,pathAndFileName,pointNameExport=FALSE,pointNameScaleFa
 #' EVIntegrationByRegionsByCellsExport(EVFile, "120 aggregations", "aggregations", exportFn = "~~/KAOS/EVIntegrationByRegionsExport_example.csv")
 #' }
 EVIntegrationByRegionsByCellsExport <- function (EVFile, acoVarName, regionClassName, exportFn,
-                                          dataThreshold = NULL) {
+                                                 dataThreshold = NULL) {
   
   acoVarObj <- EVAcoVarNameFinder(EVFile = EVFile, acoVarName = acoVarName)
   msgV      <- acoVarObj$msg
@@ -2168,4 +2168,46 @@ EVImportLine <- function (EVFile, pathAndFn=NULL,lineName=NULL) {
       return(list(lineObj=importedLineObj,msg=msgV))
     }  
   } #end of rename line if statement.
+}
+
+#' Export underlying data for an acoustic variable
+
+#' This function exports underlying data for an Echoview acoustic variable using COM scripting
+#' @param EVFile An Echoview file COM object
+#' @param variableName a string containing the name of an EV acoustic variable
+#' @param filePath a string containing the file path and name to save the exported data to
+#' @param pingRange = c(-1,-1) ping range to export 
+#' @return a list object with 1 element: message for progessing log
+#' @keywords Echoview COM scripting
+#' @details pingRange defaults are all pings i.e. start=-1 and stop=-1
+#' @export
+#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
+#' @seealso \code{\link{EVOpenFile}}
+#' @examples
+#' \dontrun{
+#' EVAppObj = COMCreate('EchoviewCom.EvApplication')
+#' EVFile = EVOpenFile(EVAppObj, '~~KAOS/KAOStemplate.EV')$EVFile
+#' EVExportUnderlying(EVFile = EVFile, variableName = '38 seabed and surface excluded', pingRange = c(1, 100), filePath = '~~Desktop/test.csv')
+#'}
+EVExportUnderlying <- function (EVFile, variableName, pingRange = c(-1, -1), filePath) {
+  
+  acoustic.var <- EVAcoVarNameFinder(EVFile, variableName)$EVVar
+  
+  #check that the acoustic variable exists
+  if (is.null(acoustic.var)) {
+    msg <- paste(Sys.time(), "Error:", variableName, "is not an acoustic variable", sep = " ")
+    warning(msg)
+  } else {
+    
+    export.data <- acoustic.var$ExportData(filePath, pingRange[1], pingRange[2])
+    
+    if (export.data) {
+      msg <- paste(Sys.time(), 'Success: Exported integration by cells for variable', variableName, sep = " ")
+      message(msg)
+    } else {
+      msg <- paste(Sys.time(), 'Error: Failed to export data')
+      warning(msg)
+    }
+  }
+  invisible(list(msg = msg))
 }
