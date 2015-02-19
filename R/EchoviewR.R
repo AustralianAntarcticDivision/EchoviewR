@@ -2273,3 +2273,47 @@ EVCreateEditableLine <- function (EVFile, lineNameToCopy, editableLineName = NUL
   
   invisible(list(msg = msg, newEditLineObj = lineToOverwrite))
 }
+
+#' Export an Echoview line file for an existing line associated with an Acoustic Variable.
+
+#' This function exports an EV line definition file (.evl) for a line associated with an acoustic variable.
+#' @param EVFile An Echoview file COM object
+#' @param acoVar Acoustic variable name that the line to be exported is associated with.
+#' @param lineNameToExport a string containing the name of the line to export
+#' @param pathAndFileName Path and filename of evl file.
+#' @keywords Echoview COM scripting
+#' @export
+#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
+#' @seealso \code{\link{EVFindLineByName}} \code{\link{EVCreateEditableLine}}
+#' @examples
+#' \dontrun{
+#' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
+#' EVFile <- EVOpenFile(EVAppObj, '~\\example1.EV')$EVFile
+#' 
+#' EVLineExportFromAcousticVarEVL(EVFile=EVFile,
+#'    acoVar='120 seabed and surface excluded',
+#'    lineNameToExport='Fixed depth 250 m',
+#'    pathAndFileName=  '~~KAOS/test2.evl')
+#'}
+#'
+EVLineExportFromAcousticVarEVL <- function(EVFile, acoVar, lineNameToExport, pathAndFileName){
+  
+  msgV <- paste(Sys.time(), 'Finding line name ', lineNameToExport, 'to export')
+  message(msgV)
+  
+  lineToExport <- EVFindLineByName(EVFile = EVFile, lineName = lineNameToExport)
+  
+  msg <- paste(Sys.time(),'Writing line to ', pathAndFileName)
+  message(msg)
+  
+  msgV <- c(msgV,msg)
+  
+  var <- EVAcoVarNameFinder(EVFile = EVFile, acoVar)$EVVar
+  var$ExportLine(lineToExport, pathAndFileName, -1, -1)
+  
+  msg <- paste(Sys.time(), 'Line exported to evl file')  
+  message(msg)
+  msgV <- c(msgV, msg)
+  
+  invisible(list(msg = msgV))
+}
