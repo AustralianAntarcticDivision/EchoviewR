@@ -1,0 +1,17 @@
+citHeader("To cite EchoviewR in publications use:")
+
+citEntry(entry = "Article",
+         title        = "The R package EchoviewR for automated processing of active acoustic data using Echoview",
+         author       = personList(as.person("Lisa-Marie K Harrison"), as.person("Martin J Cox"), as.person("Georg Skaret"), as.person("Robert Harcourt")),
+         journal      = "Frontiers in Marine Science",
+         year         = "2015",
+         volume       = "2",
+         number       = "15",
+         doi          = "10.3389/fmars.2015.00015",
+         
+         textVersion  =
+           paste("Harrison LK, Cox MJ, Skaret G and Harcourt R (2015).",
+                 "The {R} package EchoviewR for automated processing of active acoustic data using Echoview.",
+                 "Frontiers in Marine Science, 2:15,",
+                 "doi: 10.3389/fmars.2015.00015")
+)
