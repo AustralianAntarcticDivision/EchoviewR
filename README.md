@@ -1,5 +1,5 @@
 # EchoviewR
-The R package EchoviewR - a free interface between Echoview and R using COM scripting.
+The R package EchoviewR - a free interface between Echoview (R) and R using COM scripting.
 
 Copyright and Licence
 
@@ -31,4 +31,6 @@ EchoviewR has been published in Frontiers in Marine Science, Marine Ecosystem Ec
 These examples use data available at the Australian Antarctic Division Data Centre [doi: http://dx.doi.org/10.4225/15/54CF081FB955F].
 
 Acknowledgements:
-The authors would like to thank Echoview for their help and support during the development of this R package.
+The authors would like to thank Echoview (R) for their help and support during the development of this R package.
+
+Echoview (R) is a registered trademark of Echoview Software Pty Ltd. Website: www.echoview.com/
