@@ -2337,7 +2337,6 @@ EVLineExportFromAcousticVarEVL <- function(EVFile, acoVar, lineNameToExport, pat
 #' EVSetAcoVarDisplayDepth(EVFile, acoVar, 5, 250)
 #'}
 #'
-
 EVSetAcoVarDisplayDepth <- function(EVFile, acoVar, minDepth, maxDepth) {
   
   if (class(minDepth) != "numeric" | class(maxDepth) != "numeric") {
@@ -2385,8 +2384,6 @@ EVSetAcoVarDisplayDepth <- function(EVFile, acoVar, minDepth, maxDepth) {
 #' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
 #' EVExportIntegrationByRegionByCells(EVFile = EVFile, variableName = '38 seabed and surface excluded', 'Region1', filePath = '~~/KAOS/EVExportIntegrationByRegionByCells_example.csv')
 #'}
-
-
 EVExportIntegrationByRegionByCells <- function (EVFile, variableName, regionName, filePath) {
   
   acoustic.var <- EVAcoVarNameFinder(EVFile = EVFile, variableName)$EVVar
