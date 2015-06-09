@@ -2367,3 +2367,38 @@ EVSetAcoVarDisplayDepth <- function(EVFile, acoVar, minDepth, maxDepth) {
   }
   
 }
+
+#' Export integration by region name by cells for an acoustic variable
+#'
+#' This function exports the integration by region by cells for an acoustic variable using COM scripting. Unlike EVIntegrationByRegionsByCellsExport, this function exports integration data for only for a single region name, not a region class. Note: This function will only work if the acoustic variable has a grid.
+#' @param EVFile An Echoview file COM object
+#' @param variableName a string containing the name of an EV acoustic variable
+#' @param regionName a string containing the name of the region to export. Note: Input a single region's name, not region a class. To export by class, see EVIntegrationByRegionsByCellsExport.
+#' @param filePath a string containing the file path and name to save the exported data to 
+#' @keywords Echoview COM scripting
+#' @export
+#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
+#' @seealso \code{\link{EVOpenFile}}
+#' @examples
+#' \dontrun{
+#' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
+#' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
+#' EVExportIntegrationByRegionByCells(EVFile = EVFile, variableName = '38 seabed and surface excluded', 'Region1', filePath = '~~/KAOS/EVExportIntegrationByRegionByCells_example.csv')
+#'}
+
+
+EVExportIntegrationByRegionByCells <- function (EVFile, variableName, regionName, filePath) {
+  
+  acoustic.var <- EVAcoVarNameFinder(EVFile = EVFile, variableName)$EVVar
+  
+  EVRegion <- EVFindRegionByName(EVFile, regionName)
+  
+  export.data <- acoustic.var$ExportIntegrationBySingleRegionByCells(filePath, EVRegion)
+  
+  if (export.data) {
+    message(paste("Success: Exported data for region", regionName, "in variable", variableName))
+  } else {
+    warning(paste("Data not exported"))
+  }
+  
+}
