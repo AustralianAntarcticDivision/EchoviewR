@@ -2093,7 +2093,7 @@ EVIntegrationByRegionsByCellsExport <- function (EVFile, acoVarName, regionClass
 
 
 #' Imports an Echoview Line file
-
+#'
 #' This function imports an Echoview line file (.evl) using COM scripting
 #' @param EVFile An Echoview file COM object
 #' @param pathAndFn string path and filename to .evl file. 
@@ -2175,7 +2175,7 @@ EVImportLine <- function (EVFile, pathAndFn=NULL,lineName=NULL) {
 }
 
 #' Export underlying data for an acoustic variable
-
+#'
 #' This function exports underlying data for an Echoview acoustic variable using COM scripting
 #' @param EVFile An Echoview file COM object
 #' @param variableName a string containing the name of an EV acoustic variable
@@ -2217,7 +2217,7 @@ EVExportUnderlying <- function (EVFile, variableName, pingRange = c(-1, -1), fil
 }
 
 #' Create an EV Editable Line from an existing line
-
+#'
 #' This function creates  an EV Line in an EV file object by name using COM scripting.
 #' @param EVFile An Echoview file COM object
 #' @param lineNameToCopy a string containing the name of the line to copy
@@ -2275,7 +2275,7 @@ EVCreateEditableLine <- function (EVFile, lineNameToCopy, editableLineName = NUL
 }
 
 #' Export an Echoview line file for an existing line associated with an Acoustic Variable.
-
+#'
 #' This function exports an EV line definition file (.evl) for a line associated with an acoustic variable.
 #' @param EVFile An Echoview file COM object
 #' @param acoVar Acoustic variable name that the line to be exported is associated with.
