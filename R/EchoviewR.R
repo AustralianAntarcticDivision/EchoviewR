@@ -2319,7 +2319,7 @@ EVLineExportFromAcousticVarEVL <- function(EVFile, acoVar, lineNameToExport, pat
 }
 
 #' Set the minimum and maximum display depth for an acoustic variable.
-
+#'
 #' This function changes the maximum and minimum depth displayed in the Echogram for an acoustic variable using COM scripting.
 #' @param EVFile An Echoview file COM object
 #' @param acoVar Acoustic variable object to change display threshold
@@ -2349,7 +2349,7 @@ EVSetAcoVarDisplayDepth <- function(EVFile, acoVar, minDepth, maxDepth) {
     acoVar[["Properties"]][["Display"]][["LowerLimit"]] <- maxDepth
     acoVar[["Properties"]][["Display"]][["UpperLimit"]] <- minDepth
     
-  }) 
+  }, silent = TRUE) 
   
   new_maximum <- acoVar[["Properties"]][["Display"]][["LowerLimit"]]
   new_minimum <- acoVar[["Properties"]][["Display"]][["UpperLimit"]]
