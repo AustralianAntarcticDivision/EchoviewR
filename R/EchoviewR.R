@@ -2344,11 +2344,13 @@ EVSetAcoVarDisplayDepth <- function(EVFile, acoVar, minDepth, maxDepth) {
   }
   
   try({
-    
     acoVar[["Properties"]][["Display"]][["LowerLimit"]] <- maxDepth
-    acoVar[["Properties"]][["Display"]][["UpperLimit"]] <- minDepth
-    
   }, silent = TRUE) 
+  
+  try({
+    acoVar[["Properties"]][["Display"]][["UpperLimit"]] <- minDepth
+  }, silent = TRUE)   
+  
   
   new_maximum <- acoVar[["Properties"]][["Display"]][["LowerLimit"]]
   new_minimum <- acoVar[["Properties"]][["Display"]][["UpperLimit"]]
