@@ -270,7 +270,8 @@ EVFindFilesetByName <- function (EVFile, filesetName) {
 #' @seealso \code{\link{EVNewFile}}  \code{\link{EVCreateNew}}
 #' @examples
 #'\dontrun{
-#'filenamesV <- c('~~/KAOS/raw/L0055-D20030115-T171028-EK60.raw', '~~/KAOS/raw/L0055-D20030115-T182914-EK60.raw')
+#'filenamesV <- c('~~/KAOS/raw/L0055-D20030115-T171028-EK60.raw', 
+#'                  '~~/KAOS/raw/L0055-D20030115-T182914-EK60.raw')
 #'EVAppObj <- COMCreate('EchoviewCom.EvApplication')
 #'EVFile <- EVNewFile(EVAppObj,templateFn="~~/KAOS/KAOStemplate.EV")$EVFile
 #'EVAddRawData(EVFile = EVFile, filesetName = '038-120-200', dataFiles = filenamesV)
@@ -839,7 +840,8 @@ msDATEConversion <- function (dateObj) {
 #' \dontrun{
 #' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
 #' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
-#' EVAddCalibrationFile(EVFile = EVFile, filesetName = '038-120-200', calibrationFile = '~~/KAOS/20120326_KAOS_SimradEK5.ecs')
+#' EVAddCalibrationFile(EVFile = EVFile, filesetName = '038-120-200', 
+#' calibrationFile = '~~/KAOS/20120326_KAOS_SimradEK5.ecs')
 #'}
 
 EVAddCalibrationFile <- function (EVFile, filesetName, calibrationFile) {
@@ -1202,9 +1204,11 @@ EVFindLineByName <- function (EVFile, lineName) {
 #' EVLine <- EVFindLineByName(EVFile = EVFile, lineName = "Fixed depth 250 m")
 #' 
 #' #Change grid to 100m vertical distance and 10m depth grid relative to 100m line 
-#' EVChangeVariableGrid(EVFile = EVFile, acousticVar = varObj, verticalType = 5, horizontalType = 2, verticalDistance = 100, horizontalDistance = 10, EVLine)
+#' EVChangeVariableGrid(EVFile = EVFile, acousticVar = varObj, 
+#' verticalType = 5, horizontalType = 2, verticalDistance = 100, horizontalDistance = 10, EVLine)
 #' #remove horizontal and vertical grid
-#' EVChangeVariableGrid(EVFile = EVFile, acousticVar = varObj, verticalType = 0, horizontalType = 0)
+#' EVChangeVariableGrid(EVFile = EVFile, acousticVar = varObj, 
+#' verticalType = 0, horizontalType = 0)
 
 #'}
 
@@ -1278,7 +1282,9 @@ EVChangeVariableGrid <- function (EVFile, acousticVar, verticalType, horizontalT
 #' \dontrun{
 #' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
 #' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
-#' EVExportIntegrationByCells(EVFile = EVFile, variableName = '38 seabed and surface excluded', filePath = '~~/KAOS/EVExportIntegrationByCells_example.csv')
+#' EVExportIntegrationByCells(EVFile = EVFile, 
+#' variableName = '38 seabed and surface excluded', 
+#' filePath = '~~/KAOS/EVExportIntegrationByCells_example.csv')
 #'}
 
 
@@ -1496,7 +1502,9 @@ EVGetCalibrationFileName <- function (EVFile, filesetName) {
 #'EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
 #'
 #'#create a region between pings 1 - 100 and depths 20-250m
-#'newRegion <- EVNewLineRelativeRegion(EVFile, "38 seabed and surface excluded", "test", "Fixed depth 6 m", "Fixed depth 250 m", 1, 100)
+#'newRegion <- EVNewLineRelativeRegion(EVFile, 
+#'"38 seabed and surface excluded", "test", 
+#'"Fixed depth 6 m", "Fixed depth 250 m", 1, 100)
 #'
 #'#create an unbounded region between depths 250-750m
 #'newRegion <- EVNewLineRelativeRegion(EVFile, "38 seabed and surface excluded", "test", "Fixed depth 6 m", "Fixed depth 250 m")
@@ -1798,7 +1806,8 @@ EVFindRegionClass <- function (evRegion) {
 #' \dontrun{
 #' (coords=lawnSurvey(startLon=-170,startLat=-60,lineLengthkm=2,lineSpacingkm=0.5,
 #'startBearingdeg=30,numOfLines=5))
-#'plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),type='n',xlab='Longitude, deg',ylab='Latitude, deg')
+#'plot(0,0,xlim=range(coords[,1]),
+#'ylim=range(coords[,2]),type='n',xlab='Longitude, deg',ylab='Latitude, deg')
 #'arrows(x0=coords[1:(nrow(coords)-1),1], y0=coords[1:(nrow(coords)-1),2], 
 #'       x1 = coords[2:nrow(coords),1], y1 = coords[2:nrow(coords),2])
 #'text(coords,row.names(coords),cex=0.6)
@@ -1851,29 +1860,37 @@ lawnSurvey=function(startLon,startLat,lineLengthkm,lineSpacingkm,startBearingdeg
 #' @author Martin Cox \email{martin.cox@@aad.gov.au}
 #' @examples
 #' \dontrun{
-#' coords=zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,startBearingdeg=30,
+#' coords=zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,
+#' startBearingdeg=30,
 #' rotationdeg=10,numOfLines=11)
-#'plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),type='n',xlab='Longitude, deg',ylab='Latitude, deg')
+#'plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),type='n',
+#'xlab='Longitude, deg',ylab='Latitude, deg')
 #'arrows(x0=coords[1:(nrow(coords)-1),1], y0=coords[1:(nrow(coords)-1),2], 
 #'       x1 = coords[2:nrow(coords),1], y1 = coords[2:nrow(coords),2])
 #'text(coords,row.names(coords),cex=0.6)
 #'points(coords[1,1],coords[1,2],col='blue',pch=17,cex=2)
 #'points(coords[nrow(coords),1],coords[nrow(coords),2],col='blue',pch=15,cex=2)
 #'legend('topright',c('Beginning','End'),col='blue',pch=c(17,15))
-#'#Use unrotated=TRUE and check coordinates in the returned coordinate list object are identical:
-#'coordL= zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,startBearingdeg=30,
+#'#Use unrotated=TRUE and check coordinates in the- 
+#'#-returned coordinate list object are identical:
+#'coordL= zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,
+#'startBearingdeg=30,
 #' rotationdeg=0,numOfLines=11,unrotated=TRUE)
 #' identical(coordL[[1]],coordL[[2]])
 #' #display rotated and unrotated coordinates"
-#'coordL= zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,startBearingdeg=30,
+#'coordL= zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,
+#'startBearingdeg=30,
 #' rotationdeg=5,numOfLines=11,unrotated=TRUE) 
 #' coords=coordL$unrotatedGeogs; coordsRotate=coordL$rotatedGeogs
 #' plot(0,0,xlim=range(c(coords[,1],coordsRotate[,1])),
-#' ylim=range(c(coords[,2],coordsRotate[,2])),type='n',xlab='Longitude, deg',ylab='Latitude, deg')
+#' ylim=range(c(coords[,2],coordsRotate[,2])),type='n',
+#' xlab='Longitude, deg',ylab='Latitude, deg')
 #'arrows(x0=coords[1:(nrow(coords)-1),1], y0=coords[1:(nrow(coords)-1),2], 
 #'       x1 = coords[2:nrow(coords),1], y1 = coords[2:nrow(coords),2])
-#'arrows(x0=coordsRotate[1:(nrow(coordsRotate)-1),1], y0=coordsRotate[1:(nrow(coordsRotate)-1),2], 
-#'       x1 = coordsRotate[2:nrow(coordsRotate),1], y1 = coordsRotate[2:nrow(coordsRotate),2],col='blue')
+#'arrows(x0=coordsRotate[1:(nrow(coordsRotate)-1),1], 
+#'y0=coordsRotate[1:(nrow(coordsRotate)-1),2], 
+#'       x1 = coordsRotate[2:nrow(coordsRotate),1], 
+#'       y1 = coordsRotate[2:nrow(coordsRotate),2],col='blue')
 #'legend('bottomleft',c('Unrotated','Rotated'),lty=1,col=c(1,'blue'))
 #'}
 zigzagSurvey=function(startLon,startLat,lineLengthkm,startBearingdeg,rotationdeg,numOfLines,
@@ -1912,7 +1929,8 @@ zigzagSurvey=function(startLon,startLat,lineLengthkm,startBearingdeg,rotationdeg
 #'\dontrun{
 #'coords=centreZigZagOnPosition(centreLon=-33,centreLat=-57,lineLengthkm=60,startBearingdeg=30,
 #'rotationdeg=10,numOfLines=21)
-#'plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),type='n',xlab='Longitude, deg',ylab='Latitude, deg')
+#'plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),
+#'type='n',xlab='Longitude, deg',ylab='Latitude, deg')
 #'arrows(x0=coords[1:(nrow(coords)-1),1], y0=coords[1:(nrow(coords)-1),2], 
 #'       x1 = coords[2:nrow(coords),1], y1 = coords[2:nrow(coords),2])
 #'text(coords,row.names(coords),cex=0.6)
@@ -1945,7 +1963,7 @@ centreZigZagOnPosition=function(centreLon,centreLat,
 #'Centres a regular rectangular survey on a desired latitude and longitude
 #'@param centreLon Desired centre location of survey
 #'@param centreLat Desired centre location of survey
-#'@param proj4string projection string of class \link{CRS-class}
+#'@param proj4string projection string of class \link{CRS-class}.  If NULL defaults to "+proj=longlat +datum=WGS84"
 #'@param tolerance maximum distance (in metres) between desired survey centre and realised survey centre
 #'@param ... other arguments to be passed into \link{lawnSurvey}
 #'@return Line transect coordinates (lon, lat) as specified in \link{lawnSurvey}
@@ -1954,7 +1972,8 @@ centreZigZagOnPosition=function(centreLon,centreLat,
 #'\dontrun{
 #'coords=centreLawnOnPosition(centreLon=-170,centreLat=-60,lineLengthkm=2,lineSpacingkm=0.5,
 #'startBearingdeg=30,numOfLines=5)
-#'plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),type='n',xlab='Longitude, deg',ylab='Latitude, deg')
+#'plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),type='n',
+#'xlab='Longitude, deg',ylab='Latitude, deg')
 #'arrows(x0=coords[1:(nrow(coords)-1),1], y0=coords[1:(nrow(coords)-1),2], 
 #'       x1 = coords[2:nrow(coords),1], y1 = coords[2:nrow(coords),2])
 #'text(coords,row.names(coords),cex=0.6)
@@ -1966,15 +1985,17 @@ centreZigZagOnPosition=function(centreLon,centreLat,
 #'  col=c('blue','blue','purple','red'),pch=c(17,15,19,19),pt.cex=c(1,1,2,1))
 #'}
 centreLawnOnPosition=function(centreLon,centreLat,
-                              proj4string=CRS("+proj=longlat +datum=WGS84"),tolerance=20,...)
+                              proj4string=NULL,tolerance=20,...)
 {
+  
+  if(is.null(proj4string))  proj4string=CRS("+proj=longlat +datum=WGS84")
   coords=lawnSurvey(startLon=centreLon,startLat=centreLat,...)
-  centreCoords=(geomean(coords))
+  centreCoords=(geosphere::geomean(coords))
   shiftV=c(centreLon-centreCoords[1],centreLat-centreCoords[2])
-  coords=coordinates(elide(obj=SpatialPoints(coords,proj4string=proj4string),shift=shiftV))
+  coords=coordinates(maptools::elide(obj=SpatialPoints(coords,proj4string=proj4string),shift=shiftV))
   colnames(coords)=c('lon','lat')
-  shiftedCentreCoords=geomean(coords)
-  errorD=distHaversine(p1=c(centreLon,centreLat), p2=geomean(coords))
+  shiftedCentreCoords=geosphere::geomean(coords)
+  errorD=geosphere::distHaversine(p1=c(centreLon,centreLat), p2=geosphere::geomean(coords))
   if(errorD>tolerance)
     stop(tolerance,' m tolerence between desired and realised survey centre exceeded.')
   message('Difference between desired and realised survey centre = ', round(errorD,2),' m')
@@ -2384,7 +2405,9 @@ EVSetAcoVarDisplayDepth <- function(EVFile, acoVar, minDepth, maxDepth) {
 #' \dontrun{
 #' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
 #' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
-#' EVExportIntegrationByRegionByCells(EVFile = EVFile, variableName = '38 seabed and surface excluded', 'Region1', filePath = '~~/KAOS/EVExportIntegrationByRegionByCells_example.csv')
+#' EVExportIntegrationByRegionByCells(EVFile = EVFile, 
+#' variableName = '38 seabed and surface excluded', 'Region1', 
+#' filePath = '~~/KAOS/EVExportIntegrationByRegionByCells_example.csv')
 #'}
 EVExportIntegrationByRegionByCells <- function (EVFile, variableName, regionName, filePath) {
   
