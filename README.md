@@ -21,7 +21,8 @@ Copyright and Licence
     along with EchoviewR.  If not, see <http://www.gnu.org/licenses/>.
 
 
-This package is open for community development and we encourage users to extend the package as they need. We will not be maintaining the package and are not liable for any losses when using EchoviewR. If using EchoviewR, please cite as:
+This package is open for community development and we encourage users to extend the package as they need. We are not liable for any losses when using EchoviewR. If using EchoviewR, please cite as:
+
 Harrison LK, Cox MJ, Skaret G and Harcourt R (2015). The R package EchoviewR for automated processing of active acoustic data using Echoview. Front. Mar. Sci. 2:15. doi: 10.3389/fmars.2015.00015
 
 EchoviewR has been published in Frontiers in Marine Science, Marine Ecosystem Ecology. The manuscript and supplementary materials are available at http://journal.frontiersin.org/Journal/10.3389/fmars.2015.00015/abstract. The supplementary tutorials include:
