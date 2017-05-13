@@ -31,22 +31,22 @@ citation('EchoviewR')
 
 
 ### Installing EchoviewR
-
-You can install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):
-
-
-```{r install,eval=FALSE}
-if(!"devtools" %in% rownames(installed.packages())) devtools::install_github('AustralianAntarcticDivision/EchoviewR')
-```
-
-Currently, ```EchoviewR``` has quite a few dependencies, something we are hoping to rectify.  Meanwhile, you will also need the following ```R``` pacakges:
+Currently, ```EchoviewR``` has quite a few dependencies, something we are hoping to rectify.  Meanwhile, you will need to install the following ```R``` packages:
 
 ```fields```,```sp```,```geosphere```,```maptools```,```RDCOMClient``` and ```rgeos```
   
-You can install all these pacakges with the following  ```R``` code:
+You can install all these packages with the following  ```R``` code:
 
 ```{r dependPacks,eval=FALSE}
 install.packages(c('fields','sp','geosphere','maptools','RDCOMClient','rgeos'))
+```
+
+You are then ready to install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):
+
+
+```{r install,eval=FALSE}
+if (!requireNamespace("devtools",quietly=TRUE)) install.packages("devtools")
+ devtools::install_github('AustralianAntarcticDivision/EchoviewR')
 ```
 
 You should then be ready to work with EchoviewR:
