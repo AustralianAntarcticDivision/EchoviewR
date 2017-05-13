@@ -31,6 +31,7 @@ citation('EchoviewR')
 
 
 ###Installing EchoviewR
+
 You can install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):
 
 
@@ -40,14 +41,10 @@ if(!"devtools" %in% rownames(installed.packages())) devtools::install_github('Au
 
 Currently, ```EchoviewR``` has quite a few dependencies, something we are hoping to rectify.  Meanwhile, you will also need the following ```R``` pacakges:
 
-  ```fields```,
-  ```sp```,
-   ```geosphere```,
-   ```maptools```
-   ```RDCOMClient```, and 
-   ```rgeos```
-
+```fields```,```sp```,```geosphere```,```maptools```,```RDCOMClient``` and ```rgeos```
+  
 You can install all these pacakges with the following  ```R``` code:
+
 ```{r dependPacks,eval=FALSE}
 install.packages(c('fields','sp','geosphere','maptools','RDCOMClient','rgeos'))
 ```
@@ -58,13 +55,16 @@ library(EchoviewR)
 ```
 
 ###Getting started
+
 Currently there are two vignettes that describe the automation of reading data into Echoview (R), ```read_data_vignette.pdf``` and the automation of schools detection in Echoview (R) ```schoolsDetection.pdf```.  Both the vignettes and examples in the function help use data available at the Australian Antarctic Division Data Centre [doi: http://dx.doi.org/10.4225/15/54CF081FB955F].
 
 ###Acknowledgements:
+
 The authors would like to thank Echoview (R) for their help and support during the development of this R package.
 
 Echoview (R) is a registered trademark of Echoview Software Pty Ltd. Website: www.echoview.com/
 
 ###References
- Hadley Wickham and Winston Chang (2016). devtools: Tools to Make Developing R Packages Easier. R package version 1.12.0.
+
+Hadley Wickham and Winston Chang (2016). devtools: Tools to Make Developing R Packages Easier. R package version 1.12.0.
   https://CRAN.R-project.org/package=devtools
