@@ -21,17 +21,50 @@ Copyright and Licence
     along with EchoviewR.  If not, see <http://www.gnu.org/licenses/>.
 
 
-This package is open for community development and we encourage users to extend the package as they need. We are not liable for any losses when using EchoviewR. If using EchoviewR, please cite as:
+This package is open for community development and we encourage users to extend the package as they need. We are not liable for any losses when using EchoviewR. 
 
-Harrison LK, Cox MJ, Skaret G and Harcourt R (2015). The R package EchoviewR for automated processing of active acoustic data using Echoview. Front. Mar. Sci. 2:15. doi: 10.3389/fmars.2015.00015
+If using EchoviewR, please cite as:
 
-EchoviewR has been published in Frontiers in Marine Science, Marine Ecosystem Ecology. The manuscript and supplementary materials are available at http://journal.frontiersin.org/Journal/10.3389/fmars.2015.00015/abstract. The supplementary tutorials include:
-- Reading data with EchoviewR
-- Biomass Estimation of Antarctic Krill with EchoviewR
-- Schools detection and cluster analysis of Antarctic Krill with EchoviewR
-These examples use data available at the Australian Antarctic Division Data Centre [doi: http://dx.doi.org/10.4225/15/54CF081FB955F].
+```{r citation}
+citation('EchoviewR')
+```
 
-Acknowledgements:
+
+###Installing EchoviewR
+You can install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):
+
+
+```{r install,eval=FALSE}
+if(!"devtools" %in% rownames(installed.packages())) devtools::install_github('AustralianAntarcticDivision/EchoviewR')
+```
+
+Currently, ```EchoviewR``` has quite a few dependencies, something we are hoping to rectify.  Meanwhile, you will also need the following ```R``` pacakges:
+
+  ```fields```,
+  ```sp```,
+   ```geosphere```,
+   ```maptools```
+   ```RDCOMClient```, and 
+   ```rgeos```
+
+You can install all these pacakges with the following  ```R``` code:
+```{r dependPacks,eval=FALSE}
+install.packages(c('fields','sp','geosphere','maptools','RDCOMClient','rgeos'))
+```
+
+You should then be ready to work with EchoviewR:
+```{r startEVR, eval=FALSE}
+library(EchoviewR)
+```
+
+###Getting started
+Currently there are two vignettes that describe the automation of reading data into Echoview (R), ```read_data_vignette.pdf``` and the automation of schools detection in Echoview (R) ```schoolsDetection.pdf```.  Both the vignettes and examples in the function help use data available at the Australian Antarctic Division Data Centre [doi: http://dx.doi.org/10.4225/15/54CF081FB955F].
+
+###Acknowledgements:
 The authors would like to thank Echoview (R) for their help and support during the development of this R package.
 
 Echoview (R) is a registered trademark of Echoview Software Pty Ltd. Website: www.echoview.com/
+
+###References
+ Hadley Wickham and Winston Chang (2016). devtools: Tools to Make Developing R Packages Easier. R package version 1.12.0.
+  https://CRAN.R-project.org/package=devtools
