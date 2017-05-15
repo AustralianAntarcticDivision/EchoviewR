@@ -810,20 +810,6 @@ EVIntegrationByRegionsExport <- function (EVFile, acoVarName, regionClassName, e
   invisible(list(msg = msgV))
 }
 
-#' Convert a Microsoft DATE object to a human readable date and time
-#' 
-#' Time stamps in Echoview, such as start and end times of, for example, invididual regions, use the Microsoft DATE format.  This function converts the Microsoft DATE object to a human readable date and time.  NB no time zone is returned.
-#' @param dateObj a Microsoft date object
-#' @return time stamp in the format yyyy-mm-dd hh:mm:ss
-#' @seealso www.echoview.com
-msDATEConversion <- function (dateObj) {
-  
-  eTimeStamp <- as.numeric(dateObj)
-  eDate <- as.Date(eTimeStamp, origin = "1899-12-30")
-  second(eDate) <- ddays(eTimeStamp - floor(eTimeStamp))
-  return(eDate)
-  
-}
 
 #' Add a calibration file (.ecs) to a fileset
 #' 
@@ -1009,50 +995,6 @@ EVNewRegionClass <- function (EVFile, className) {
     message(msg)
   }
 }
-
-#' Import an Echoview region definitions file (.evr)
-#' 
-#' This function imports a region definitions file (.evr) using COM scripting
-#' @param EVFile An Echoview file COM object
-#' @param evrFile An Echoview region definitions file (.evr) path and name
-#' @param regionName The name of the Echoview region
-#' @return A list object with one element. $msg message for processing log
-#' @keywords Echoview COM scripting 
-#' @export
-#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
-#' @seealso \code{\link{EVOpenFile}}
-#' @examples
-#' \dontrun{EVAppObj <- COMCreate('EchoviewCom.EvApplication')
-#' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
-#' EVImportRegionDef(EVFile = EVFile, evrFile = '~~/KAOS/off transect regions/20030114_1200000000.evr', regionName = 'region_1')
-#'}
-
-EVImportRegionDef <- function (EVFile, evrFile, regionName) {
-  
-  #check whether a region of that name already exists
-  CheckName <- EVFile[["Regions"]]$FindByName(regionName)
-  if (is.null(CheckName)) {
-    
-    #import region definitions file
-    EVFile$Import(evrFile)
-    
-    #check whether new region has been added
-    CheckName <- EVFile[["Regions"]]$FindByName(regionName)
-    
-    if (is.null(CheckName) == FALSE) {
-      msg <- paste(Sys.time(), ' : Imported region definitions: Region ', regionName, 
-                   ' added', sep = '')
-    } else {
-      msg <- paste(Sys.time(), ' : Failed to import region definitions' , sep = '')
-    }
-    
-  } else { 
-    msg <- paste(Sys.time(), ' : Failed to import region definitions: A region of that name already exists' )
-  }
-  message(msg)
-  invisible(msg)
-}
-
 
 #' Export Sv data for an Echoview acoustic variable by region
 #' 
@@ -1496,6 +1438,7 @@ EVGetCalibrationFileName <- function (EVFile, filesetName) {
 #' @keywords Echoview COM scripting
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @seealso \code{\link{EVOpenFile}}
+#' @export
 #' @examples
 #' \dontrun{
 #'EVAppObj <- COMCreate('EchoviewCom.EvApplication')
@@ -1546,6 +1489,7 @@ EVNewLineRelativeRegion <- function (EVFile, varName, regionName, line1, line2, 
 #' @keywords Echoview COM scripting
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @seealso \code{\link{EVOpenFile}}
+#' @export
 #' @examples
 #' \dontrun{
 #' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
@@ -2110,89 +2054,6 @@ EVIntegrationByRegionsByCellsExport <- function (EVFile, acoVarName, regionClass
   } 
   
   invisible(list(msg = msgV))
-}
-
-
-#' Imports an Echoview Line file
-#'
-#' This function imports an Echoview line file (.evl) using COM scripting
-#' @param EVFile An Echoview file COM object
-#' @param pathAndFn string path and filename to .evl file. 
-#' @param lineName = NULL optional line name for imported line.
-#' @return a list object with two elements- [[1]] imported EV line COM object, and [[2]] function message for log
-#' @keywords Echoview COM scripting
-#' @export
-#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
-#' @seealso \code{\link{EVOpenFile}} 
-#' @examples
-#' \dontrun{
-#' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
-#' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
-#' 
-#' #Example 1 - import a .evl line file
-#' EVImportLine(EVFile, pathAndFn = '~~/KAOS/lineKAOS.evl')
-#' 
-#' #Example 2 - rename the imported line
-#' EVImportLine(EVFile, pathAndFn='~~/KAOS/lineKAOS.evl', lineName='Line6' ) 
-#'}
-EVImportLine <- function (EVFile, pathAndFn=NULL,lineName=NULL) {
-  
-  if(is.null(pathAndFn))
-  {msg=paste(Sys.time(),' : No path and filename specified in EVImportLine(pathAndFn)',sep='')
-   warning(msg) 
-   return(list(msg=msg))
-  }
-  nbr.of.lines.pre.import<-EVFile[['Lines']]$Count()  
-  msgV=paste(Sys.time(),' : Importing line',pathAndFn,sep='')
-  message(msgV)
-  importedLineBoolean<-EVFile$Import(pathAndFn)
-  if(importedLineBoolean)
-  {
-    msg=paste(Sys.time(),' : Successfully imported ',pathAndFn,sep='')
-    message(msg)
-    msgV=c(msgV,msg)
-  } else{
-    msg=paste(Sys.time(),' : Failed to import ',pathAndFn,sep='')
-    warning(msg)
-    msgV=c(msgV,msg)
-    return(list(msg=msgV))
-  }  
-  #find newline object
-  importedLineObj=EVFile[['Lines']]$Item(nbr.of.lines.pre.import)
-  
-  if(is.null(lineName)) {
-    msg=paste(Sys.time(),' : Imported line object name = ',importedLineObj$Name(),sep='')
-    message(msg)
-    msgV=c(msgV,msg)
-    return(list(lineObj=importedLineObj,msg=msgV))
-  }else{
-    msg=paste(Sys.time(),' : Renaming imported line object name from ',importedLineObj$Name(),
-              ' to ',lineName,sep='')
-    message(msg)
-    msgV=c(msgV,msg)
-    #check if there is already a line with the new name
-    line.check <- EVFile[["Lines"]]$FindByName(lineName)
-    
-    if (is.null(line.check) == FALSE) {
-      msg=paste(Sys.time(), "Error: A line already exists with the name", lineName, ". Line not renamed", sep = " ")
-      warning(msg)
-      msgV=c(msgV,msg)
-      return(list(lineObj=importedLineObj,msg=msgV))
-    }
-    importedLineObj[["Name"]] <- lineName
-    #check that line has been renamed
-    if (importedLineObj$Name() == lineName) {
-      msg=paste(Sys.time(), ": Success, line renamed as", lineName, sep = " ")
-      message(msg)
-      msgV=c(msgV,msg)
-      invisible(list(lineObj=importedLineObj,msg=msgV))
-    } else {
-      msg=paste(Sys.time(), ": Could not rename line")
-      warning(msg)
-      msgV=c(msgV,msg)
-      return(list(lineObj=importedLineObj,msg=msgV))
-    }  
-  } #end of rename line if statement.
 }
 
 #' Export underlying data for an acoustic variable
