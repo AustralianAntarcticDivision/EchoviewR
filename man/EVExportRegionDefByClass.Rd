@@ -35,4 +35,3 @@ EVExportRegionDefByClass(evRegionClass = regionClass, filePath = "~~/KAOS/EVExpo
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

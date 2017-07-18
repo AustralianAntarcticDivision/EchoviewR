@@ -33,4 +33,3 @@ file.names <- EVFilesInFileset(EVFile = EVFile, filesetName = '038-120-200')
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

@@ -43,4 +43,3 @@ Jolly, G. M., and Hampton, I. 1990. A stratified random transect design for acou
 \seealso{
 \link{jhMultipleStrataF}
 }
-

@@ -35,4 +35,3 @@ EVDeleteLine(EVFile = EVFile, evLine = testline)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

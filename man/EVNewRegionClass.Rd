@@ -33,4 +33,3 @@ EVNewRegionClass(EVFile = EVFile, className = 'test_class')
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

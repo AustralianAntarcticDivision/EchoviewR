@@ -52,4 +52,3 @@ verticalType = 0, horizontalType = 0)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

@@ -45,4 +45,3 @@ EVShiftRegionDepth(EVFile, "testregion", 1, -50)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

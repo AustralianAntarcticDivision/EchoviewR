@@ -67,4 +67,3 @@ EVSchoolsDetect(EVFile = EVFile,
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

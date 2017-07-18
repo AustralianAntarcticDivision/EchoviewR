@@ -29,4 +29,3 @@ EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

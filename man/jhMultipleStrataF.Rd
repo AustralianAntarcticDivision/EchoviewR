@@ -44,4 +44,3 @@ jhMultipleStrataF(strata=list(svy1,svy4))
 \seealso{
 \link{jhF}
 }
-

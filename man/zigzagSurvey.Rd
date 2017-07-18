@@ -69,10 +69,9 @@ y0=coordsRotate[1:(nrow(coordsRotate)-1),2],
 legend('bottomleft',c('Unrotated','Rotated'),lty=1,col=c(1,'blue'))
 }
 }
-\author{
-Martin Cox \email{martin.cox@aad.gov.au}
-}
 \seealso{
 \link{zigzagSurvey}
 }
-
+\author{
+Martin Cox \email{martin.cox@aad.gov.au}
+}

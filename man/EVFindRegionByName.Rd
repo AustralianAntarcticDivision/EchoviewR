@@ -34,4 +34,3 @@ testRegion <- EVFindRegionByName(EVFile, "Region1")
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

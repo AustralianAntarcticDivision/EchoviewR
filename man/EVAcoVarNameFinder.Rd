@@ -34,4 +34,3 @@ varObj <- EVAcoVarNameFinder(EVFile, "120 7x7 convolution")$EVVar
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

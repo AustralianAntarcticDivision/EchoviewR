@@ -33,4 +33,3 @@ EVLine <- EVFindLineByName(EVFile = EVFile, lineName = "Fixed depth 250 m")
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

@@ -34,4 +34,3 @@ EVDeleteRegionClass(EVFile, exampleClass)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

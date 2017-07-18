@@ -33,4 +33,3 @@ EVCreateFileset(EVFile = EVFile, filesetName = 'example')
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

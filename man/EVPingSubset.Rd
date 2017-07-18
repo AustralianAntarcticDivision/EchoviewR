@@ -7,11 +7,13 @@
 EVPingSubset(EVFile, acoVarName, pingsubsetString, includePingRanges = TRUE)
 }
 \arguments{
+\item{EVFile}{An Echoview file COM object}
+
 \item{acoVarName}{Acoustic variable name}
 
 \item{pingsubsetString}{A ping subset string (see examples).}
 
-\item{EVAppObj}{An EV application COM object arising from the call COMCreate('EchoviewCom.EvApplication')}
+\item{includePingRanges}{=TRUE Boolean.  Default is for data within the ping range to be included}
 }
 \value{
 a list object with two elements.  $success: ping subset successfully changed, and $msg: message for processing log.

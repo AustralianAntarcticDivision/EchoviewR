@@ -38,4 +38,3 @@ EVExportRegionSv(EVFile = EVFile, variableName = '120 seabed and surface exclude
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

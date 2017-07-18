@@ -1,9 +1,10 @@
 #' Control an Echoview ping subset virtual variable using COM scripting.
 #' 
 #' This function opens an existing Echoview (.EV) file using COM scripting.  
-#' @param EVAppObj An EV application COM object arising from the call COMCreate('EchoviewCom.EvApplication')
+#' @param EVFile An Echoview file COM object
 #' @param acoVarName Acoustic variable name 
 #' @param pingsubsetString A ping subset string (see examples).
+#' @param includePingRanges =TRUE Boolean.  Default is for data within the ping range to be included
 #' @return a list object with two elements.  $success: ping subset successfully changed, and $msg: message for processing log. 
 #' @keywords Echoview COM scripting
 #' @export

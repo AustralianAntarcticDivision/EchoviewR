@@ -43,10 +43,9 @@ points(coords[nrow(coords),1],coords[nrow(coords),2],col='blue',pch=15,cex=2)
 legend('topright',c('Beginning','End'),col='blue',pch=c(17,15))
 }
 }
-\author{
-Martin Cox \email{martin.cox@aad.gov.au}
-}
 \seealso{
 \code{\link{zigzagSurvey}}
 }
-
+\author{
+Martin Cox \email{martin.cox@aad.gov.au}
+}

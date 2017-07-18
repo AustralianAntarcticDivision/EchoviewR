@@ -37,4 +37,3 @@ newLine <- EVNewFixedDepthLine(EVFile = EVFile, depth = 50, lineName = "testline
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

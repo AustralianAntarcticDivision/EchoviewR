@@ -33,4 +33,3 @@ EVSaveAsFile(EVFile = EVFile, fileName = '~~/KAOS/KAOStemplate_test.EV')
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

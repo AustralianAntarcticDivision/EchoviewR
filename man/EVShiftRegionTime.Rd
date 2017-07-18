@@ -49,4 +49,3 @@ EVShiftRegionTime(EVFile, "testregion", hours = -1)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

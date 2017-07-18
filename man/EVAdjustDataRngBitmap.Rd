@@ -36,4 +36,3 @@ EVAdjustDataRngBitmap(varObj, minRng = -90, maxRng = 0)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

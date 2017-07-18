@@ -56,4 +56,3 @@ changeSettings <- EVSchoolsDetSet(EVFile, varObj, distanceMode = "GPS distance",
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

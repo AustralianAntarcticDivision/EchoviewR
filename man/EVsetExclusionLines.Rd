@@ -8,7 +8,7 @@ EVsetExclusionLines(EVFile, acoVarName, newAboveExclusionLine = NULL,
   newBelowExclusionLine = NULL)
 }
 \arguments{
-\item{EVFile}{An EV application COM object arising from the call COMCreate('EchoviewCom.EvApplication')}
+\item{EVFile}{An Echoview file COM object}
 
 \item{acoVarName}{Acoustic variable name.}
 

@@ -36,4 +36,3 @@ filePath = '~~/KAOS/EVExportIntegrationByRegionByCells_example.csv')
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

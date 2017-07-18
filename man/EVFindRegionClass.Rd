@@ -33,4 +33,3 @@ EVFindRegionClass(ev.region)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

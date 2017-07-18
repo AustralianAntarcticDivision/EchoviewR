@@ -36,4 +36,3 @@ calibrationFile = '~~/KAOS/20120326_KAOS_SimradEK5.ecs')
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

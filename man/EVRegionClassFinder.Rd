@@ -33,4 +33,3 @@ aggregationsClass <- EVRegionClassFinder(EVFile, "aggregations")$regionClass
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

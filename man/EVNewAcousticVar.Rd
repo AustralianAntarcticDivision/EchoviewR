@@ -36,4 +36,3 @@ EVNewAcousticVar(EVFile = EVFile, oldVarName = "38 seabed and surface excluded",
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

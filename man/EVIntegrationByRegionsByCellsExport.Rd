@@ -40,4 +40,3 @@ EVIntegrationByRegionsByCellsExport(EVFile, "120 aggregations", "aggregations", 
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

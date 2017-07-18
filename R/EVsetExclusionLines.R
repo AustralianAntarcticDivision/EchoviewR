@@ -1,7 +1,7 @@
 #' Change the top and bottom exclusion lines in an Echoview acoustic variable
 #' 
 #' This function changes the top and bottom exclusion lines in an Echoview acoustic variable using COM scripting.  
-#' @param EVAppObj An EV application COM object arising from the call COMCreate('EchoviewCom.EvApplication')
+#' @param EVFile An Echoview file COM object
 #' @param acoVarName Acoustic variable name.
 #' @param newAboveExclusionLine Name of the top exclusion line to be used. Default is NULL in which case the top exclusion line is unchanged.
 #' @param newBelowExclusionLine Name of the bottom exclusion line to be used. Default is NULL in which case the bottom exclusion line is unchanged.

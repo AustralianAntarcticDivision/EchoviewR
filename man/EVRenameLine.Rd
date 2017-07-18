@@ -37,4 +37,3 @@ EVRenameLine(EVFile = EVFile, evLine = testline, newName = "line40")
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

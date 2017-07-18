@@ -53,4 +53,3 @@ EVCreateNew(EVAppObj=EVAppObj,
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

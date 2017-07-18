@@ -41,4 +41,3 @@ legend('bottomright',c('Beginning','End','Desired centre','Actual centre'),
  col=c('blue','blue','purple','red'),pch=c(17,15,19,19),pt.cex=c(1,1,2,1))
 }
 }
-

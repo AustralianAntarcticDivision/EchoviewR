@@ -34,4 +34,3 @@ EVminThresholdSet(varObj, -80)
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
-

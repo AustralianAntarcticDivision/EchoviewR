@@ -39,4 +39,3 @@ startBearingdeg=30,numOfLines=50)
 exportMIF(coords=coords,pathAndFileName='c:\\\\Users\\\\martin_cox\\\\Documents\\\\test4.mif')
 }
 }
-
