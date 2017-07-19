@@ -31,7 +31,7 @@ EVAddVariable=function(EVFile,acoVarName,EOperator,addedVarName=NULL)
     return(list(varObj=NULL,objName=NULL,msg=msgV))
     }
   if(!is.null(addedVarName)){
-    nnRes=EVRenameAcousticVar(EVFile=EVFile,acoVarName=acoVarName,newName=addedVarName)
+    nnRes=EVRenameAcousticVar(EVFile=EVFile,acoVarName=cNewName,newName=addedVarName)
     return(nnRes)
   }   
   else  {
