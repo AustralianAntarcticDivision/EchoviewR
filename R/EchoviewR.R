@@ -2200,57 +2200,6 @@ EVLineExportFromAcousticVarEVL <- function(EVFile, acoVar, lineNameToExport, pat
   invisible(list(msg = msgV))
 }
 
-#' Set the minimum and maximum display depth for an acoustic variable.
-#'
-#' This function changes the maximum and minimum depth displayed in the Echogram for an acoustic variable using COM scripting.
-#' @param EVFile An Echoview file COM object
-#' @param acoVar Acoustic variable object to change display threshold
-#' @param minDepth The minimum depth to display in metres
-#' @param maxDepth The maximum depth to display in meters
-#' @keywords Echoview COM scripting
-#' @export
-#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
-#' @seealso \code{\link{EVAcoVarNameFinder}} 
-#' @examples
-#' \dontrun{
-#' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
-#' EVFile <- EVOpenFile(EVAppObj, 'KAOS/KAOStemplate.EV')$EVFile
-#' acoVar <- EVAcoVarNameFinder(EVFile, acoVarName = "38 seabed and surface excluded")$EVVar
-#' EVSetAcoVarDisplayDepth(EVFile, acoVar, 5, 250)
-#'}
-#'
-EVSetAcoVarDisplayDepth <- function(EVFile, acoVar, minDepth, maxDepth) {
-  
-  if (class(minDepth) != "numeric" | class(maxDepth) != "numeric") {
-    stop("Error: Input numeric depths")
-  }
-  
-  try({
-    acoVar[["Properties"]][["Display"]][["LowerLimit"]] <- maxDepth
-  }, silent = TRUE) 
-  
-  try({
-    acoVar[["Properties"]][["Display"]][["UpperLimit"]] <- minDepth
-  }, silent = TRUE)   
-  
-  
-  new_maximum <- acoVar[["Properties"]][["Display"]][["LowerLimit"]]
-  new_minimum <- acoVar[["Properties"]][["Display"]][["UpperLimit"]]
-  
-  if (new_maximum == maxDepth) {
-    message(paste("Success: Changed the maximum depth to", maxDepth, "m"))
-  } else {
-    warning("Error: Could not change the maximum depth")
-  }
-  
-  if (new_minimum == minDepth) {
-    message(paste("Success: Changed the minimum depth to", minDepth, "m"))
-  } else {
-    warning("Error: Could not change the minimum depth")
-  }
-  
-}
-
 #' Export integration by region name by cells for an acoustic variable
 #'
 #' This function exports the integration by region by cells for an acoustic variable using COM scripting. Unlike EVIntegrationByRegionsByCellsExport, this function exports integration data for only for a single region name, not a region class. Note: This function will only work if the acoustic variable has a grid.
