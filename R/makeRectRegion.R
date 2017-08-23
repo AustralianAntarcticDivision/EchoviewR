@@ -8,9 +8,12 @@
 #'@param minDepth =0 Minimum depth for the region
 #'@param maxDepth maximum depth for the region
 #'@param regionClassName region class name
+#'@param regionType region Type (integer)
 #'@param outPathFn output parth and filename.
 #'@param append = FALSE should be region be added to the EVR file given in outPathFn
 #'@return list: $msg messages from the function call $exportFLAG Boolean TRUE EVR file created or added.  FALSE otherwise
+#'@details Region types supported by Echoview: 0 = bad (no data); 1 = analysis; "2" = marker; 3 = fishtracks, and 4 = bad (empty water)
+#'@references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #'@export
 #'@examples 
 #' \dontrun{makeRectRegion(dateStart='20170815',timeStart='001525',
@@ -19,7 +22,7 @@
 #'outPathFn='~/test2.evr',
 #'regionClassName='ctd',append=FALSE)}
 makeRectRegion=function(dateStart,timeStart,dateStop,timeStop, minDepth=0,maxDepth,outPathFn,
-                        regionClassName,append=FALSE)
+                        regionClassName,regionType,append=FALSE)
 {
   msgV=paste(Sys.time(),' : Creating rectangular region')
   message(msgV)
@@ -55,7 +58,7 @@ makeRectRegion=function(dateStart,timeStart,dateStop,timeStop, minDepth=0,maxDep
   dfReg$line3=0
   dfReg$line4=0
   dfReg$line5=regionClassName
-  dfReg$line6=paste(topLeftPoint,bottomLeftPoint,bottomRightPoint,topRightPoint,'0')
+  dfReg$line6=paste(topLeftPoint,bottomLeftPoint,bottomRightPoint,topRightPoint,regionType)
   dfReg$line7=paste('Region',regionID+1,sep='')
   for(i in 1:ncol(dfReg)) write.table(dfReg[,i],outPathFn,sep='',quote=F,append=T,col.names=F,row.names=F)
   

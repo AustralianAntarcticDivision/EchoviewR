@@ -5,7 +5,7 @@
 \title{Make a rectangular Echoview region (EVR) file.}
 \usage{
 makeRectRegion(dateStart, timeStart, dateStop, timeStop, minDepth = 0,
-  maxDepth, outPathFn, regionClassName, append = FALSE)
+  maxDepth, outPathFn, regionClassName, regionType, append = FALSE)
 }
 \arguments{
 \item{dateStart}{date  stamp for the start of the region (yyymmdd)}
@@ -24,6 +24,8 @@ makeRectRegion(dateStart, timeStart, dateStop, timeStop, minDepth = 0,
 
 \item{regionClassName}{region class name}
 
+\item{regionType}{region Type (integer)}
+
 \item{append}{= FALSE should be region be added to the EVR file given in outPathFn}
 }
 \value{
@@ -32,10 +34,16 @@ list: $msg messages from the function call $exportFLAG Boolean TRUE EVR file cre
 \description{
 This function creates a rectangular (2D) Echoview region file.  The function can add regions to an existing EVR file.
 }
+\details{
+Region types supported by Echoview: 0 = bad (no data); 1 = analysis; "2" = marker; 3 = fishtracks, and 4 = bad (empty water)
+}
 \examples{
 \dontrun{makeRectRegion(dateStart='20170815',timeStart='001525',
 dateStop='20170815',timeStop='001738', 
 minDepth=20,maxDepth=100,
 outPathFn='~/test2.evr',
 regionClassName='ctd',append=FALSE)}
+}
+\references{
+\url{http://support.echoview.com/WebHelp/Echoview.htm/}
 }
