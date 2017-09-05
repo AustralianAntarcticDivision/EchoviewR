@@ -56,7 +56,7 @@ EVImportLine <- function (EVFile, pathAndFn=NULL,lineName=NULL) {
     msg=paste(Sys.time(),' : Imported line object name = ',importedLineObj$Name(),sep='')
     message(msg)
     msgV=c(msgV,msg)
-    return(list(lineObj=importedLineObj,msg=msgV))
+    invisible(list(lineObj=importedLineObj,msg=msgV))
   }else{
     msg=paste(Sys.time(),' : Renaming imported line object name from ',importedLineObj$Name(),
               ' to ',lineName,sep='')
