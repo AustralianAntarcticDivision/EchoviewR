@@ -26,7 +26,7 @@
 #'  }
 #'  
 getRaws <- function(dir,StartDate, StartTime,EndDate, EndTime, tzraw="UTC", tzinp="UTC", timebuffer = 0){
-  require(lubridate)
+  #require(lubridate)
   lsRaw <- list.files(path=rawdir,pattern="*.raw") # get all raw files in folder
   lsRaw <- lsRaw[substr(lsRaw,nchar(lsRaw)-3,nchar(lsRaw))==".raw"] #Excludes files such as .raw.evi
   #Get datetime object from filenames

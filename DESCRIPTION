@@ -6,15 +6,14 @@ Date: 2017-08-15
 Author: Martin Cox and Lisa-Marie Harrison and Sven Gastauer
 Maintainer: Martin James Cox <martin.cox@aad.gov.au>
 Description: Automation of active acoustic data processing by controlling
-    Echoview using Component Object Model (COM) scripting
+    Echoview using Component Object Model (COM) scripting.
 License: GPL-3
 Depends:
-    fields,
+    RDCOMClient
+Imports:
+    lubridate,
     sp,
     geosphere,
-    maptools,
-    RDCOMClient,
-    lubridate,
-    rgeos
+    maptools
 LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
 RoxygenNote: 6.0.1

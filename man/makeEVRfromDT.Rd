@@ -36,6 +36,9 @@ The results are save as .EVR file for import into Echoview
 \details{
 The following region types (integer 0 to 4) are available in Echoview 0 - Bad Data (no data); 1 - Analysis; 2 - Marker; 3 - fishtracks; 4 - Bad Data (empty water)
 }
+\note{
+This function is experimental
+}
 \examples{
 \dontrun{
 # Minimal example generating 2 regions
@@ -47,6 +50,12 @@ dir <- 'F:\\\\'
 fn <- 'imaginaryRegions'
 makeEVRfromDT(depths,times,dates,fn=fn,dir=dir)
  }
+}
+\seealso{
+\code{\link{makeRectRegion}}
+}
+\author{
+Sven Gastauer
 }
 \keyword{Echoview}
 \keyword{com}

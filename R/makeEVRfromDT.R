@@ -3,6 +3,10 @@
 #' This function generates Echoview Region definitions according to predefined starting and end depts at given times.
 #' The results are save as .EVR file for import into Echoview
 #' 
+#' @author Sven Gastauer
+#' 
+#' @note This function is experimental
+#' 
 #' @param depths list of depths (can be multiple regions, where each is a list element) 
 #' @param times (character) list of times in HHMMSS
 #' @param dates  list of dates as character \%Y\%m\%d (can be multiple regions, where each is a list element)
@@ -16,6 +20,7 @@
 #' @keywords Echoview com scripting
 #' @details The following region types (integer 0 to 4) are available in Echoview 0 - Bad Data (no data); 1 - Analysis; 2 - Marker; 3 - fishtracks; 4 - Bad Data (empty water)
 #' @export
+#' @seealso \code{\link{makeRectRegion}}
 #' @examples
 #' \dontrun{
 #' # Minimal example generating 2 regions

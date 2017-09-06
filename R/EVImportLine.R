@@ -1,3 +1,14 @@
+#' Import an Echoview line (EVL format) file
+#' 
+#'This function imports an Echoview line (.EVL) format line into Echoview and can rename the imported line or replace a line.
+#'  
+#'@import RDCOMClient
+#'@param EVFile ("COMIDispatch) An Echoview file COM object 
+#'@param pathAndFn = NULL (character) path and file name of an EVL file
+#'@param lineName = NULL (character) desired line name
+#'@param existingLine = NULL behaviour if a line with the same name as lineName already exists in Echoview.  See details.
+#'@export
+#'@return list $lineObj=COM object for the imported line (class COMIDispatch), msg= vector of messages)
 EVImportLine <- function (EVFile, pathAndFn=NULL,lineName=NULL,existingLine=NULL) {
   
   if(is.null(pathAndFn))
