@@ -3,12 +3,9 @@
 #' This function generates Echoview Region definitions according to predefined starting and end depts at given times.
 #' The results are save as .EVR file for import into Echoview
 #' 
-#' @param depthStart = numeric Start depth of the new region (can be multiple)
-#' @param depthStop = numeric End depth of the new region (can be multiple)
-#' @param dateStart = character Starting date as %Y%m%d
-#' @param dateStop = character End date as %Y%m%d
-#' @param timeStart = character Starting time %H%M%S
-#' @param timeStop = character End time %H%M%S
+#' @param depths = list of depths (can be multiple regions, where each is a list element) 
+#' @param dates = list of dates as character %Y%m%d (can be multiple regions, where each is a list element)
+#' @param timeStart = list of times as character %H%M%S (can be multiple regions, where each is a list element)
 #' @param rName = character Name of the region
 #' @param rClass = character Define class, otherwise it will be Unclassified
 #' @param rType = Region Type - numeric 0-3 2 - Marker
@@ -23,20 +20,20 @@
 #' @seealso 
 #' @examples
 #' \dontrun{
+#' # Minimal example generating 2 regions
+#' depths <- list(c(10,35,50,74,82), c(15,250,300,350,60))
+#' times <-  list(c("090000","091000","091500","091000","090300"),
+#'                c("093000","094000","094500","094000","093300"))
+#' dates <- list(c(rep("20170901",5)),c(rep("20170901",5)))
+#' dir <- 'F:\\'
+#' fn <- 'imaginaryRegions'
+#' makeEVRfromDT(depths,times,dates,fn=fn,dir=dir)
 #'  }
 
-makeEVRfromDT<-function(depthStart, # in meter from surface
-                        depthStop,# in meter from surface
-                        dateStart,# %Y%m%d - character
-                        dateStop,# %Y%m%d - character
-                        timeStart, # %H%M%S - character
-                        timeStop, # %H%M%S - character
-                        rName = "Region",
-                        rClass = "Selection",
-                        rType = 1,
+makeEVRfromDT<-function(depths,times, dates, rName = "Region", rClass = "Selection",rType = 1,
                         dir=NULL, #set folder for raw data
                         fn=NULL, #raw file name if known
-                        rNotes="") #character provideing the name for the Echoview Region
+                        rNotes=list("")) #character provideing the name for the Echoview Region
 {   
   if(!all(c(length(depthStart),length(depthStop),length(timeStart))==length(timeStop)))
     stop('ARGS depths and times must have the same length.')
@@ -44,31 +41,54 @@ makeEVRfromDT<-function(depthStart, # in meter from surface
   if(!is.null(dir))
     opFile=paste(dir,opFile,sep='')
   
-  dateStart=as.character(dateStart)
-  dateStop=as.character(dateStop)
-  timeStart= substr(paste0(as.character(timeStart),'0000'),1,10)
-  timeStop=substr(paste0(as.character(timeStop),'0000'),1,10)
+  #number of regions
+  nreg <- length(dates)
   
-  depthStart=formatC(depthStart,digits=6,format='f')
-  depthStop=formatC(depthStop,digits=6,format='f')
+  ###HEADER
+  cat(paste('EVRG 7 8.0.91.31697'),file=opFile,append=FALSE, sep='\n')
+  cat(paste(nreg,'\n'),file=opFile, append=TRUE, sep ='\n')
+  ##########
   
-  cat('EVRG 7 4.85.13.16055',file=opFile,append=FALSE, sep='\n')
-  cat(length(depthStart),file=opFile, append=TRUE, sep ='\n\n')
-  
-  for(i in 1:length(depthStart)){
-    message('Creating region for ',stationID,'.  Start depth = ',round(as.numeric(depthStart[i]),2),
-            ' m. Stop depth = ',round(as.numeric(depthStop[i]),2), 'm')
-    zRng <- range(depthStart[i],depthStop[i])
-    cat(paste(13,4,i,0,3,-1,1,dateStart[i],timeStart[i],zRng[1],
-              dateStop[i],timeStop[i],zRng[2]),file=opFile,  append=TRUE, sep ='\n')
-    cat("1",append=TRUE, file=opFile,'\n')
-    cat(rNotes,append=TRUE, file=opFile, '\n')
-    cat("0",file=opFile, append=TRUE, sep ='\n')
-    cat(rClass, append=TRUE, file=opFile,"\n")
-    cat(paste(dateStart[i],timeStart[i],depthStart[i],dateStart[i],timeStart[i],depthStop[i],
-              dateStop[i],timeStop[i],depthStop[i],dateStop[i],timeStop[i],depthStart[i],rType,collapse=' '), 
-        append=TRUE, file=opFile,sep ='\n')
-    cat(paste0(rName,i),append=TRUE, file=opFile, sep='\n')
+  #####FOR EACH REGION
+  for(i in 1:nreg){
+    message(paste(Sys.time(),"Processing region", i))
+    if(length(rNotes)>=i){if(nchar(rNotes[[i]])>0){linesNotes = 1}else{linesNotes=0}}
+    linesDetec = 0
+    
+    #min point
+    min_ind <- which(as.numeric(times[[i]]) == min(as.numeric(times[[i]])))
+    #max point
+    max_ind <- which(as.numeric(times[[i]]) == max(as.numeric(times[[i]])))
+    
+    
+    #####FIRST LINE
+    cat(paste(13, #Region Struxture Version (currently 13)
+              length(dates[[i]]), #Number of points defining the shape
+              i, #region id
+              0,
+              2,
+              -1, #Dummy -1
+              1, #valid poits 1, otherwise 0
+              dates[[i]][min_ind],
+              substr(paste0(as.character(times[[i]][min_ind]),'0000'),1,10),
+              formatC(depths[[i]][min_ind],digits=6,format='f'),
+              dates[[i]][max_ind],
+              substr(paste0(as.character(times[[i]][max_ind]),'0000'),1,10),
+              depths[[i]][max_ind]),file=opFile,append=TRUE,sep='\n')
+    
+    cat(paste(linesNotes),file=opFile,append=TRUE,sep='\n')
+    cat(paste(linesDetec),file=opFile,append=TRUE,sep='\n')
+    cat(paste(rClass),file=opFile,append=TRUE,sep='\n')
+    
+    pts = ""
+    for(d in 1:length(dates[[i]])){
+      pts <- append(pts,paste(dates[[i]][d],
+                              substr(paste0(as.character(times[[i]][d]),'0000'),1,10),
+                              formatC(depths[[i]][d],digits=6,format='f')))
+    }
+    cat(c(pts[2:length(pts)],i,'\n'), file=opFile,append=TRUE)
+    cat(paste0(rName,i,'\n'),file=opFile,append=TRUE,sep="\n")
   }
-  message('Echoview region (.evr) file written to: ',file=opFile)
+  
+  message(paste(Sys.time(), 'Echoview region (.evr) file written to: ',file=opFile))
 }  
