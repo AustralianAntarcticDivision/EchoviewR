@@ -20,6 +20,9 @@ readUnderlyingDataCSV(pathAndFn, samplePreFix = "sample", depthPreFix = "z",
 
 \item{lastHeaderCol}{= 13 The last column of the header information.}
 }
+\value{
+see details
+}
 \description{
 This function reads a CSV file created after a call of EVExportUnderlying().  The data can be Sv values or values from, for example, the Echoview formula operator.
 }

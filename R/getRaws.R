@@ -2,17 +2,19 @@
 #' 
 #' This functions generates datetime object based on the raw data filenames and selects the required raw files according to 
 #' a user defined start and end time
-#' 
-#' @dependencies lubridate - Requires lubridate package for easy computation of time intervals
+#' @import lubridate
+#' @note  Dependencies: lubridate - Requires lubridate package for easy computation of time intervals
 #' @param dir = path [character]
-#' @param StartDate / EndDate [character] = Date under the shape of YYYYMMDD (example: 20171127)
-#' @param StartTime / EndTime [character] = Time under the shape of HHMMSS (example: 085617)
-#' @param tzraw [character] = timezone under which the raw files were recorded e.g.UTC or Australia/Brisbane or AEST 
-#' @param tzinp [character] = timezone of the entered start and end points e.g.UTC or Australia/Brisbane or AEST 
-#' @param timebuffer [numeric in seconds] = add a buffer around the times for which files should be selected
+#' @param StartDate [character]  Date under the shape of YYYYMMDD (example: 20171127)
+#' @param StartTime   [character]  Time under the shape of HHMMSS (example: 085617)
+#' @param EndDate [character]  Date under the shape of YYYYMMDD (example: 20171127)
+#' @param EndTime [character]  Time under the shape of HHMMSS (example: 085617)
+#' @param tzraw ="UTC"[character]  timezone under which the raw files were recorded e.g.UTC or Australia/Brisbane or AEST 
+#' @param tzinp ="UTC"[character]  timezone of the entered start and end points e.g.UTC or Australia/Brisbane or AEST 
+#' @param timebuffer = 0 [numeric in seconds]  add a buffer around the times for which files should be selected
 #' @return charater array with raw data filenames 
 #' @keywords Echoview com scripting
-#' @seealso 
+#' @export
 #' @examples
 #' \dontrun{
 #' StartDate = 20170901

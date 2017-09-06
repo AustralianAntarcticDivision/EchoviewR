@@ -3,21 +3,19 @@
 #' This function generates Echoview Region definitions according to predefined starting and end depts at given times.
 #' The results are save as .EVR file for import into Echoview
 #' 
-#' @param depths = list of depths (can be multiple regions, where each is a list element) 
-#' @param dates = list of dates as character %Y%m%d (can be multiple regions, where each is a list element)
-#' @param timeStart = list of times as character %H%M%S (can be multiple regions, where each is a list element)
-#' @param rName = character Name of the region
-#' @param rClass = character Define class, otherwise it will be Unclassified
-#' @param rType = Region Type - numeric 0-3 2 - Marker
-#'                                   1 - Analysis
-#'                                   0 - Bad Data (no data)
-#'                                   4 - Bad Data (empty water)
-#' @param dir = character Path to the output folder
-#' @param fn = character Name of the output filename
-#' @paramrNotes = character Region Notes
+#' @param depths list of depths (can be multiple regions, where each is a list element) 
+#' @param times (character) list of times in HHMMSS
+#' @param dates  list of dates as character \%Y\%m\%d (can be multiple regions, where each is a list element)
+#' @param rName  = "Region" (character) Name of the region
+#' @param rClass = "Selection".  character Define class, otherwise it will be Unclassified
+#' @param rType = (integer; 0 to 4) see details
+#' @param dir = NULL character Path to the output folder
+#' @param fn = NULL character Name of the output filename
+#' @param rNotes  = list("") character Region Notes
 #' @return saves an Echoview EVR (Region definition) files
 #' @keywords Echoview com scripting
-#' @seealso 
+#' @details The following region types (integer 0 to 4) are available in Echoview 0 - Bad Data (no data); 1 - Analysis; 2 - Marker; 3 - fishtracks; 4 - Bad Data (empty water)
+#' @export
 #' @examples
 #' \dontrun{
 #' # Minimal example generating 2 regions
@@ -31,9 +29,9 @@
 #'  }
 
 makeEVRfromDT<-function(depths,times, dates, rName = "Region", rClass = "Selection",rType = 1,
-                        dir=NULL, #set folder for raw data
-                        fn=NULL, #raw file name if known
-                        rNotes=list("")) #character provideing the name for the Echoview Region
+                        dir=NULL, 
+                        fn=NULL, 
+                        rNotes=list("")) 
 {   
   if(!all(c(length(depthStart),length(depthStop),length(timeStart))==length(timeStop)))
     stop('ARGS depths and times must have the same length.')

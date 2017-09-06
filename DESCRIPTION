@@ -1,9 +1,9 @@
 Package: EchoviewR
 Type: Package
 Title: Control of Echoview via COM
-Version: 1.1.3
+Version: 1.1.4
 Date: 2017-08-15
-Author: Martin Cox and Lisa-Marie Harrison 
+Author: Martin Cox and Lisa-Marie Harrison and Sven Gastauer
 Maintainer: Martin James Cox <martin.cox@aad.gov.au>
 Description: Automation of active acoustic data processing by controlling
     Echoview using Component Object Model (COM) scripting
@@ -14,6 +14,7 @@ Depends:
     geosphere,
     maptools,
     RDCOMClient,
+    lubridate,
     rgeos
 LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
 RoxygenNote: 6.0.1
