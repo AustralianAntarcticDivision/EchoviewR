@@ -33,12 +33,12 @@ citation('EchoviewR')
 ### Installing EchoviewR
 Currently, ```EchoviewR``` has quite a few dependencies, something we are hoping to rectify.  Meanwhile, you will need to install the following ```R``` packages:
 
-```fields```,```sp```,```geosphere```,```maptools```,```RDCOMClient``` and ```rgeos```
+```sp```,```geosphere```,```maptools```,```RDCOMClient``` and ```lubridate```
   
 You can install all these packages with the following  ```R``` code:
 
 ```{r dependPacks,eval=FALSE}
-install.packages(c('fields','sp','geosphere','maptools','RDCOMClient','rgeos'))
+install.packages(c('sp','geosphere','maptools','RDCOMClient','lubridate'))
 ```
 
 You are then ready to install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):

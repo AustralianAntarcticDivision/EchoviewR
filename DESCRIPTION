@@ -1,8 +1,8 @@
 Package: EchoviewR
 Type: Package
 Title: Control of Echoview via COM
-Version: 1.1.4
-Date: 2017-08-15
+Version: 1.1.5
+Date: 2017-9-07
 Author: Martin Cox and Lisa-Marie Harrison and Sven Gastauer
 Maintainer: Martin James Cox <martin.cox@aad.gov.au>
 Description: Automation of active acoustic data processing by controlling
