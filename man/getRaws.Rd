@@ -5,7 +5,7 @@
 \title{Find Raw files based on Time and Date, providing folder containing all Raw files}
 \usage{
 getRaws(dir, StartDate, StartTime, EndDate, EndTime, tzraw = "UTC",
-  tzinp = "UTC", timebuffer = 0)
+  tzinp = "UTC", timebuffer = 0, fileSlope = FALSE)
 }
 \arguments{
 \item{dir}{= path [character]}
@@ -23,6 +23,8 @@ getRaws(dir, StartDate, StartTime, EndDate, EndTime, tzraw = "UTC",
 \item{tzinp}{="UTC"[character]  timezone of the entered start and end points e.g.UTC or Australia/Brisbane or AEST}
 
 \item{timebuffer}{= 0 [numeric in seconds]  add a buffer around the times for which files should be selected}
+
+\item{fileSlope}{= FALSE [boolean] If TRUE the raw file that partly falls within the start of the time interval.}
 }
 \value{
 charater array with raw data filenames
@@ -43,6 +45,7 @@ EndTime = 172356
 rawdir = "F:\\\\RawFolder\\\\"
 getRaws(dir,StartDate, StartTime,EndDate, EndTime, tzraw="UTC", tzinp="UTC")
  }
+ 
  
 }
 \keyword{Echoview}
