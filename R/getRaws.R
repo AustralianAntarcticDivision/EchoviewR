@@ -60,12 +60,12 @@ getRaws <- function(dir,StartDate, StartTime,EndDate, EndTime, tzraw="UTC", tzin
   timeint <- interval(start_int,stop_int) #get time interval
   
   IND=which(rawpos %within% timeint)
-  out=rawpos[IND]
+  out=lsRaw[IND]
   
   if(fileSlope){
     if((IND[1]-1)<1) {warning('fileSlope ARG ignored')} else{
       flag=rawpos[IND[1]-1]< start_int & rawpos[IND[1]] > start_int
-    if(flag) out=rawpos[c((IND[1]-1),IND)]
+    if(flag) out=lsRaw[c((IND[1]-1),IND)]
     }
   }
   return(out)
