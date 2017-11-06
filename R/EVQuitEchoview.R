@@ -1,7 +1,7 @@
 #' Close an Echoview instance through COM scripting
 #' 
 #' This function opens an Echoview instance  
-#' @param An Echoview Application COM object
+#' @param EVAppObj An Echoview Application COM object
 #' @return Termination of the application and removal of the Echoview instance object
 #' @keywords Echoview COM scripting
 #' @export

@@ -60,6 +60,10 @@ getRaws <- function(dir,StartDate, StartTime,EndDate, EndTime, tzraw="UTC", tzin
   timeint <- interval(start_int,stop_int) #get time interval
   
   IND=which(rawpos %within% timeint)
+  if(length(IND)==0) {
+    warning(Sys.time(),' : No files found.')
+    return(NA)
+  }
   out=lsRaw[IND]
   
   if(fileSlope){
