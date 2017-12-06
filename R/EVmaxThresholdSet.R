@@ -5,6 +5,7 @@
 #' @param EVFile An Echoview file COM object
 #' @param acoVarName (character) Echoview acoustic variable name
 #' @param thres The new maximum threshold to be set (dB)
+#' @param colRng maximum colour range possible for display settings.  Set to NA if you want any colour range.
 #' @return a list object with two elements. $thresholdSettings: The new threshold settings; $msg vector of messages
 #' @keywords Echoview COM scripting
 #' @export 
