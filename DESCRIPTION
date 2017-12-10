@@ -6,7 +6,7 @@ Date: 2017-12-07
 Author: Martin Cox and Lisa-Marie Harrison and Sven Gastauer
 Maintainer: Martin James Cox <martin.cox@aad.gov.au>
 Description: Automation of active acoustic data processing by controlling
-    Echoview using Component Object Model (COM) scripting.
+    Echoview (R) using Component Object Model (COM) scripting. Echoview (R) is a registered trademark of Echoview Software Pty Ltd. Website: www.echoview.com/
 License: GPL-3
 Depends:
     RDCOMClient
