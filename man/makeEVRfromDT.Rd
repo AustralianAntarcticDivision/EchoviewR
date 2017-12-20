@@ -18,7 +18,7 @@ makeEVRfromDT(depths, times, dates, rName = "Region", rClass = "Selection",
 
 \item{rClass}{= "Selection".  character Define class, otherwise it will be Unclassified}
 
-\item{rType}{= (integer; 0 to 4) see details}
+\item{rType}{= 1 (integer; 0 to 4) see details}
 
 \item{dir}{= NULL character Path to the output folder}
 
