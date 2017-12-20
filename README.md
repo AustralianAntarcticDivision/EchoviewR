@@ -49,6 +49,12 @@ if (!requireNamespace("devtools",quietly=TRUE)) install.packages("devtools")
  devtools::install_github('AustralianAntarcticDivision/EchoviewR')
 ```
 
+NB if you would like the older ```EchoviewR``` version (v1.0) that was used during the 2017 meeting of the CCAMLR Subgroup on Acoustics, Survey and Analysis Methods, please use the following code:
+
+```{r installASAM,eval=FALSE}
+devtools::install_github('AustralianAntarcticDivision/EchoviewR',ref='v1.0')
+```
+
 You should then be ready to work with EchoviewR:
 ```{r startEVR, eval=FALSE}
 library(EchoviewR)
