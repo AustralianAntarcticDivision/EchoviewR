@@ -332,19 +332,26 @@ EVAddRawData <- function (EVFile, filesetName, dataFiles) {
 #'                  dataFiles=pathAndFn, 
 #'                  CloseOnSave = TRUE)
 #'}
-EVCreateNew <- function (EVAppObj, templateFn = NULL, EVFileName, 
-                         filesetName, dataFiles,
-                         CloseOnSave=TRUE) {
+EVCreateNew <- function (EVAppObj, templateFn = NULL, EVFileName=NULL, 
+                         filesetName="Fileset1", dataFiles=NULL,
+                         CloseOnSave=FALSE) {
   msgV <- paste(Sys.time(), ' : Creating new EV file', sep = '')
   message(msgV)
   
   EVFile <- EVNewFile(EVAppObj = EVAppObj, templateFn = templateFn)
   msgV   <- c(msgV, EVFile$msg)
   EVFile <- EVFile$EVFile
-  msgV   <- c(msgV, EVAddRawData(EVFile = EVFile, filesetName = filesetName, 
-                                 dataFiles = dataFiles)$msg)
   
-  msgV   <- c(msgV, EVSaveAsFile(EVFile = EVFile, fileName = EVFileName)$msg)
+  if(is.null(dataFiles)==FALSE){
+    msgV   <- c(msgV, EVAddRawData(EVFile = EVFile, filesetName = filesetName, 
+                                 dataFiles = dataFiles)$msg)
+  }
+  
+  if(is.null(EVFileName)==FALSE){
+    msgV   <- c(msgV, EVSaveAsFile(EVFile = EVFile, fileName = EVFileName)$msg)
+  }
+  
+  
   if(CloseOnSave)
     msgV=c(msgV,EVCloseFile(EVFile=EVFile)$msg)
   

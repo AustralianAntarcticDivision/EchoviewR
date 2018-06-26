@@ -8,7 +8,7 @@
 #'@param asList = FALSE (boolean) return the CSV as a list. See details.
 #'@param onlyHeader = FALSE (boolean) return only the header of the CSV, ignored if asList = TRUE. See details.
 #'@param lastHeaderCol = 13 The last column of the header information.
-#'@returns see details
+#'@return see details
 #'@details The default return option is a data.frame of ping header and sample information.  
 #'If asList=TRUE a list with $header and $samples is returned,
 #'If onlyHeader=TRUE only the headerinformation is returned.  
