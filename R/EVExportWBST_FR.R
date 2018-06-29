@@ -39,17 +39,17 @@ EVExportWBST_FR <- function(EVFile=EVFile,
                             EVVar){
   
   #Test class of EVVar to see how it should be used
-  StVar <- switch(class(StVar),
-                  "character" = {EVAcoVarNameFinder(EVFile, acoVarName=StVar)$EVVar},
-                  "list" = StVar$EVVar,
-                  "COMIDispatch" = StVar)
+  STVar <- switch(class(STVar),
+                  "character" = {EVAcoVarNameFinder(EVFile, acoVarName=STVar)$EVVar},
+                  "list" = STVar$EVVar,
+                  "COMIDispatch" = STVar)
   
   EVVar <- switch(class(EVVar),
                   "character" = {EVAcoVarNameFinder(EVFile, acoVarName=EVVar)$EVVar},
                   "list" = EVVar$EVVar,
                   "COMIDispatch" = EVVar)
   message(paste0(Sys.time(),": Exporting Single Targets"))
-  export <- StVar$ExportSingleTargetWidebandFrequencyResponse(
+  export <- STVar$ExportSingleTargetWidebandFrequencyResponse(
     outfn, 
     0,0,.4,0,EVVar)
   if(export==TRUE){message(paste0(Sys.time(),": Export completed."))}

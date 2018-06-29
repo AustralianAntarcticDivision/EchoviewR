@@ -33,13 +33,13 @@ EVBottomDetection(EVFile, EVVar, LineName = "Bottom", algorithm = NULL,
 
 \item{PeakThreshold}{numeric [dB] Threshold for peak detection}
 
+\item{MinPeakAssymmetry}{numeric}
+
 \item{replaceOldBottom}{Boolean (TRUE or FALSE) If TRUE and a line with the same name as LineName already exists, the old line will be overwritten with the new one}
 
 \item{MaxDropOuts}{numeric [samples] Maximum number of dropout samples before bottom detection fails}
 
 \item{windowRadius}{numeric [samples] Search window size}
-
-\item{MinpeakAssymetry}{numeric}
 }
 \description{
 This function runs a bottom detection on an echogram

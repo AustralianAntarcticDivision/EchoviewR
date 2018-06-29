@@ -4,8 +4,8 @@
 \alias{EVCreateNew}
 \title{Create a new Echoview (.EV) file and adds raw data files to it}
 \usage{
-EVCreateNew(EVAppObj, templateFn = NULL, EVFileName = "~~File1.EV",
-  filesetName = "Fileset1", dataFiles = NULL, CloseOnSave = TRUE)
+EVCreateNew(EVAppObj, templateFn = NULL, EVFileName = NULL,
+  filesetName = "Fileset1", dataFiles = NULL, CloseOnSave = FALSE)
 }
 \arguments{
 \item{EVAppObj}{An EV application COM object arising from the call COMCreate('EchoviewCom.EvApplication')}
