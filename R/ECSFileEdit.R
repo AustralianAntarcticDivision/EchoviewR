@@ -117,7 +117,7 @@ modifyECS=function(ECSPathAndFile,ECStargetVar,NewValue,maxNlines=200,nBlanks2St
 
 
     CL=scan(ECSPathAndFile,what=character(),skip=j,nlines=1,quiet=T)
-    #CL=gsub("﻿","",CL)
+
     CL=gsub('\\s+','',CL)
     if(j %in% locV){
       message(Sys.time(),' : Modifying calibration parameter, ',ECStargetVar,'.  Current value = ',parameterValueF(ECSPathAndFile,j))

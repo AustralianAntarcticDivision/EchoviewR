@@ -4,7 +4,8 @@
 \alias{EVExportIntegrationByRegionByCells}
 \title{Export integration by region name by cells for an acoustic variable}
 \usage{
-EVExportIntegrationByRegionByCells(EVFile, variableName, regionName, filePath)
+EVExportIntegrationByRegionByCells(EVFile, variableName, regionName,
+  filePath)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

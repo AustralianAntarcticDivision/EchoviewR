@@ -4,8 +4,8 @@
 \alias{lawnSurvey}
 \title{Generate a coordinate list for a regular rectangular survey}
 \usage{
-lawnSurvey(startLon, startLat, lineLengthkm, lineSpacingkm, startBearingdeg,
-  numOfLines)
+lawnSurvey(startLon, startLat, lineLengthkm, lineSpacingkm,
+  startBearingdeg, numOfLines)
 }
 \arguments{
 \item{startLon}{start longitude of survey.}

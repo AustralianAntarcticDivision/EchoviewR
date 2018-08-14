@@ -1,7 +1,7 @@
 Package: EchoviewR
 Type: Package
 Title: Control of Echoview via COM
-Version: 1.1.9
+Version: 1.1.10
 Date: 2017-12-07
 Author: Martin Cox and Lisa-Marie Harrison and Sven Gastauer
 Maintainer: Martin James Cox <martin.cox@aad.gov.au>
@@ -16,4 +16,4 @@ Imports:
     geosphere,
     maptools
 LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

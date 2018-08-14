@@ -4,8 +4,9 @@
 \alias{makeEVRfromDT}
 \title{Create an Echoview EVR (Region definition) file from depth and time intervals}
 \usage{
-makeEVRfromDT(depths, times, dates, rName = "Region", rClass = "Selection",
-  rType = 1, dir = NULL, fn = NULL, rNotes = list(""))
+makeEVRfromDT(depths, times, dates, rName = "Region",
+  rClass = "Selection", rType = 1, dir = NULL, fn = NULL,
+  rNotes = list(""))
 }
 \arguments{
 \item{depths}{list of depths (can be multiple regions, where each is a list element)}
