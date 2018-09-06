@@ -5,7 +5,7 @@
 \title{Import an Echoview line (EVL format) file}
 \usage{
 EVImportLine(EVFile, pathAndFn = NULL, lineName = NULL,
-  existingLine = NULL)
+  overwriteExistingLine = TRUE)
 }
 \arguments{
 \item{EVFile}{("COMIDispatch) An Echoview file COM object}
@@ -14,11 +14,14 @@ EVImportLine(EVFile, pathAndFn = NULL, lineName = NULL,
 
 \item{lineName}{= NULL (character) desired line name}
 
-\item{existingLine}{= NULL behaviour if a line with the same name as lineName already exists in Echoview.  See details.}
+\item{overwriteExistingLine}{= TRUE (boolean) overwrite an existing line named lineName}
 }
 \value{
 list $lineObj=COM object for the imported line (class COMIDispatch), msg= vector of messages)
 }
 \description{
 This function imports an Echoview line (.EVL) format line into Echoview and can rename the imported line or replace a line.
+}
+\note{
+Overwriting an existing line only works with editable lines.
 }
