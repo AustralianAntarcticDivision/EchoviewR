@@ -46,7 +46,7 @@ If ```RDCOMClient``` fails try:
 devtools::install_github("omegahat/RDCOMClient")
 ```
 
-If the install still fails because of ```Rtools``` go to [https://cran.r-project.org/bin/windows/Rtools/] and install the latest version of ```Rtools```.
+If the install still fails because of ```Rtools``` go to [https://cran.r-project.org/bin/windows/Rtools/] and install the latest version of ```Rtools```. Once Rtools is installed, you have to restart RStudio and then install ```RDCOMClient``` before proceeding to install ```EchoviewR```.
 
 You are then ready to install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):
 
