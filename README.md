@@ -41,6 +41,13 @@ You can install all these packages with the following  ```R``` code:
 install.packages(c('sp','geosphere','maptools','RDCOMClient','lubridate'))
 ```
 
+If ```RDCOMClient``` fails try:
+```{r dependPacks, eval=FALSE}
+devtools::install_github("omegahat/RDCOMClient")
+```
+
+If the install still fails because of ```Rtools``` go to [https://cran.r-project.org/bin/windows/Rtools/] and install the latest version of ```Rtools```. Once Rtools is installed, you have to restart RStudio and then install ```RDCOMClient``` before proceeding to install ```EchoviewR```.
+
 You are then ready to install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):
 
 
