@@ -55,7 +55,8 @@ EVFishTracking <- function(EVFile, EVVar, FishTrackRegionClass = "Unclassified r
                            Weights.PingGap = NULL,#1.7
                            MinimumTargets = NULL,#4
                            MinimumPings = NULL,#5
-                           MaximumGap = NULL#3){
+                           MaximumGap = NULL#3
+                           ){
   
   #Test class of EVVar to see how it should be used
   EVVar <- switch(class(EVVar),
@@ -103,3 +104,4 @@ EVFishTracking <- function(EVFile, EVVar, FishTrackRegionClass = "Unclassified r
   EVVar$DetectFishTracks("Unclassified regions")
   
   EVVar$ExportFishTracksByRegions(export, EVFindRegionByName(EVFile,FishTrackRegionClass))
+}

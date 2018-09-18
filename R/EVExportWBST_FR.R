@@ -51,7 +51,7 @@ EVExportWBST_FR <- function(EVFile=EVFile,
   message(paste0(Sys.time(),": Exporting Single Targets"))
   export <- STVar$ExportSingleTargetWidebandFrequencyResponse(
     outfn, 
-    0,0,.4,0,EVVar)
+    AverageResults,MinMax,WindowSize,WindowUnit,EVVar)
   if(export==TRUE){message(paste0(Sys.time(),": Export completed."))}
   if(export==FALSE){message(paste0(Sys.time(),": Export failed. Possibly the wrong variables are used as an input."))}
   

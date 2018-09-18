@@ -81,7 +81,7 @@ install.packages("RDCOMClient", repos = "http://www.omegahat.net/R")
 
 If you intend to create variables from within R you will need to install RDCOMMServer as well:  
 
-```{r eval=False}
+```{r eval=FALSE}
 install.packages("RDCOMServer", repos = "http://www.omegahat.net/R")
 
 ```
