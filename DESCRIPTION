@@ -17,6 +17,10 @@ Imports:
     sp,
     geosphere,
     maptools
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
 LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
 RoxygenNote: 6.1.0
 Encoding: UTF-8
