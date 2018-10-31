@@ -1,13 +1,15 @@
 Package: EchoviewR
 Type: Package
 Title: Control of Echoview via COM
-Version: 1.1.12
-Date: 2018-09-14
-Author: Martin Cox and Sven Gastauer and Lisa-Marie Harrison 
-Maintainer: Martin James Cox <martin.cox@aad.gov.au>
+Version: 1.1.13
+Authors@R: c(person("Martin", "Cox", email = "martin.cox@aad.gov.au", role = c("aut", "cre")),
+	     person("Sven", "Gastauer", role="aut"),
+	     person("Lisa-Marie", "Harrison", role="aut"))
 Description: Automation of active acoustic data processing by controlling
     Echoview (R) using Component Object Model (COM) scripting. Echoview (R) is a registered trademark of Echoview Software Pty Ltd. Website: www.echoview.com/
 License: GPL-3
+URL: https://github.com/AustralianAntarcticDivision/EchoviewR
+BugReports: https://github.com/AustralianAntarcticDivision/EchoviewR/issues
 Depends:
     RDCOMClient
 Imports:
