@@ -2,6 +2,5 @@ pandoc: 1.19.2.1
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
-  Getting Started: ../../../../../../../c:/z/analysis/projects/martin_cox/EchoviewR/vignettes/Getting
-    Started.html
+  Getting_Started: ../../../../../../../c:/z/analysis/projects/martin_cox/EchoviewR/vignettes/Getting_Started.html
 
