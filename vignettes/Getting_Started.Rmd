@@ -7,7 +7,7 @@ output:
     toc: true
     toc_depth: 4
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Getting Started with EchoviewR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -287,11 +287,7 @@ EVSchoolsDetect(EVFile = EVFile,
                dataThreshold = -70)
 ```
 
-# #Export  Percent bad data
-# EVExportIntegrationByCells(EVFile = EVFile, 
-#                            variableName = "% AS pings in cell",
-#                            filePath = paste0(evex, basename(rawdirs[1]),"_PercentBadPings.csv"))
-
+```{r eval=FALSE}
 #Export Aggregation information
 EVIntegrationByRegionsExport(EVFile = EVFile, acoVarName = "Aggregation mask", 
                              regionClassName='agg',
