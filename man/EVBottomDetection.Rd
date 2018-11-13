@@ -9,7 +9,7 @@ EVBottomDetection(EVFile, EVVar, LineName = "Bottom", algorithm = NULL,
   UseBackstep = NULL, DiscriminationLevel = NULL,
   BackstepRange = NULL, PeakThreshold = NULL, MaxDropouts = NULL,
   WindowRadius = NULL, MinPeakAssymmetry = NULL,
-  replaceOldBottom = TRUE)
+  replaceOldBottom = TRUE, SpanGaps = TRUE)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}
@@ -37,6 +37,8 @@ EVBottomDetection(EVFile, EVVar, LineName = "Bottom", algorithm = NULL,
 \item{MinPeakAssymmetry}{numeric}
 
 \item{replaceOldBottom}{Boolean (TRUE or FALSE) If TRUE and a line with the same name as LineName already exists, the old line will be overwritten with the new one}
+
+\item{SpanGaps}{Boolean (TRUE or FALSE) Decides wheteher span gaps is activated or notm default=TRUE}
 
 \item{MaxDropOuts}{numeric [samples] Maximum number of dropout samples before bottom detection fails}
 

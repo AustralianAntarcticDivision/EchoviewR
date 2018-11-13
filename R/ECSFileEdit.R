@@ -7,7 +7,7 @@
 #' @param NewValue Calibration values (numeric, vector)
 #' @param maxNlines = 200. Maximum number of lines in ECS file to search (numeric).
 #' @param nBlanks2Stop =4. Stop searching ECS file when this number of consecutive blanks has been encountered (numeric).
-#' @param FileNameSuffix filename suffix used to generate modified ECS file (character).
+#' @param FileNameSuffix = NULL filename suffix used to generate modified ECS file (character).
 #' @note This function is under development and has only been tested on ECS files generated in the 'SimradEK60Raw' format and that include FILESET and SOURCECAL settings only 
 #' @note Currently the length of the NewValue parameter must equal the number of instances of the ECStargetVar found in the ECS file.
 #' @details This function can be used to modify parameters in an Echoview calibration file.  The current form of the function is quite limited and we strongly recommend that users carefully check any resultant modified ECS files. Found instances of the target calibration parameter be retained by setting the corresponding element in the NewValue vector to NA.
@@ -25,7 +25,7 @@
 #' modifyECS(ECSPathAndFile=ECSFile,ECStargetVar='SoundSpeed',NewValue=rep(1500,4),
 #'          maxNlines=200,nBlanks2Stop=4,FileNameSuffix='sosMod')
 #' }
-modifyECS=function(ECSPathAndFile,ECStargetVar,NewValue,maxNlines=200,nBlanks2Stop=4,FileNameSuffix)
+modifyECS=function(ECSPathAndFile,ECStargetVar,NewValue,maxNlines=200,nBlanks2Stop=4,FileNameSuffix=NULL)
 {  
  #function to find lines with ECS text of interest:
   finder=function(ECSPathAndFile,maxNlines,ECSVar,verbose=FALSE){
@@ -96,7 +96,8 @@ modifyECS=function(ECSPathAndFile,ECStargetVar,NewValue,maxNlines=200,nBlanks2St
               ECSVar=ECStargetVar,verbose=TRUE)
   locV=locL[[1]];i=locL[[2]]
 
-  ECSPathAndFile.out=gsub('.ecs',paste(FileNameSuffix,'.ecs',sep=''),ECSPathAndFile)
+  ECSPathAndFile.out=ECSPathAndFile
+  if(!is.null(FileNameSuffix)) ECSPathAndFile.out=gsub('.ecs',paste(FileNameSuffix,'.ecs',sep=''),ECSPathAndFile)
   
   #check for equal length of NewValues and found calibration parameters
   if(length(NewValue)!=length(locV))
