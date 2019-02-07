@@ -27,6 +27,8 @@ makeRectRegion(dateStart, timeStart, dateStop, timeStop, minDepth = 0,
 \item{regionType}{region Type (integer)}
 
 \item{append}{= FALSE should be region be added to the EVR file given in outPathFn}
+
+\item{exactRegionName}{= NULL exact region name (no integer increment will be applied)}
 }
 \value{
 list: $msg messages from the function call $exportFLAG Boolean TRUE EVR file created or added.  FALSE otherwise
