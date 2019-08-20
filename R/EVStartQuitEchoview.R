@@ -6,14 +6,19 @@
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
+#'\dontrun{
 #' EVAppObj <- StartEchoview()
-
+#' }
 StartEchoview <- function () {
   message(paste0(Sys.time(),": Opening Echoview"))
-  return(COMCreate('EchoviewCom.EvApplication') )
+  EVApp=COMCreate('EchoviewCom.EvApplication') 
+  message(paste0(Sys.time(),": Opened Echoview version ",EVApp$Version()))
+  scriptLic=EVApp$IsLicensed()
+  if(!scriptLic) warning(paste0(Sys.time(),": Echoview is NOT licensed for scripting"))
+  return(EVApp)
 }
 
-#' Quick Echoview over COM 
+#' Quit Echoview over COM 
 #' 
 #' This function closes an Echoview instance through COM scripting
 #' @param EVAppObj Echoview Application Object
@@ -22,8 +27,9 @@ StartEchoview <- function () {
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
-#' EVAppObj <- StartEchoview()
-
+#' \dontrun{
+#' EVAppObj <- QuitEchoview()
+#' }
 QuitEchoview <- function (EVAppObj) {
   message(paste0(Sys.time(),": Closing Echoview"))
   EVAppObj$Quit()

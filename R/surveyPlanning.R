@@ -8,11 +8,12 @@
 #' @param startLon start longitude of survey.
 #' @param startLat start latitude of survey.
 #' @param lineLengthkm transect line length in km.
-#' @param lineSpacingkm inter-transect spacing in km.
+#' @param lineSpacingkm inter-transect spacing in km (see details).
 #' @param startBearingdeg Orientation of survey grid in degrees.
 #' @param numOfLines Number of transects.
 #' @return Geographical coordinate list of start and end of line positions
 #' @export
+#' @details Line spacing can be fixed, so specified by a single number or pseudo random (random draws from a uniform distribution), which is specified by a vector of two numbers, the minimun and maximum transect separation.
 #' @seealso \code{\link{zigzagSurvey}}
 #' @author Martin Cox \email{martin.cox@@aad.gov.au}
 #' @examples
@@ -30,6 +31,8 @@
 #'}
 lawnSurvey=function(startLon,startLat,lineLengthkm,lineSpacingkm,startBearingdeg,numOfLines)
 {
+  if(length(lineSpacingkm)==1) lineSpacingkm=rep(lineSpacingkm,numOfLines)
+  if(length(lineSpacingkm)==2) lineSpacingkm=runif(n=numOfLines,min=lineSpacingkm[1],max=lineSpacingkm[2])
   lineLengthm=lineLengthkm*1e3;lineSpacingm=lineSpacingkm*1e3
   direct=startBearingdeg+90
   direct[direct>360]=direct-360
@@ -45,7 +48,7 @@ lawnSurvey=function(startLon,startLat,lineLengthkm,lineSpacingkm,startBearingdeg
   if(numOfLines>1){
     for(i in 1:(numOfLines-1))
     {  
-      out[(i*2)+1,]=destPoint(p=out[i*2,],b=direct,d=lineSpacingm)
+      out[(i*2)+1,]=destPoint(p=out[i*2,],b=direct,d=lineSpacingm[i])
       out[(i*2)+2,]=destPoint(p=out[(i*2)+1,],b=lineBearings[ifelse(i%%2==1,2,1)],d=lineLengthm) 
     }
   }
