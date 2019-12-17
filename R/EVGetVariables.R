@@ -4,7 +4,6 @@
 #' 
 #' @param EVFile An Echoview file COM object
 #' @keywords Echoview COM scripting
-#' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
 #' #To be added - Needs Example data
@@ -16,9 +15,9 @@
 #' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
 #' # Change the algorithm to Best bottom candidate
 #' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
-#' 
+#' @export
 
-EVBottomDetection <- function(EVFile){
+EVGetVariables <- function(EVFile){
   #number of variables in EV FIles
   nvar = EVFile$EVFile[['Variables']]$Count()
   #create list of variables
