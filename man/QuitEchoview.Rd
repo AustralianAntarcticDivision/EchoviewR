@@ -21,11 +21,6 @@ EVAppObj=StartEchoview()
 QuitEchoview(EVAppObj)
 
 }
-\references{
-\url{http://support.echoview.com/WebHelp/Echoview.htm/}
-
-\url{http://support.echoview.com/WebHelp/Echoview.htm/}
-}
 \keyword{COM}
 \keyword{Echoview}
 \keyword{scripting}
