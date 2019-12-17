@@ -46,7 +46,10 @@ You are then ready to install the ```EchoviewR``` package directly from github u
 
 ```{r install,eval=FALSE}
 if (!requireNamespace("devtools",quietly=TRUE)) install.packages("devtools")
- devtools::install_github('AustralianAntarcticDivision/EchoviewR')
+# Latest devtools syntax
+devtools::install_github("AustralianAntarcticDivision/EchoviewR", build_opts = c("--no-resave-data", "--no-manual"))
+## For devtools v < 2.0
+# devtools::install_github("AustralianAntarcticDivision/EchoviewR", build_vignettes = TRUE, force_deps=TRUE)
 ```
 
 You should then be ready to work with EchoviewR:
