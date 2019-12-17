@@ -21,6 +21,3 @@ EVAppObj=StartEchoview()
 QuitEchoview(EVAppObj)
 
 }
-\keyword{COM}
-\keyword{Echoview}
-\keyword{scripting}
