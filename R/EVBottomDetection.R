@@ -46,7 +46,6 @@ EVBottomDetection <- function(EVFile, EVVar, LineName="Bottom",
                               MaxDropouts = NULL, #2,
                               WindowRadius = NULL, #8,
                               MinPeakAssymmetry = NULL, #-1.0,
-                              replaceOldBottom = TRUE){
                               replaceOldBottom = TRUE,
                               SpanGaps = TRUE){
 
