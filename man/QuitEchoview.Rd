@@ -16,37 +16,10 @@ an Echoview Application object
 This function closes an Echoview instance through COM scripting
 }
 \examples{
-% Please edit documentation in R/EVQuitEchoview.R, R/EVStartQuitEchoview.R
-\name{QuitEchoview}
-\alias{QuitEchoview}
-\title{Close an Echoview instance through COM scripting}
-\usage{
-QuitEchoview(EVAppObj)
-
-QuitEchoview(EVAppObj)
-}
-\arguments{
-\item{EVAppObj}{An Echoview Application COM object}
-
-\item{EVAppObj}{Echoview Application Object}
-}
-\value{
-Termination of the application and removal of the Echoview instance object
-
-an Echoview Application object
-}
-\description{
-This function opens an Echoview instance
-
-This function closes an Echoview instance through COM scripting
-}
-\examples{
 \dontrun{
 EVAppObj=StartEchoview()
 QuitEchoview(EVAppObj)
 
-}
-EVAppObj <- StartEchoview()
 }
 \references{
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}
