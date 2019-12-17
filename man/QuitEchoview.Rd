@@ -16,8 +16,6 @@ an Echoview Application object
 This function closes an Echoview instance through COM scripting
 }
 \examples{
-\dontrun{
 EVAppObj=StartEchoview()
 QuitEchoview(EVAppObj)
-
 }
