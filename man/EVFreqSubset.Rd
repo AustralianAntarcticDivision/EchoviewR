@@ -19,6 +19,13 @@ a list object with two elements.  $success: ping subset successfully changed, an
 \description{
 This function subsets a single frequency from a wideband signal..
 }
+\examples{
+EVAppObj=COMCreate('EchoviewCom.EvApplication')
+EVOpenFile(EVAppObj,'~\\example1.EV')
+EVpingSubset(EVFile=EVFile,acoVarName='Ping subset 38',pingsubsetString='2-7')
+
+
+}
 \references{
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 }
