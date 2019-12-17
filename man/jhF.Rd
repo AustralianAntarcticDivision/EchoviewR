@@ -4,8 +4,13 @@
 \alias{jhF}
 \title{The Jolly and Hampton (1990) estimator}
 \usage{
-jhF(transectLength, transectMeanDen, transectName = NULL,
-  svyName = NULL, area = NULL)
+jhF(
+  transectLength,
+  transectMeanDen,
+  transectName = NULL,
+  svyName = NULL,
+  area = NULL
+)
 }
 \arguments{
 \item{transectLength}{vector of parameter lengths}

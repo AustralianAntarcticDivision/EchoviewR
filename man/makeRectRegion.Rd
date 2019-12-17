@@ -4,9 +4,19 @@
 \alias{makeRectRegion}
 \title{Make a rectangular Echoview region (EVR) file.}
 \usage{
-makeRectRegion(dateStart, timeStart, dateStop, timeStop, minDepth = 0,
-  maxDepth, outPathFn, regionClassName, regionType, append = FALSE,
-  exactRegionName = NULL)
+makeRectRegion(
+  dateStart,
+  timeStart,
+  dateStop,
+  timeStop,
+  minDepth = 0,
+  maxDepth,
+  outPathFn,
+  regionClassName,
+  regionType,
+  append = FALSE,
+  exactRegionName = NULL
+)
 }
 \arguments{
 \item{dateStart}{date  stamp for the start of the region (yyymmdd)}

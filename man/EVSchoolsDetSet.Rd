@@ -4,9 +4,17 @@
 \alias{EVSchoolsDetSet}
 \title{Change schools detection settings}
 \usage{
-EVSchoolsDetSet(EVFile, varObj, distanceMode, maximumHorizontalLink,
-  maximumVerticalLink, minimumCandidateHeight, minimumCandidateLength,
-  minimumSchoolHeight, minimumSchoolLength)
+EVSchoolsDetSet(
+  EVFile,
+  varObj,
+  distanceMode,
+  maximumHorizontalLink,
+  maximumVerticalLink,
+  minimumCandidateHeight,
+  minimumCandidateLength,
+  minimumSchoolHeight,
+  minimumSchoolLength
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

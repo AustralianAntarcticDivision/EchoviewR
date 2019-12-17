@@ -4,8 +4,13 @@
 \alias{centreZigZagOnPosition}
 \title{Centre an zig-zag line transect survey on a given position}
 \usage{
-centreZigZagOnPosition(centreLon, centreLat,
-  proj4string = CRS("+proj=longlat +datum=WGS84"), tolerance = 20, ...)
+centreZigZagOnPosition(
+  centreLon,
+  centreLat,
+  proj4string = CRS("+proj=longlat +datum=WGS84"),
+  tolerance = 20,
+  ...
+)
 }
 \arguments{
 \item{centreLon}{Desired centre location of survey}

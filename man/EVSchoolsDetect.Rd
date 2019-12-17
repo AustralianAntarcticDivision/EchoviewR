@@ -4,10 +4,20 @@
 \alias{EVSchoolsDetect}
 \title{Schools Detection in Echoview}
 \usage{
-EVSchoolsDetect(EVFile, acoVarName, outputRegionClassName,
-  deleteExistingRegions, distanceMode, maximumHorizontalLink,
-  maximumVerticalLink, minimumCandidateHeight, minimumCandidateLength,
-  minimumSchoolHeight, minimumSchoolLength, dataThreshold)
+EVSchoolsDetect(
+  EVFile,
+  acoVarName,
+  outputRegionClassName,
+  deleteExistingRegions,
+  distanceMode,
+  maximumHorizontalLink,
+  maximumVerticalLink,
+  minimumCandidateHeight,
+  minimumCandidateLength,
+  minimumSchoolHeight,
+  minimumSchoolLength,
+  dataThreshold
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

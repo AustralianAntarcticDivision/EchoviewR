@@ -4,8 +4,12 @@
 \alias{EVImportLine}
 \title{Import an Echoview line (EVL format) file}
 \usage{
-EVImportLine(EVFile, pathAndFn = NULL, lineName = NULL,
-  overwriteExistingLine = TRUE)
+EVImportLine(
+  EVFile,
+  pathAndFn = NULL,
+  lineName = NULL,
+  overwriteExistingLine = TRUE
+)
 }
 \arguments{
 \item{EVFile}{("COMIDispatch) An Echoview file COM object}

@@ -4,8 +4,17 @@
 \alias{getRaws}
 \title{Find Raw files based on Time and Date, providing folder containing all Raw files}
 \usage{
-getRaws(dir, StartDate, StartTime, EndDate, EndTime, tzraw = "UTC",
-  tzinp = "UTC", timebuffer = 0, fileSlope = FALSE)
+getRaws(
+  dir,
+  StartDate,
+  StartTime,
+  EndDate,
+  EndTime,
+  tzraw = "UTC",
+  tzinp = "UTC",
+  timebuffer = 0,
+  fileSlope = FALSE
+)
 }
 \arguments{
 \item{dir}{= path [character]}
@@ -42,7 +51,7 @@ StartDate = 20170901
 StartTime = "080917"
 EndDate = 20170901
 EndTime = 172356
-rawdir = "F:\\\\RawFolder\\\\"
+rawdir = "F:\\RawFolder\\"
 getRaws(dir,StartDate, StartTime,EndDate, EndTime, tzraw="UTC", tzinp="UTC")
  }
  

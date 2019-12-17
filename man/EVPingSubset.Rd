@@ -4,8 +4,7 @@
 \alias{EVPingSubset}
 \title{Control an Echoview ping subset virtual variable using COM scripting.}
 \usage{
-EVPingSubset(EVFile, acoVarName, pingsubsetString,
-  includePingRanges = TRUE)
+EVPingSubset(EVFile, acoVarName, pingsubsetString, includePingRanges = TRUE)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}
@@ -25,7 +24,7 @@ This function opens an existing Echoview (.EV) file using COM scripting.
 \examples{
 \dontrun{
 EVAppObj=COMCreate('EchoviewCom.EvApplication')
-EVOpenFile(EVAppObj,'~\\\\example1.EV')
+EVOpenFile(EVAppObj,'~\\example1.EV')
 EVpingSubset(EVFile=EVFile,acoVarName='Ping subset 38',pingsubsetString='2-7')
 
 }

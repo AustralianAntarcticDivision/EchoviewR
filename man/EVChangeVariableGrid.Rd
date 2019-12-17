@@ -4,9 +4,16 @@
 \alias{EVChangeVariableGrid}
 \title{Change the integration grid size and type of an Echoview acoustic variable}
 \usage{
-EVChangeVariableGrid(EVFile, acoVarName, timeDistanceGridType = NULL,
-  depthGridType = NULL, timeDistanceGridDistance = NULL,
-  depthGridDistance = NULL, EVLineName = NULL, showenum = FALSE)
+EVChangeVariableGrid(
+  EVFile,
+  acoVarName,
+  timeDistanceGridType = NULL,
+  depthGridType = NULL,
+  timeDistanceGridDistance = NULL,
+  depthGridDistance = NULL,
+  EVLineName = NULL,
+  showenum = FALSE
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

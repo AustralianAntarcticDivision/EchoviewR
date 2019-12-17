@@ -4,16 +4,24 @@
 \alias{EVBottomDetection}
 \title{Bottom Detection}
 \usage{
-EVBottomDetection(EVFile, EVVar, LineName = "Bottom", algorithm = NULL,
-  StartDepth = NULL, StopDepth = NULL, MinSv = NULL, UseBackstep = NULL,
-  DiscriminationLevel = NULL, BackstepRange = NULL, PeakThreshold = NULL,
-  MaxDropouts = NULL, WindowRadius = NULL, MinPeakAssymmetry = NULL,
-  replaceOldBottom = TRUE)
-  StartDepth = NULL, StopDepth = NULL, MinSv = NULL,
-  UseBackstep = NULL, DiscriminationLevel = NULL,
-  BackstepRange = NULL, PeakThreshold = NULL, MaxDropouts = NULL,
-  WindowRadius = NULL, MinPeakAssymmetry = NULL,
-  replaceOldBottom = TRUE, SpanGaps = TRUE)
+EVBottomDetection(
+  EVFile,
+  EVVar,
+  LineName = "Bottom",
+  algorithm = NULL,
+  StartDepth = NULL,
+  StopDepth = NULL,
+  MinSv = NULL,
+  UseBackstep = NULL,
+  DiscriminationLevel = NULL,
+  BackstepRange = NULL,
+  PeakThreshold = NULL,
+  MaxDropouts = NULL,
+  WindowRadius = NULL,
+  MinPeakAssymmetry = NULL,
+  replaceOldBottom = TRUE,
+  SpanGaps = TRUE
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

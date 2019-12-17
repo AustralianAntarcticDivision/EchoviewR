@@ -4,11 +4,18 @@
 \alias{EVSTWideband}
 \title{Broadband Single target detection}
 \usage{
-EVSTWideband(EVFile, EVVar, Operand2, TsThreshold = NULL,
-  MinimumPulseLength = NULL, MaximumPulseLength = NULL,
-  BeamCompensationModel = NULL, MaximumBeamCompensation = NULL,
+EVSTWideband(
+  EVFile,
+  EVVar,
+  Operand2,
+  TsThreshold = NULL,
+  MinimumPulseLength = NULL,
+  MaximumPulseLength = NULL,
+  BeamCompensationModel = NULL,
+  MaximumBeamCompensation = NULL,
   MaximumStdDevOfMajorAxisAngles = NULL,
-  MaximumStdDevOfMinorAxisAngles = NULL)
+  MaximumStdDevOfMinorAxisAngles = NULL
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

@@ -4,8 +4,12 @@
 \alias{EVLineExportFromAcousticVarEVL}
 \title{Export an Echoview line file for an existing line associated with an Acoustic Variable.}
 \usage{
-EVLineExportFromAcousticVarEVL(EVFile, acoVar, lineNameToExport,
-  pathAndFileName)
+EVLineExportFromAcousticVarEVL(
+  EVFile,
+  acoVar,
+  lineNameToExport,
+  pathAndFileName
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}
@@ -22,7 +26,7 @@ This function exports an EV line definition file (.evl) for a line associated wi
 \examples{
 \dontrun{
 EVAppObj <- COMCreate('EchoviewCom.EvApplication')
-EVFile <- EVOpenFile(EVAppObj, '~\\\\example1.EV')$EVFile
+EVFile <- EVOpenFile(EVAppObj, '~\\example1.EV')$EVFile
 
 EVLineExportFromAcousticVarEVL(EVFile=EVFile,
    acoVar='120 seabed and surface excluded',

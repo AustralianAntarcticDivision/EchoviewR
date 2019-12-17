@@ -4,8 +4,13 @@
 \alias{EVgetCalParValues}
 \title{Get calibration settings pf an Echoview acoustic variable using COM}
 \usage{
-EVgetCalParValues(EVFile, acoVarName, pingNumber = 1,
-  type = c("default", "set", "used"), verbose = FALSE)
+EVgetCalParValues(
+  EVFile,
+  acoVarName,
+  pingNumber = 1,
+  type = c("default", "set", "used"),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{acoVarName}{(character) Name of Echoview single target virtual variable}

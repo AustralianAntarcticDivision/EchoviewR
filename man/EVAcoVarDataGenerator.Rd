@@ -4,10 +4,15 @@
 \alias{EVAcoVarDataGenerator}
 \title{Control an Echoview data generator variable using COM scripting.}
 \usage{
-EVAcoVarDataGenerator(EVFile, acoVarName, Algorithm = c("Constant",
-  "Tvg", "ConstantTvg"), OutputType = c("Sv", "TS", "Other dB",
-  "Linear"), constantValue = NULL, ApplyTvgOverride = NULL,
-  TvgOverride = NULL)
+EVAcoVarDataGenerator(
+  EVFile,
+  acoVarName,
+  Algorithm = c("Constant", "Tvg", "ConstantTvg"),
+  OutputType = c("Sv", "TS", "Other dB", "Linear"),
+  constantValue = NULL,
+  ApplyTvgOverride = NULL,
+  TvgOverride = NULL
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

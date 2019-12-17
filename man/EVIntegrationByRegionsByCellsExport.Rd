@@ -4,8 +4,13 @@
 \alias{EVIntegrationByRegionsByCellsExport}
 \title{Export integration by regions by cells from an Echoview acoustic variable}
 \usage{
-EVIntegrationByRegionsByCellsExport(EVFile, acoVarName, regionClassName,
-  exportFn, dataThreshold = NULL)
+EVIntegrationByRegionsByCellsExport(
+  EVFile,
+  acoVarName,
+  regionClassName,
+  exportFn,
+  dataThreshold = NULL
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file object}

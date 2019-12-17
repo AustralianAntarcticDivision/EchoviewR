@@ -4,8 +4,14 @@
 \alias{modifyECS}
 \title{A function to modify Ex60/70 Echoview calibration files (ECS files)}
 \usage{
-modifyECS(ECSPathAndFile, ECStargetVar, NewValue, maxNlines = 200,
-  nBlanks2Stop = 4, FileNameSuffix = NULL)
+modifyECS(
+  ECSPathAndFile,
+  ECStargetVar,
+  NewValue,
+  maxNlines = 200,
+  nBlanks2Stop = 4,
+  FileNameSuffix = NULL
+)
 }
 \arguments{
 \item{ECSPathAndFile}{Echoview calibration path and filename (character)}
