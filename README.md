@@ -33,13 +33,20 @@ citation('EchoviewR')
 ### Installing EchoviewR
 Currently, ```EchoviewR``` has quite a few dependencies, something we are hoping to rectify.  Meanwhile, you will need to install the following ```R``` packages:
 
-```fields```,```sp```,```geosphere```,```maptools```,```RDCOMClient``` and ```rgeos```
+```sp```,```geosphere```,```maptools```,```RDCOMClient``` and ```lubridate```
   
 You can install all these packages with the following  ```R``` code:
 
 ```{r dependPacks,eval=FALSE}
-install.packages(c('fields','sp','geosphere','maptools','RDCOMClient','rgeos'))
+install.packages(c('sp','geosphere','maptools','RDCOMClient','lubridate'))
 ```
+
+If ```RDCOMClient``` fails try:
+```{r dependPacks, eval=FALSE}
+devtools::install_github("omegahat/RDCOMClient")
+```
+
+If the install still fails because of ```Rtools``` go to [https://cran.r-project.org/bin/windows/Rtools/] and install the latest version of ```Rtools```. Once Rtools is installed, you have to restart RStudio and then install ```RDCOMClient``` before proceeding to install ```EchoviewR```.
 
 You are then ready to install the ```EchoviewR``` package directly from github using ```devtools``` (Wickham & Chang, 2016):
 
@@ -52,6 +59,12 @@ devtools::install_github("AustralianAntarcticDivision/EchoviewR", build_opts = c
 # devtools::install_github("AustralianAntarcticDivision/EchoviewR", build_vignettes = TRUE, force_deps=TRUE)
 ```
 
+NB if you would like the older ```EchoviewR``` version (v1.0) that was used during the 2017 meeting of the CCAMLR Subgroup on Acoustics, Survey and Analysis Methods, please use the following code:
+
+```{r installASAM,eval=FALSE}
+devtools::install_github('AustralianAntarcticDivision/EchoviewR',ref='v1.0')
+```
+
 You should then be ready to work with EchoviewR:
 ```{r startEVR, eval=FALSE}
 library(EchoviewR)
@@ -59,7 +72,7 @@ library(EchoviewR)
 
 ### Getting started
 
-Currently there are two vignettes that describe the automation of reading data into Echoview (R), ```read_data_vignette.pdf``` and the automation of schools detection in Echoview (R) ```schoolsDetection.pdf```.  Both the vignettes and examples in the function help use data available at the Australian Antarctic Division Data Centre [doi: http://dx.doi.org/10.4225/15/54CF081FB955F].
+We are currently updating the ```EchoviewR``` vignettes.  Once available, the vignettes will use data available at the Australian Antarctic Division Data Centre [doi: http://dx.doi.org/10.4225/15/54CF081FB955F].
 
 ### Acknowledgements
 
@@ -69,5 +82,5 @@ Echoview (R) is a registered trademark of Echoview Software Pty Ltd. Website: ww
 
 ### References
 
-Hadley Wickham and Winston Chang (2016). devtools: Tools to Make Developing R Packages Easier. R package version 1.12.0.
+Hadley Wickham and Winston Chang (2017). devtools: Tools to Make Developing R Packages Easier. R package version 1.34.4.
   https://CRAN.R-project.org/package=devtools

@@ -18,6 +18,7 @@
 #' @param PeakThreshold numeric [dB] Threshold for peak detection
 #' @param MinPeakAssymmetry numeric
 #' @param replaceOldBottom Boolean (TRUE or FALSE) If TRUE and a line with the same name as LineName already exists, the old line will be overwritten with the new one
+#' @param SpanGaps Boolean (TRUE or FALSE) Decides wheteher span gaps is activated or notm default=TRUE
 #' @keywords Echoview COM scripting
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
@@ -46,6 +47,8 @@ EVBottomDetection <- function(EVFile, EVVar, LineName="Bottom",
                               WindowRadius = NULL, #8,
                               MinPeakAssymmetry = NULL, #-1.0,
                               replaceOldBottom = TRUE){
+                              replaceOldBottom = TRUE,
+                              SpanGaps = TRUE){
 
   #Test class of EVVar to see how it should be used
   EVVar <- switch(class(EVVar),
@@ -71,6 +74,12 @@ EVBottomDetection <- function(EVFile, EVVar, LineName="Bottom",
   #Detect Bottom
   message(paste0(Sys.time(),": Detecting Bottom..."))
   bottom<- EVFile[["Lines"]]$CreateLinePick(EVVar,T)
+  #Detect bottom with or without span gaps
+  if(SpanGaps){
+    bottom<- EVFile[["Lines"]]$CreateLinePick(EVVar,T)
+  }else{
+      bottom<- EVFile[["Lines"]]$CreateLinePick(EVVar,F)
+      }
   
   message(paste0(Sys.time(),": Success Bottom detected successfully..."))  
   #Overwrite old bottom line (if needed)

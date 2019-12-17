@@ -11,6 +11,7 @@
 #'@param regionType region Type (integer)
 #'@param outPathFn output parth and filename.
 #'@param append = FALSE should be region be added to the EVR file given in outPathFn
+#'@param exactRegionName = NULL exact region name (no integer increment will be applied)
 #'@return list: $msg messages from the function call $exportFLAG Boolean TRUE EVR file created or added.  FALSE otherwise
 #'@details Region types supported by Echoview: 0 = bad (no data); 1 = analysis; "2" = marker; 3 = fishtracks, and 4 = bad (empty water)
 #'@references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
@@ -22,7 +23,7 @@
 #'outPathFn='~/test2.evr',
 #'regionClassName='ctd',append=FALSE)}
 makeRectRegion=function(dateStart,timeStart,dateStop,timeStop, minDepth=0,maxDepth,outPathFn,
-                        regionClassName,regionType,append=FALSE)
+                        regionClassName,regionType,append=FALSE,exactRegionName = NULL)
 {
   msgV=paste(Sys.time(),' : Creating rectangular region')
   message(msgV)
@@ -60,6 +61,7 @@ makeRectRegion=function(dateStart,timeStart,dateStop,timeStop, minDepth=0,maxDep
   dfReg$line5=regionClassName
   dfReg$line6=paste(topLeftPoint,bottomLeftPoint,bottomRightPoint,topRightPoint,regionType)
   dfReg$line7=paste('Region',regionID+1,sep='')
+  if(!is.null(exactRegionName)) dfReg$line7=exactRegionName
   for(i in 1:ncol(dfReg)) write.table(dfReg[,i],outPathFn,sep='',quote=F,append=T,col.names=F,row.names=F)
   
   invisible(list(msg=msgV,exportFLAG=ifelse(file.exists(outPathFn),TRUE,FALSE)))

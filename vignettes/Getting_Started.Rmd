@@ -1,0 +1,324 @@
+---
+title: "Getting started with EchoviewR"
+author: "Sven Gastauer"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 4
+vignette: >
+  %\VignetteIndexEntry{Getting Started with EchoviewR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# EchoviewR
+
+`EchoviewR` is an R package, distributed freely via [GitHub](https://github.com/AustralianAntarcticDivision/EchoviewR). `EchoviewR` allows the user to easily access and automate some of the functionality included in [Echoview](https://www.echoview.com/) through simplification of [COM scripting](https://support.echoview.com/WebHelp/How_to/Run_Echoview_using_scripts/Automation_using_COM_objects/Scripting_with_COM_objects.htm).  
+Main benefits of EchoviewR:  
+
+* Automated processing of large amount of data files  
+* Easy template sharing  
+* Standardisation of processing methods  
+* Integration of Echoview funcitonality into R   
+
+`EchoviewR` is not a replacement for *Echoview*, on the contrary, in order to be able to use EchoviewR you will have to have Echoview installed on your local machine with a valid user licence including the scripting module.  
+
+For more information on EchoviewR, please refer to the [original paper introducing *EchoviewR*](https://www.frontiersin.org/articles/10.3389/fmars.2015.00015/full)  
+
+### Help and Support
+
+If you need help with a specific `EchoviewR` function, generally it is a good idea to check the description. The help for any function within EchoviewR can be accessed within R (for example help about the bottom detection function can be accessed as `?EVBottomDetection`).  
+`EchoviewR` contains some vignettes, acting as extended documentation. Vigenettes are best viewed in a browser (e.g. Chromium, Opera, Firefox or Chrome). To browse vignettes in your preferred browser use:  
+```{r eval=FALSE} 
+browseVignettes("EchoviewR")
+```
+
+If you need further support or are missing some functionality in `EchoviewR`, please comment or make a feature erquest on [GitHub](https://github.com/AustralianAntarcticDivision/EchoviewR).  
+
+### Copyright and Licence
+
+Copyright (C) 2015 Lisa-Marie Harrison, Martin Cox, Georg Skaret, Sven Gastauer and Rob Harcourt.
+
+```
+EchoviewR is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EchoviewR is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with EchoviewR.  If not, see <http://www.gnu.org/licenses/>.
+This package is open for community development and we encourage users 
+to extend the package as they need. We are not liable for any losses 
+when using EchoviewR.
+```
+
+If using EchoviewR, please cite as:
+
+```{r}
+citation("EchoviewR")
+```  
+
+## Installing EchoviewR
+
+At the moment of writing, `EchoviewR` has a few dependencies:  
+
+* (`sp`)[https://cran.r-project.org/web/packages/sp/index.html] - Adding more spatial functionality to the package  
+* (`geosphere`)[https://cran.r-project.org/package=geosphere] - For improved distance calculations  
+* (`devtools`)[https://cran.r-project.org/package=devtools] - To install packages from GitHub
+* (`maptools`)[https://cran.r-project.org/package=maptools] - More spatial funcitonality  
+* (`RDCOMClient`)[https://github.com/omegahat/RDCOMClient] - Enable COM communication through R  
+* (`lubridate`)[https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html] - Improved date manipulations  
+
+Packages sp, geosphere, maptools and lubridate can be directly installed from CRAN. We will use a simple function to check if the packages are installed and loaded. If this is not the case, the packages will be installed and loaded:  
+
+```{r eval=FALSE}
+#Make sure package is installed and loaded
+packagecheck <- function(package){
+  if(!package %in% installed.packages()){install.packages(package, dependencies=TRUE)}
+  require(package,character.only = TRUE)
+}
+
+#Now we can check if the packages are isntalled
+packagelist <- c('sp','geosphere','maptools','lubridate','devtools')
+apply(as.matrix(packagelist),1,function(x)packagecheck(x))
+```
+
+`RDCOMClient` has to be installed through GitHub, via Omegahat:  
+
+```{r eval=FALSE}
+devtools::install_github("omegahat/RDCOMClient")
+require(RDCOMClient)
+```
+
+Once all the dependencies have been satisfied `EchoviewR` can be installed:  
+
+```{r eval=FALSE}
+devtools::install_github('AustralianAntarcticDivision/EchoviewR')
+require(EchoviewR)
+```
+
+### Installing a specific version of EchoviewR  
+
+If you want to use a previous verison of EchoviewR (for example v1.0):
+```{r eval=FALSE}
+devtools::install_github('AustralianAntarcticDivision/EchoviewR', ref='v1.0')
+```
+
+### Installing EchoviewR behind a proxy  
+
+If you are behind a proxy, you will have to set the proxy settings first, before installing packages via GitHub in R:  
+```{r eval=FALSE}
+packagecheck("httr")
+set_config(use_proxy(url=PROXYURL, port=PORT, username=USERNAME,password=PASSWORD))
+```
+
+Once the proxy is set, you should be able to use `install_github()` from the `devtools` package.  
+
+## Starting and quitting Echoview
+
+Once EchoviewR is installed, you can start and quit Echoview from within R:
+
+```{r eval=FALSE}
+#Create an Echoview application object and start Echoview
+EVApp <- StartEchoview()
+
+#Quit the application again
+QuitEchoview(EVApp)
+```
+
+## Basic Functionality  
+
+### Creating a new file 
+
+Generally the first step is to either create a new empty file, create a new file based on a template, or open an existing EV File:
+
+* Create a new empty EV file  
+```{r eval=FALSE}
+#First start Echoview
+EVApp <- StartEchoview()
+
+#Create a new empty file inside our Echoview object EVApp
+EVFile <- EVNewFile(EVApp)$EVFile
+
+#Close the file
+EVCloseFile(EVFile)
+
+#Quit Echoview 
+QuitEchoview(EVApp)
+```
+
+* Create a new EV file based on a template  
+In order to create a new EV file based on a template, we have to tell EchoviewR within which Echoview application object (here EVApp) we want to create the new EV file and where the template is located on our local machine (templatefn=TemplateFilename)  
+
+```{r eval=FALSE}
+# 1) Start Echoview
+# 2) Create a new file based on a template (TemplateFilename)
+# 3) Save the EV file as OutputFilenam
+# 4) Close the file
+# 5) Quit Echoview
+
+#Set the tempalte filename
+TemplateFilename = "temp.EV"
+#Set the output filename
+OutputFilename = "NewFile.EV"
+
+#Start Echoview
+EVApp <- StartEchoview()
+
+#Create a new file based on the template TemplateFilename
+EVFile <- EVNewFile(EVApp, templateFn = TemplateFilename)$EVFile
+
+#Save the file under a new name
+EVSaveAsFile(EVFile = EVFile, fileName = OutputFilename)
+
+#Close the file
+EVCloseFile(EVFile)
+
+#Quit Echoview 
+QuitEchoview(EVApp)
+
+```
+
+### Open an existing EV file  
+
+```{r eval=FALSE}
+EVFILENAME = "TestEv.EV"
+
+#Start Echoview
+EVApp <- StartEchoview()
+
+#Open the EV File
+EVOpenFile(EVAppObj = EVApp, fileName = EVFILENAME)
+
+#Save the file
+EVSaveFile(EVFile = EVFile)
+
+#Close the file
+EVCloseFile(EVFile)
+
+#Quit Echoview 
+QuitEchoview(EVApp)
+```
+
+### Clear raw data from the fileset
+```{r eval=FALSE}
+EVClearRawData(EVFile, filesetName = fsetname)
+```
+
+### Add raw data
+
+Often analysing acoustic data requires the processing of a lot of raw files. Handling such vast amounts of data (multiple gigbytes to terabytes) can be a dawning task. Even with current computaitonal power and software capabilities, it is often a wise idea to process files in multiple steps rather than all at once. If en Echoview template for processing the data is available, the different raw files can be snet to Echoview in a loop. Before we can start the loop, we need to know the filenames and location of the raw files.  
+
+#### Gather .raw files
+* Define the folder where the raw files are located
+```{r eval = FALSE}
+rawDir <- "blabla"
+```
+
+* Get all raw files from a folder
+
+We can get all the files of a certain pattern from a folder using the `list.files` function, contained within R base. Here we set `path` to the previously defined `rawDir`, the options `full.names=TRUE` to include the path, and pattern as `glob2rx(".*raw")` to only include files strictly matching *.raw* i.e. not including *.raw.evi*.  
+
+If more raw files are inside subfolders of `rawDir`, the option `recursive` should be set to `TRUE`.  
+
+```{r eval=FALSE}
+raws <- list.files(path=rawDir, pattern=glob2rx("*.raw"), full.names = TRUE, recursive = FALSE)
+```
+
+
+* Get all raw files from a list of folders
+
+If raw files are inside multiple folder we can create a vector containing all the folders and wrap the previously used function to get the raw files from a single folder into an `apply` function:  
+
+```{r eval=FALSE}
+rawDirs <- c("folder1","folder2")
+raws <- unlist(apply(as.matrix(rawdirs),1,function(x) list.files(path=x, pattern=glob2rx("*.raw"), full.names = TRUE)))
+```  
+
+
+#### Adding raw files
+
+```{r eval=FALSE}
+EVAddRawData(EVFile = EVFile, filesetName = fsetname, dataFiles = raws)
+```
+
+### Selecting Variables
+
+```{r eval=FALSE}
+#Select Sv raw as EVVar
+EVVar <- EVAcoVarNameFinder(EVFile,"070: Sv pings T1")$EVVar
+```
+
+### Running a bottom detection
+
+```{r eval=FALSE}
+#Run bottom detection
+bottom <- EVBottomDetection(EVVar = EVVar,
+                            EVFile = EVFile,
+                            LineName = "Maximum Sv", 
+                            StopDepth = 150, 
+                            StartDepth = 5,
+                            algorithm = 2,
+                            MinSv = -50,
+                            DiscriminationLevel = -45,
+                            BackstepRange = -1.50)
+```
+
+### Running a school detection
+
+```{r eval=FALSE}
+EVSchoolsDetect(EVFile = EVFile,
+               acoVarName='70 kHz Speed > 2.5',
+               outputRegionClassName = 'agg',
+               deleteExistingRegions = TRUE,
+               distanceMode = "GPS distance",
+               maximumHorizontalLink = 10, #m
+               maximumVerticalLink = 2,#m
+               minimumCandidateHeight = 1, #m
+               minimumCandidateLength = 3, #m
+               minimumSchoolHeight = 1, #m
+               minimumSchoolLength = 3, #m
+               dataThreshold = -70)
+```
+
+```{r eval=FALSE}
+#Export Aggregation information
+EVIntegrationByRegionsExport(EVFile = EVFile, acoVarName = "Aggregation mask", 
+                             regionClassName='agg',
+                             exportFn=paste0(evex,basename(rawdirs[1]),'_AGG.csv'),
+                             dataThreshold =-80)
+
+#Export Aggregations @ a resolution of 200 m x 5 m
+
+#Change grid
+EVChangeVariableGrid(EVFile=EVFile, 
+                     acoVarName = "Aggregation mask", 
+                     timeDistanceGridType=5,
+                     timeDistanceGridDistance = 200,
+                     depthGridType=1,
+                     depthGridDistance = 5)
+#Export 
+EVExportIntegrationByCells(EVFile=EVFile, variableName='Aggregation mask', 
+                             filePath=paste0(evex, basename(rawdirs[1]),'_INT.csv'))
+#export seabed
+EVExportLineAsCSV(EVFile=EVFile, acoVarName='Aggregation mask',
+                    lineName='Surface Exclusion Threshold',
+                    filePath=paste0(evex,basename(rawdirs[1]),'_seabed.csv',sep=''))
+  
+#export gps
+EVExportUnderlying(EVFile=EVFile, variableName='070: position GPS fixes', 
+                     pingRange = c(-1, -1), 
+                     filePath=paste0(evex,basename(rawdirs[1]),'_GPS.csv',sep=''))
+
+EVSaveAsFile(EVFile,paste0(paste0(evex,"Montague_",basename(rawdirs[1]),'.EV',sep='')))
+
+#Quit Echoview
+QuitEchoview(EVApp)
+
+```

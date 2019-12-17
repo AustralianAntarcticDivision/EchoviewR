@@ -34,7 +34,7 @@ EVExportEchogramToImage=function(EVFile,acoVarName,filePath,heightInPixels,pingR
     msgV=c(msgV,msg)} else {
       msg=paste(Sys.time(),'Echoview is reporting succesful image file export, but the file cannot be found.  Check your directory path.')
      warning(msg)
-    msgV=c(msgv,msg)}
+    msgV=c(msgV,msg)}
     } else {
     msg=paste(Sys.time(), 'Failed to export image file',filePath,'from acoustic variable',acoVarName)
     warning(msg)

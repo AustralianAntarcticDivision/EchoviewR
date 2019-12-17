@@ -2,50 +2,26 @@
 % Please edit documentation in R/EVImportLine.R
 \name{EVImportLine}
 \alias{EVImportLine}
-\title{Imports an Echoview Line file
-This function imports an Echoview line file (.evl) using COM scripting}
+\title{Import an Echoview line (EVL format) file}
 \usage{
-EVImportLine(EVFile, pathAndFn = NULL, lineName = NULL)
+EVImportLine(EVFile, pathAndFn = NULL, lineName = NULL,
+  overwriteExistingLine = TRUE)
 }
 \arguments{
-\item{EVFile}{An Echoview file COM object}
+\item{EVFile}{("COMIDispatch) An Echoview file COM object}
 
-\item{pathAndFn}{string path and filename to .evl file.}
+\item{pathAndFn}{= NULL (character) path and file name of an EVL file}
 
-\item{lineName}{=NULL optional line name for imported line.}
+\item{lineName}{= NULL (character) desired line name}
+
+\item{overwriteExistingLine}{= TRUE (boolean) overwrite an existing line named lineName}
 }
 \value{
-a list object with two elements- [[1]] imported EV line COM object, and [[2]] function message for log
+list $lineObj=COM object for the imported line (class COMIDispatch), msg= vector of messages)
 }
 \description{
-Imports an Echoview Line file
-This function imports an Echoview line file (.evl) using COM scripting
+This function imports an Echoview line (.EVL) format line into Echoview and can rename the imported line or replace a line.
 }
-\examples{
-\dontrun{
-EVAppObj <- COMCreate('EchoviewCom.EvApplication')
-EVFile <- EVOpenFile(EVAppObj, 'c:\\\\Users\\\\martin_cox\\\\Desktop\\\\KOASLine.EV')$EVFile
-#testing...
- EVImportLine(EVFile)
- test two...
-EVImportLine(EVFile,pathAndFn='c:\\\\Users\\\\martin_cox\\\\Desktop\\\\lineKAOS.evl')
-
-test three.. same line names (to be run after test2)
-EVImportLine(EVFile,pathAndFn='c:\\\\Users\\\\martin_cox\\\\Desktop\\\\lineKAOS.evl',
-lineName='Line6' )
-
-test four.. rename line with unique name
-lineInfo=EVImportLine(EVFile,pathAndFn='c:\\\\Users\\\\martin_cox\\\\Desktop\\\\lineKAOS.evl',
-lineName='seabed4' )
-lineInfo  
+\note{
+Overwriting an existing line only works with editable lines.
 }
-}
-\references{
-\url{http://support.echoview.com/WebHelp/Echoview.htm/}
-}
-\seealso{
-\code{\link{EVCreateEditableLine}}
-}
-\keyword{COM}
-\keyword{Echoview}
-\keyword{scripting}

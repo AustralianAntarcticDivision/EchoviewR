@@ -13,9 +13,35 @@ an Echoview Application object
 This function opens an Echoview instance through COM scripting
 }
 \examples{
+% Please edit documentation in R/EVStartEchoview.R, R/EVStartQuitEchoview.R
+\name{StartEchoview}
+\alias{StartEchoview}
+\title{Start an Echoview instance through COM scripting}
+\usage{
+StartEchoview()
+
+StartEchoview()
+}
+\value{
+an object of class COMDispatch
+
+an Echoview Application object
+}
+\description{
+This function opens an Echoview instance
+
+This function opens an Echoview instance through COM scripting
+}
+\examples{
+\dontrun{
+EVAppObj=StartEchoview()
+
+}
 EVAppObj <- StartEchoview()
 }
 \references{
+\url{http://support.echoview.com/WebHelp/Echoview.htm/}
+
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 }
 \keyword{COM}

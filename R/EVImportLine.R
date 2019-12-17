@@ -1,88 +1,103 @@
-#' Imports an Echoview Line file
-
-#' This function imports an Echoview line file (.evl) using COM scripting
-#' @param EVFile An Echoview file COM object
-#' @param pathAndFn string path and filename to .evl file. 
-#' @param lineName =NULL optional line name for imported line.
-#' @return a list object with two elements- [[1]] imported EV line COM object, and [[2]] function message for log
-#' @keywords Echoview COM scripting
-#' @export
-#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
-#' @seealso \code{\link{EVCreateEditableLine}} 
-#' @examples
-#' \dontrun{
-#' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
-#' EVFile <- EVOpenFile(EVAppObj, 'c:\\Users\\martin_cox\\Desktop\\KOASLine.EV')$EVFile
-#' #testing...
-#'  EVImportLine(EVFile)
-#'  test two...
-#' EVImportLine(EVFile,pathAndFn='c:\\Users\\martin_cox\\Desktop\\lineKAOS.evl')
-#'
-#' test three.. same line names (to be run after test2)
-#' EVImportLine(EVFile,pathAndFn='c:\\Users\\martin_cox\\Desktop\\lineKAOS.evl',
-#' lineName='Line6' )
-#'
-#' test four.. rename line with unique name
-#' lineInfo=EVImportLine(EVFile,pathAndFn='c:\\Users\\martin_cox\\Desktop\\lineKAOS.evl',
-#' lineName='seabed4' )
-#' lineInfo  
-#'}
-EVImportLine <- function (EVFile, pathAndFn=NULL,lineName=NULL) {
-  
-  if(is.null(pathAndFn))
-  {msg=paste(Sys.time(),' : No path and filename specified in EVImportLine(pathAndFn)',sep='')
-   warning(msg) 
-   return(list(msg=msg))
-  }
-  nbr.of.lines.pre.import<-EVFile[['Lines']]$Count()  
-  msgV=paste(Sys.time(),' : Importing line',pathAndFn,sep='')
-  message(msgV)
-  importedLineBoolean<-EVFile$Import(pathAndFn)
-  if(importedLineBoolean)
+#' Import an Echoview line (EVL format) file
+#' 
+#'This function imports an Echoview line (.EVL) format line into Echoview and can rename the imported line or replace a line.
+#'  
+#'@import RDCOMClient
+#'@param EVFile ("COMIDispatch) An Echoview file COM object 
+#'@param pathAndFn = NULL (character) path and file name of an EVL file
+#'@param lineName = NULL (character) desired line name
+#'@param overwriteExistingLine = TRUE (boolean) overwrite an existing line named lineName
+#'@note Overwriting an existing line only works with editable lines.
+#'@export
+#'@return list $lineObj=COM object for the imported line (class COMIDispatch), msg= vector of messages)
+EVImportLine=function (EVFile, pathAndFn = NULL, lineName = NULL, overwriteExistingLine = TRUE) 
   {
-    msg=paste(Sys.time(),' : Successfully imported ',pathAndFn,sep='')
-    message(msg)
-    msgV=c(msgV,msg)
-  } else{
-    msg=paste(Sys.time(),' : Failed to import ',pathAndFn,sep='')
-    warning(msg)
-    msgV=c(msgV,msg)
-    return(list(msg=msgV))
-  }  
-  #find newline object
-  importedLineObj=EVFile[['Lines']]$Item(nbr.of.lines.pre.import)
-  
-  if(is.null(lineName)) {
-    msg=paste(Sys.time(),' : Imported line object name = ',importedLineObj$Name(),sep='')
-    message(msg)
-    msgV=c(msgV,msg)
-    return(list(lineObj=importedLineObj,msg=msgV))
-  }else{
-    msg=paste(Sys.time(),' : Renaming imported line object name from ',importedLineObj$Name(),
-              ' to ',lineName,sep='')
-    message(msg)
-    msgV=c(msgV,msg)
-    #check if there is already a line with the new name
-    line.check <- EVFile[["Lines"]]$FindByName(lineName)
-    
-    if (is.null(line.check) == FALSE) {
-      msg=paste(Sys.time(), "Error: A line already exists with the name", lineName, ". Line not renamed", sep = " ")
+    if (is.null(pathAndFn)) {
+      msg = paste(Sys.time(), " : No path and filename specified in EVImportLine(pathAndFn)", 
+                  sep = "")
       warning(msg)
-      msgV=c(msgV,msg)
-      return(list(lineObj=importedLineObj,msg=msgV))
+      return(list(msg = msg))
     }
-    importedLineObj[["Name"]] <- lineName
-    #check that line has been renamed
-    if (importedLineObj$Name() == lineName) {
-      msg=paste(Sys.time(), ": Success, line renamed as", lineName, sep = " ")
+    nbr.of.lines.pre.import <- EVFile[["Lines"]]$Count()
+    msgV = paste(Sys.time(), " : Importing line", pathAndFn, 
+                 sep = "")
+    message(msgV)
+    importedLineBoolean <- EVFile$Import(pathAndFn)
+    if (importedLineBoolean) {
+      msg = paste(Sys.time(), " : Successfully imported ", 
+                  pathAndFn, sep = "")
       message(msg)
-      msgV=c(msgV,msg)
-      invisible(list(lineObj=importedLineObj,msg=msgV))
-    } else {
-      msg=paste(Sys.time(), ": Could not rename line")
+      msgV = c(msgV, msg)
+    }
+    else {
+      msg = paste(Sys.time(), " : Failed to import ", pathAndFn, 
+                  sep = "")
       warning(msg)
-      msgV=c(msgV,msg)
-      return(list(lineObj=importedLineObj,msg=msgV))
-    }  
-  } #end of rename line if statement.
-}
+      msgV = c(msgV, msg)
+      return(list(msg = msgV))
+    }
+    importedLineObj = EVFile[["Lines"]]$Item(nbr.of.lines.pre.import)
+    if (is.null(lineName)) {
+      msg = paste(Sys.time(), " : Imported line object name = ", 
+                  importedLineObj$Name(), sep = "")
+      message(msg)
+      msgV = c(msgV, msg)
+      invisible(list(lineObj = importedLineObj, msg = msgV))
+    }
+    if(!is.null(lineName))
+    {
+      line.check <- EVFile[["Lines"]]$FindByName(lineName)
+      if (is.null(line.check)){
+        msg = paste(Sys.time(), " : Renaming imported line object name from ", 
+                    importedLineObj$Name(), " to ", lineName, sep = "")
+        message(msg)
+        msgV = c(msgV, msg)
+        renameFlag=EVRenameLine(EVFile=EVFile,evLine=importedLineObj,newName=lineName)
+        if(renameFlag){
+          invisible(list(lineObj=importedLineObj,msg=msgV))
+        } else {
+          msg=paste(Sys.time(),' : failed to rename line.')
+          warning(msg)
+          msgV=c(msgV,msg)
+          return(list(msg=msgV))
+        }
+      } else { #end of what to do if there isn't a line with the name of lineName
+        #lineName existing:
+        if(!overwriteExistingLine){
+          msg=paste(Sys.time(),' : line with name',lineName,'already exists and will not be overwritten')
+          warning(msg)
+          msgV=c(msgV,msg)
+          msg=paste(Sys.time(),' : created line object called',importedLineObj$Name(), 'is available as a COM object in $lineObj')
+          message(msg)
+          msgV=c(msgV,msg)
+          return(list(lineObj=importedLineObj,msg=msgV))
+        }
+        if(overwriteExistingLine)
+        {
+          msg=paste(Sys.time(),' : attempting to overwrite existing line object called',lineName,'with line object called',importedLineObj$Name())
+          message(msg)
+          msgV=c(msgV,msg)
+          overwriteFlag=line.check$overwriteWith(importedLineObj)
+          if(overwriteFlag)
+          {
+            msg=paste(Sys.time(),' : exisiting line called',lineName,'was overwritten by imported EVL file')
+            message(msg)
+            msgV=c(msgV,msg)
+            msg=paste(Sys.time(),': attempting to delete line called',importedLineObj$Name())
+            message(msg)
+            msgV=c(msgV,msg)
+            EVDeleteLine(EVFile, EVFindLineByName(EVFile, importedLineObj$Name()))
+            invisible(list(lineObj=line.check,msg=msgV))
+          } else {
+            msg=paste(Sys.time(),' : Failed to overwrite exisiting line called',lineName,' with imported EVL file')
+            warning(msg)
+            msgV=c(msgV,msg)
+            return(list(lineObj=importedLineObj,msg=msgV))
+            
+          }  
+        } #end of line overwrite exisiting line
+      }#end of what to do if there is an existing line of name lineName
+      
+    } #end of what to do if lineName specified  
+    
+  } #end of import EVImportLine()  

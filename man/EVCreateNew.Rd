@@ -6,6 +6,8 @@
 \usage{
 EVCreateNew(EVAppObj, templateFn = NULL, EVFileName = NULL,
   filesetName = "Fileset1", dataFiles = NULL, CloseOnSave = FALSE)
+EVCreateNew(EVAppObj, templateFn = NULL, EVFileName, filesetName,
+  dataFiles, CloseOnSave = TRUE)
 }
 \arguments{
 \item{EVAppObj}{An EV application COM object arising from the call COMCreate('EchoviewCom.EvApplication')}
