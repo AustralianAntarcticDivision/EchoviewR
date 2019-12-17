@@ -4,19 +4,33 @@
 \alias{EVFishTracking}
 \title{Detect Fish Tracks}
 \usage{
-EVFishTracking(EVFile, EVVar,
-  FishTrackRegionClass = "Unclassified regions", export = NULL,
-  DataDimensions = NULL, Alpha.MajorAxis = NULL,
-  Alpha.MinorAxis = NULL, Alpha.Range = NULL, Beta.MajorAxis = NULL,
-  Beta.MinorAxis = NULL, Beta.Range = NULL,
+EVFishTracking(
+  EVFile,
+  EVVar,
+  FishTrackRegionClass = "Unclassified regions",
+  export = NULL,
+  DataDimensions = NULL,
+  Alpha.MajorAxis = NULL,
+  Alpha.MinorAxis = NULL,
+  Alpha.Range = NULL,
+  Beta.MajorAxis = NULL,
+  Beta.MinorAxis = NULL,
+  Beta.Range = NULL,
   ExclusionDistance.MajorAxis = NULL,
-  ExclusionDistance.MinorAxis = NULL, ExclusionDistance.Range = NULL,
+  ExclusionDistance.MinorAxis = NULL,
+  ExclusionDistance.Range = NULL,
   MissedPingExpansion.MajorAxis = NULL,
   MissedPingExpansion.MinorAxis = NULL,
-  MissedPingExpansion.Range = NULL, Weights.MajorAxis = NULL,
-  Weights.MinorAxis = NULL, Weights.Range = NULL, Weights.TS = NULL,
-  Weights.PingGap = NULL, MinimumTargets = NULL, MinimumPings = NULL,
-  MaximumGap = NULL)
+  MissedPingExpansion.Range = NULL,
+  Weights.MajorAxis = NULL,
+  Weights.MinorAxis = NULL,
+  Weights.Range = NULL,
+  Weights.TS = NULL,
+  Weights.PingGap = NULL,
+  MinimumTargets = NULL,
+  MinimumPings = NULL,
+  MaximumGap = NULL
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

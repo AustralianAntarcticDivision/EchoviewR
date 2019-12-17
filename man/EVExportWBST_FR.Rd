@@ -4,8 +4,16 @@
 \alias{EVExportWBST_FR}
 \title{Export Wideband Single Targets Frequency Response}
 \usage{
-EVExportWBST_FR(EVFile = EVFile, STVar, outfn, AverageResults = 0,
-  MinMax = 0, WindowSize = 1, WindowUnit = 2, EVVar)
+EVExportWBST_FR(
+  EVFile = EVFile,
+  STVar,
+  outfn,
+  AverageResults = 0,
+  MinMax = 0,
+  WindowSize = 1,
+  WindowUnit = 2,
+  EVVar
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

@@ -4,8 +4,14 @@
 \alias{lawnSurvey}
 \title{Generate a coordinate list for a regular rectangular survey}
 \usage{
-lawnSurvey(startLon, startLat, lineLengthkm, lineSpacingkm,
-  startBearingdeg, numOfLines)
+lawnSurvey(
+  startLon,
+  startLat,
+  lineLengthkm,
+  lineSpacingkm,
+  startBearingdeg,
+  numOfLines
+)
 }
 \arguments{
 \item{startLon}{start longitude of survey.}
@@ -14,7 +20,7 @@ lawnSurvey(startLon, startLat, lineLengthkm, lineSpacingkm,
 
 \item{lineLengthkm}{transect line length in km.}
 
-\item{lineSpacingkm}{inter-transect spacing in km.}
+\item{lineSpacingkm}{inter-transect spacing in km (see details).}
 
 \item{startBearingdeg}{Orientation of survey grid in degrees.}
 
@@ -28,6 +34,9 @@ The coordinate list is generated in degrees decimal degree format (dd.ddd), with
 Southern hemisphere denoted by negative numbers. Transect length and inter-transect 
 spacing are specified in km and bearings in degress where North 0 deg, East 90 deg, 
 South 180 deg and West 270 deg.
+}
+\details{
+Line spacing can be fixed, so specified by a single number or pseudo random (random draws from a uniform distribution), which is specified by a vector of two numbers, the minimun and maximum transect separation.
 }
 \examples{
 \dontrun{

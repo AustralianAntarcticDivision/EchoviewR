@@ -4,8 +4,13 @@
 \alias{EVExportLineAsCSV}
 \title{Export an Echoview line as a CSV file}
 \usage{
-EVExportLineAsCSV(EVFile, acoVarName, lineName, filePath,
-  pingRange = c(-1, -1))
+EVExportLineAsCSV(
+  EVFile,
+  acoVarName,
+  lineName,
+  filePath,
+  pingRange = c(-1, -1)
+)
 }
 \arguments{
 \item{EVFile}{Echoview file COM object}

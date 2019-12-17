@@ -4,8 +4,14 @@
 \alias{EVCreateEditableLine}
 \title{Create an EV Editable Line from an existing line}
 \usage{
-EVCreateEditableLine(EVFile, lineNameToCopy, editableLineName = NULL,
-  Multiply = 1, Add = 0, SpanGaps = FALSE)
+EVCreateEditableLine(
+  EVFile,
+  lineNameToCopy,
+  editableLineName = NULL,
+  Multiply = 1,
+  Add = 0,
+  SpanGaps = FALSE
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

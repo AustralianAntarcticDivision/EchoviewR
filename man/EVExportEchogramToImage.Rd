@@ -4,8 +4,13 @@
 \alias{EVExportEchogramToImage}
 \title{Export an Echoview acoustic variable to an image file}
 \usage{
-EVExportEchogramToImage(EVFile, acoVarName, filePath, heightInPixels,
-  pingRange = c(-1, -1))
+EVExportEchogramToImage(
+  EVFile,
+  acoVarName,
+  filePath,
+  heightInPixels,
+  pingRange = c(-1, -1)
+)
 }
 \arguments{
 \item{EVFile}{Echoview file COM object}

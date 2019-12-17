@@ -4,9 +4,14 @@
 \alias{readUnderlyingDataCSV}
 \title{Read CSV resulting from a call of EVExportUnderlying()}
 \usage{
-readUnderlyingDataCSV(pathAndFn, samplePreFix = "sample",
-  depthPreFix = "z", asList = FALSE, onlyHeader = FALSE,
-  lastHeaderCol = 13)
+readUnderlyingDataCSV(
+  pathAndFn,
+  samplePreFix = "sample",
+  depthPreFix = "z",
+  asList = FALSE,
+  onlyHeader = FALSE,
+  lastHeaderCol = 13
+)
 }
 \arguments{
 \item{pathAndFn}{The path and filename of the CSV fileonlyHeader}

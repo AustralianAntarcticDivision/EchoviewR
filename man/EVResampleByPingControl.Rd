@@ -4,9 +4,15 @@
 \alias{EVResampleByPingControl}
 \title{Control the 'Resample by ping' Echoview virtual variable settings using COM}
 \usage{
-EVResampleByPingControl(EVFile, acoVarName, NumberOfSamples = NULL,
-  NumberOfPings = NULL, StartRange = NULL, StopRange = NULL,
-  verbose = FALSE)
+EVResampleByPingControl(
+  EVFile,
+  acoVarName,
+  NumberOfSamples = NULL,
+  NumberOfPings = NULL,
+  StartRange = NULL,
+  StopRange = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{EVFile}{Echoview file COM object}

@@ -4,10 +4,17 @@
 \alias{EVsingleTargetPars}
 \title{Change the single target settings for Echoview single target virtual variable}
 \usage{
-EVsingleTargetPars(EVFile, acoVarName, ExcludeAboveLine = NULL,
-  ExcludeBelowLine = NULL, MinimumPulseLength = NULL,
-  MaximumPulseLength = NULL, PLDL = NULL, TsThreshold = NULL,
-  verbose = FALSE)
+EVsingleTargetPars(
+  EVFile,
+  acoVarName,
+  ExcludeAboveLine = NULL,
+  ExcludeBelowLine = NULL,
+  MinimumPulseLength = NULL,
+  MaximumPulseLength = NULL,
+  PLDL = NULL,
+  TsThreshold = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{EVFile}{("COMIDispatch) An Echoview file COM object}

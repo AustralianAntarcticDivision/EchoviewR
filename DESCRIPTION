@@ -22,5 +22,5 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Encoding: UTF-8

@@ -4,9 +4,16 @@
 \alias{zigzagSurvey}
 \title{Generate a coordinate list for a zig-zag survey}
 \usage{
-zigzagSurvey(startLon, startLat, lineLengthkm, startBearingdeg,
-  rotationdeg, numOfLines,
-  proj4string = CRS("+proj=longlat +datum=WGS84"), unrotated = FALSE)
+zigzagSurvey(
+  startLon,
+  startLat,
+  lineLengthkm,
+  startBearingdeg,
+  rotationdeg,
+  numOfLines,
+  proj4string = CRS("+proj=longlat +datum=WGS84"),
+  unrotated = FALSE
+)
 }
 \arguments{
 \item{startLon}{start longitude of survey.}

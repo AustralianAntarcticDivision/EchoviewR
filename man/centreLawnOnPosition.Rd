@@ -4,8 +4,13 @@
 \alias{centreLawnOnPosition}
 \title{Centre a regular rectangular survey on a given position}
 \usage{
-centreLawnOnPosition(centreLon, centreLat, proj4string = NULL,
-  tolerance = 20, ...)
+centreLawnOnPosition(
+  centreLon,
+  centreLat,
+  proj4string = NULL,
+  tolerance = 20,
+  ...
+)
 }
 \arguments{
 \item{centreLon}{Desired centre location of survey}
