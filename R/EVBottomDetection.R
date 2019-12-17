@@ -46,6 +46,7 @@ EVBottomDetection <- function(EVFile, EVVar, LineName="Bottom",
                               MaxDropouts = NULL, #2,
                               WindowRadius = NULL, #8,
                               MinPeakAssymmetry = NULL, #-1.0,
+                              replaceOldBottom = TRUE){
                               replaceOldBottom = TRUE,
                               SpanGaps = TRUE){
 
@@ -72,6 +73,7 @@ EVBottomDetection <- function(EVFile, EVVar, LineName="Bottom",
   
   #Detect Bottom
   message(paste0(Sys.time(),": Detecting Bottom..."))
+  bottom<- EVFile[["Lines"]]$CreateLinePick(EVVar,T)
   #Detect bottom with or without span gaps
   if(SpanGaps){
     bottom<- EVFile[["Lines"]]$CreateLinePick(EVVar,T)

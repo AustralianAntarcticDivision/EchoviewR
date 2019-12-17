@@ -1,0 +1,100 @@
+---
+title: "EchoviewR - Basic Functionality"
+author: "Sven Gastauer"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 4
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Introduction  
+
+
+The R package EchoviewR - a free interface between Echoview (R) and R using COM scripting.
+
+### Copyright and Licence  
+
+<pre><code>
+Copyright (C) 2015 Lisa-Marie Harrison, Martin Cox, Georg Skaret and Rob Harcourt.
+
+This file is part of EchoviewR.
+
+EchoviewR is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+EchoviewR is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with EchoviewR.  If not, see <http://www.gnu.org/licenses/>.</pre></code>
+
+</pre></code>
+
+This package is open for community development and we encourage users to extend the package as they need. We are not liable for any losses when using EchoviewR.
+
+If using EchoviewR, please cite as:
+
+```{r eval=FALSE}
+citation('EchoviewR')
+```
+
+## EchoviewR - Installation guide
+
+***
+
+*Installing all dependencies:*  
+
+EchoviewR currently has a few dependencies:
+
+* [fields](https://cran.r-project.org/web/packages/fields/index.html) 
+* [sp](https://cran.r-project.org/web/packages/sp/index.html) 
+* [geosphere](https://cran.r-project.org/web/packages/geosphere/index.html) 
+* [maptools](https://cran.r-project.org/web/packages/maptools/index.html) 
+* [RDOCMClient](http://www.omegahat.net/RDCOMClient/) 
+* [rgeos](https://cran.r-project.org/web/packages/rgeos/index.html) 
+* [lubridate](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
+
+```{r eval=FALSE}
+install.packages(c('fields', 'sp', 'geosphere', 'maptools', 'RDCOMClient', 'rgeos', 'lubridate'))
+```
+
+Sometimes the installation of [RDCOMClient](https://github.com/omegahat/RDCOMClient) from CRAN fails. If this is the case, run:
+
+```{r eval=FALSE}
+install.packages("RDCOMClient", repos = "http://www.omegahat.net/R")
+```
+
+If you intend to create variables from within R you will need to install RDCOMMServer as well:  
+
+```{r eval=FALSE}
+install.packages("RDCOMServer", repos = "http://www.omegahat.net/R")
+
+```
+***
+
+*Installing EchoviewR from [Github](https://github.com/AustralianAntarcticDivision/EchoviewR):*  
+
+```{r eval=FALSE}
+
+devtools::install_github('AustralianAntarcticDivision/EchoviewR')
+```
+
+## Basic functions
+
+EchoviewR makes startin, closing and using Echoview through easy. In this part of the vignettes some of the basic functions will be demonstrated.
+We start by starting an Echoview Instance:  

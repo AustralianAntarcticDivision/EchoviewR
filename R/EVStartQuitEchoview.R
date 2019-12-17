@@ -6,9 +6,8 @@
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
-#'\dontrun{
 #' EVAppObj <- StartEchoview()
-#' }
+
 StartEchoview <- function () {
   message(paste0(Sys.time(),": Opening Echoview"))
   EVApp=COMCreate('EchoviewCom.EvApplication') 
@@ -27,9 +26,7 @@ StartEchoview <- function () {
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
-#' \dontrun{
-#' EVAppObj <- QuitEchoview()
-#' }
+#' EVAppObj <- StartEchoview()
 QuitEchoview <- function (EVAppObj) {
   message(paste0(Sys.time(),": Closing Echoview"))
   EVAppObj$Quit()
