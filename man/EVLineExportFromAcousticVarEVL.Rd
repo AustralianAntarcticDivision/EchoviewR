@@ -26,7 +26,7 @@ This function exports an EV line definition file (.evl) for a line associated wi
 \examples{
 \dontrun{
 EVAppObj <- COMCreate('EchoviewCom.EvApplication')
-EVFile <- EVOpenFile(EVAppObj, '~\\example1.EV')$EVFile
+EVFile <- EVOpenFile(EVAppObj, '~\\\\example1.EV')$EVFile
 
 EVLineExportFromAcousticVarEVL(EVFile=EVFile,
    acoVar='120 seabed and surface excluded',

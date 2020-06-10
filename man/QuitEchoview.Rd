@@ -27,9 +27,7 @@ EVAppObj=StartEchoview()
 QuitEchoview(EVAppObj)
 
 }
-\dontrun{
-EVAppObj <- QuitEchoview()
-}
+EVAppObj <- StartEchoview()
 }
 \references{
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}

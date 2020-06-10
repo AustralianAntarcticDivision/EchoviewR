@@ -10,7 +10,7 @@ modifyECS(
   NewValue,
   maxNlines = 200,
   nBlanks2Stop = 4,
-  FileNameSuffix = NULL
+  ECSPathAndFileOut
 )
 }
 \arguments{

@@ -21,7 +21,7 @@ This function subsets a single frequency from a wideband signal..
 }
 \examples{
 EVAppObj=COMCreate('EchoviewCom.EvApplication')
-EVOpenFile(EVAppObj,'~\\example1.EV')
+EVOpenFile(EVAppObj,'~\\\\example1.EV')
 EVpingSubset(EVFile=EVFile,acoVarName='Ping subset 38',pingsubsetString='2-7')
 
 

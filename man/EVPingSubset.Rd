@@ -24,7 +24,7 @@ This function opens an existing Echoview (.EV) file using COM scripting.
 \examples{
 \dontrun{
 EVAppObj=COMCreate('EchoviewCom.EvApplication')
-EVOpenFile(EVAppObj,'~\\example1.EV')
+EVOpenFile(EVAppObj,'~\\\\example1.EV')
 EVpingSubset(EVFile=EVFile,acoVarName='Ping subset 38',pingsubsetString='2-7')
 
 }

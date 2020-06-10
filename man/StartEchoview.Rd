@@ -23,9 +23,7 @@ This function opens an Echoview instance through COM scripting
 EVAppObj=StartEchoview()
 
 }
-\dontrun{
 EVAppObj <- StartEchoview()
-}
 }
 \references{
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}

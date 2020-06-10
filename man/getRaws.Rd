@@ -51,7 +51,7 @@ StartDate = 20170901
 StartTime = "080917"
 EndDate = 20170901
 EndTime = 172356
-rawdir = "F:\\RawFolder\\"
+rawdir = "F:\\\\RawFolder\\\\"
 getRaws(dir,StartDate, StartTime,EndDate, EndTime, tzraw="UTC", tzinp="UTC")
  }
  
