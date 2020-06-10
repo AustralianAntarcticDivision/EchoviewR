@@ -13,6 +13,7 @@ EVGetVariables(EVFile)
 This function creates a list of all variables in the EV files
 }
 \examples{
+\dontrun{
 #To be added - Needs Example data
 #Starting Echoview
 echoview = StartEchoview()
@@ -22,6 +23,7 @@ Varname <- "Fileset 1: Sv pulse compressed wideband pings T1"
 bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
 # Change the algorithm to Best bottom candidate
 bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
+}
 }
 \references{
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}
