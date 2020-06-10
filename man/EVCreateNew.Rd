@@ -7,10 +7,10 @@
 EVCreateNew(
   EVAppObj,
   templateFn = NULL,
-  EVFileName,
-  filesetName,
-  dataFiles,
-  CloseOnSave = TRUE
+  EVFileName = NULL,
+  filesetName = "Fileset1",
+  dataFiles = NULL,
+  CloseOnSave = FALSE
 )
 }
 \arguments{

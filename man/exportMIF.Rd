@@ -40,6 +40,6 @@ c(lon_i,lat_i)+diff(range(lon_1..n,lat_1..n))*pointNameScaleFactor where n is th
 \dontrun{
 coords=centreLawnOnPosition(centreLon=-33,centreLat=-55.5,lineLengthkm=100,lineSpacingkm=10,
 startBearingdeg=30,numOfLines=50)
-exportMIF(coords=coords,pathAndFileName='c:\\\\Users\\\\martin_cox\\\\Documents\\\\test4.mif')
+exportMIF(coords=coords,pathAndFileName='c:\\Users\\martin_cox\\Documents\\test4.mif')
 }
 }

@@ -74,6 +74,7 @@ EVBottomDetection <- function(EVFile, EVVar, LineName="Bottom",
   
   #Detect Bottom
   message(paste0(Sys.time(),": Detecting Bottom..."))
+  bottom<- EVFile[["Lines"]]$CreateLinePick(EVVar,T)
   #Detect bottom with or without span gaps
   if(SpanGaps){
     bottom<- EVFile[["Lines"]]$CreateLinePick(EVVar,T)

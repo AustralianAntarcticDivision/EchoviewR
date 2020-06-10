@@ -1,0 +1,182 @@
+---
+title: "Broadband SIngle Targets"
+author: "Sven Gastauer"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 4
+vignette: >
+  %\VignetteIndexEntry{Broadband Single Targets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+  
+This vignette is a step by step guide on how to extract single target information from Echoview through scripting using EchoviewR. This is a begiiners guide, requiring little to now previous experience with EchoviewR. Basic knowledge of R is beneficial and some understanding of boradband acoustics is required.
+
+## Prerequisites and background information
+
+Prerequisites:
+
+* R - basic knowledge
+* Echoview - some experience
+* EchoviewR - no previous experience needed
+* Broadband Acoustics - basic knowledge
+
+This tutorial assumes that Echoview is installed on your local machine. This tutorial was written using Echoview 9 and R 3.5.0.  
+
+If you don't have Echoview installed on your machine yet, please refer to the [Echoview Installation guide for guidance](https://support.echoview.com/WebHelp/_Introduction/Installing_Echoview.htm) or [download Echoview](https://www.echoview.com/technical-support/downloads).  
+
+For more information on Echoview's COM scripting capabilities refer to the [scripting guide with examples](https://www.echoview.com/products-services/news/automating-echoview-and-sharing-script-examples).  
+
+Whenever you miss some functionality within EchoviewR, you can refer to the [Echoview COM Objects list](https://support.echoview.com/WebHelp/How_to/Run_Echoview_using_scripts/COM_objects/EOperator.htm), to find out how to address the object or functionality through scripting.  
+
+For new variable, sometimes the Echoview Enum number is needed. A list of the codes can be found [here](https://support.echoview.com/WebHelp/How_to/Run_Echoview_using_scripts/COM_objects/EOperator.htm.  
+
+Whenever using Echoview without scripting, shortcuts are extremely useful, a cheatsheet for shortcuts can be found [here](https://www.echoview.com/products-services/news/download-an-echoview-keyboard-shortcut-reference-guide) or a [direct link to the pdf file](https://www.echoview.com/assets/files/PDF/Echoview%20keyboard%20shortcuts.pdf)  
+
+## EchoviewR - Installation guide
+
+*Installing all dependencies:*  
+
+EchoviewR currently has a few dependencies:
+
+* [fields](https://cran.r-project.org/web/packages/fields/index.html) 
+* [sp](https://cran.r-project.org/web/packages/sp/index.html) 
+* [geosphere](https://cran.r-project.org/web/packages/geosphere/index.html) 
+* [maptools](https://cran.r-project.org/web/packages/maptools/index.html) 
+* [RDOCMClient](http://www.omegahat.net/RDCOMClient/) 
+* [rgeos](https://cran.r-project.org/web/packages/rgeos/index.html) 
+* [lubridate](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
+
+```{r eval=FALSE}
+install.packages(c('fields', 'sp', 'geosphere', 'maptools', 'RDCOMClient', 'rgeos', 'lubridate'))
+```
+
+Sometimes the installation of [RDCOMClient](https://github.com/omegahat/RDCOMClient) from CRAN fails. If this is the case, run:
+
+```{r eval=FALSE}
+install.packages("RDCOMClient", repos = "http://www.omegahat.net/R")
+```
+
+***
+
+*Installing EchoviewR from [Github](https://github.com/AustralianAntarcticDivision/EchoviewR):*  
+
+```{r eval=FALSE}
+
+devtools::install_github('AustralianAntarcticDivision/EchoviewR')
+```
+
+## Starting Echoview and loading raw data
+
+During the preparation stage, Echoview is started, an empty EV file is created and some data is loaded:
+
+```{r, eval=FALSE}
+#Loading the EchoviewR library
+library(EchoviewR)
+
+#Starting Echoview
+echoview = StartEchoview()
+```
+
+After Echoview has started, the folder containing the raw data can be located and all contained raw files are listed (excluding the raw.evi files):  
+
+```{r, eval=FALSE}
+
+rawDir <- "D:\\Multikrill\\Raw\\"
+
+raw <- list.files(path=rawDir,pattern=".raw")[-which(list.files(path=rawDir,pattern=".raw")%in%list.files(path=rawDir,pattern=".raw.evi"))]
+```
+
+Next we create a new EV File and load some raw data:  
+
+```{r, eval=FALSE}
+#Create a new EV File
+EVFile <- EVCreateNew(EVAppObj=echoview, dataFiles = paste0(rawDir,raw[1:3]))
+#Note that the EVCreateNew coomand returns a list of two elements, where the first one is the actual EVFile Object, therefore, we rename this object to EVFile:
+EVFile <- EVFile$EVFile
+```
+
+Raw files can be cleared from the EV File, which takes the name of the EVFile and the name of the fileset containing the raw files (by default this should be Fileset1):
+
+```{r, eval=FALSE}
+EVClearRawData(EVFile=EVFile, fileset="Fileset1")
+```
+
+New raw data can easily be added through EVAddRawData:  
+
+```{r, eval=FALSE}
+EVAddRawData(EVFile=EVFile, fileset="Fileset1", dataFiles=paste0(rawDir,raw[1:3]))
+```
+## Selecting variables
+
+EchoviewR is creating a connection to Echoview through COM scripting. In COM scripting, everything is treaten as an object. Echoview becomes an object, the EV file becomes an object inside the Echoview object, and variables become objects inside the EV file object inside the Echoview object and so forth. Therefore if we want to change the properties of a variable we first need to select the right variable object. EchoviewR has a number of built-in function to find:  
+
+* Variables - `EVAcoVarNameFinder(EVFile, acoVarName)`
+* filesets - `EVFindFilesetByName(EVFile, filesetName)`
+* lines - `EVFindLineByName(EVFile, lineName)`
+* Regions - `EVFindRegionByName(EVFile, regionName)`
+
+Each of the different functions needs an EVFile object (as we created previously with `EVCreateNew`) and a character string with the name of the variable, fileset, line or region to be selected.  
+
+We can for example look for the variable called `Fileset 1: TS pulse compressed wideband pings T1`, which we are going to use base our single target detection on:
+
+```{r, eval=FALSE}
+
+EVVar <- EVAcoVarNameFinder(EVFile, acoVarName="Fileset 1: TS pulse compressed wideband pings T1")
+EVVar <- EVVar$EVVar
+```
+  
+If an object was found successfully, this will be announced as a message, if not an error will be shown. Errors most likely are linked to spelling mistakes in the variable name or because a wrong EVFile name was provided.  
+
+## Create lines
+
+### Fixed Depth
+
+Lines are often important parts of the analysis of acoustic data, for example to exclude the near surface or bottom area.  
+
+
+```{r, eval=FALSE}
+# Create Surface Line at 1.2 m
+surface <- EVNewFixedDepthLine(EVFile = EVFile, depth=1.2,"surface")
+#Create bottom line at 2.3 m
+b23 <- EVNewFixedDepthLine(EVFile = EVFile, depth=2.3,"bottom23")
+```
+
+### Bottom Detection
+
+Detect bottom with custom settings, as a minimal example, only EVFile and EVVar need to be provided:  
+
+```{r, eval=FALSE}
+bottom = EVBottomDetection(EVFile=EVFile, EVVar=EVVar, LineName="Bottom",
+                           algorithm=2, #Use best bottom candidate
+                           StartDepth = 5,
+                           StopDepth = 100,
+                           MinSv = -60,
+                           UseBackstep = "True",
+                           DiscriminationLevel =-50.0,
+                           BackstepRange = -0.50,
+                           PeakThreshold = -50.0,
+                           MaxDropouts = 2,
+                           WindowRadius = 8,
+                           MinPeakAssymmetry = -1.0,
+                           replaceOldBottom = FALSE)
+```
+
+
+### Editable line as an offset
+
+Lines can also be created as an offset of a previously detected line:  
+
+```{r, eval=FALSE}
+bottomoffset05 <- EVCreateEditableLine(EVFile, "bottom", "bottomoffset05", Multiply=1,Add=-0.5,SpanGaps=TRUE)
+```

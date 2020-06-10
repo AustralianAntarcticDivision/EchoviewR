@@ -55,7 +55,7 @@ depths <- list(c(10,35,50,74,82), c(15,250,300,350,60))
 times <-  list(c("090000","091000","091500","091000","090300"),
                c("093000","094000","094500","094000","093300"))
 dates <- list(c(rep("20170901",5)),c(rep("20170901",5)))
-dir <- 'F:\\\\'
+dir <- 'F:\\'
 fn <- 'imaginaryRegions'
 makeEVRfromDT(depths,times,dates,fn=fn,dir=dir)
  }
