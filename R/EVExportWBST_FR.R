@@ -13,6 +13,7 @@
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
+#' \dontrun{
 #' #To be added - Needs Example data
 #' #Starting Echoview
 #' echoview = StartEchoview()
@@ -27,6 +28,7 @@
 #' ST <- EVSTWideband(EVFile=EVFile,EVVar=EVVar,Operand2=Operand2,TsThreshold=-90)
 #' #Export the single target frequency response
 #' EVExportWBST_FR(ST,"WB_ST_FR.csv",0,0,1,2,EVVar)
+#' }
 #' 
 
 EVExportWBST_FR <- function(EVFile=EVFile,

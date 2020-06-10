@@ -4,8 +4,15 @@
 \alias{EVShiftRegionTime}
 \title{Change the time of an Echoview Region}
 \usage{
-EVShiftRegionTime(EVFile, regionName, days = 0, hours = 0,
-  minutes = 0, seconds = 0, milliseconds = 0)
+EVShiftRegionTime(
+  EVFile,
+  regionName,
+  days = 0,
+  hours = 0,
+  minutes = 0,
+  seconds = 0,
+  milliseconds = 0
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

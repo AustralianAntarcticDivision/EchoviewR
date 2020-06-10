@@ -2,30 +2,38 @@
 % Please edit documentation in R/JollyAndHampton1990.R
 \name{jhF}
 \alias{jhF}
-\title{The Jolly and Hampton (1990) estimator}
+\title{The random sampling theory estimator of Jolly and Hampton (1990)}
 \usage{
-jhF(transectLength, transectMeanDen, transectName = NULL,
-  svyName = NULL, area = NULL)
+jhF(
+  transectLength,
+  transectMeanDen,
+  transectName = NULL,
+  svyName = NULL,
+  area = NULL
+)
 }
 \arguments{
-\item{transectLength}{vector of parameter lengths}
+\item{transectLength}{[numeric, vector] of transect lengths}
 
-\item{transectMeanDen}{transect weighted mean densities. See details.}
+\item{transectMeanDen}{[numeric, vector] transect weighted mean densities. See details.}
 
 \item{transectName}{=NULL Optional character vector of transect names.}
 
 \item{svyName}{=NULL Optional character variable of survey names.  Must be used if the \link{jhMultipleStrataF} function is used to estimate mean and variance across multiple strata.}
 
-\item{area}{=NULL Optional character variable of the survey or stratum name.  Must be used if the \link{jhMultipleStrataF} function is used to estimate mean and variance across multiple strata.}
+\item{area}{=NULL Optional variable of the survey or stratum area.  Must be used if the \link{jhMultipleStrataF} function is used to estimate mean and variance across multiple strata.}
 }
 \value{
-two element list.
+two element list. \code{$summaryStats} and \code{$transects}. See details
 }
 \description{
-The Jolly and Hampton (1990) estimator is often used to calculate mean pelagic animal densities and associated variances.
+The Jolly and Hampton (1990) estimator is often used to calculate mean pelagic animal densities and associated variances. Users are encouraged to review Jolly and Hampton (1990) before using this function.
 }
 \details{
 The \code{transectMeanDen} In the case of acoustic data, each element (areal density value) is multiplied by the integration interval (along transect) length.  The distance multiplication must take place outside of this function.
+
+The function returns a two element list.  The first element \code{$summaryStats} is a vector with names \code{$svy} - the survey name; MeanWeightedDensity - mean
+density as per Jolly and Hampton (1990) \code{$variance} - variance calculated as per Jolly and Hampton (1990), and \code{$totalTransectLength} total transect length.  If survey area is provided \code{area} then biomass \code{$biomass} with confidence internal \code{$lowerIntervalBiomass} and \code{$upperIntervalBiomass}. The secord element of the list returned in \code{$transects} statistics fo each trasect.
 }
 \examples{
 \dontrun{

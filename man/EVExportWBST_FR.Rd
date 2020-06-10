@@ -4,8 +4,16 @@
 \alias{EVExportWBST_FR}
 \title{Export Wideband Single Targets Frequency Response}
 \usage{
-EVExportWBST_FR(EVFile = EVFile, STVar, outfn, AverageResults = 0,
-  MinMax = 0, WindowSize = 1, WindowUnit = 2, EVVar)
+EVExportWBST_FR(
+  EVFile = EVFile,
+  STVar,
+  outfn,
+  AverageResults = 0,
+  MinMax = 0,
+  WindowSize = 1,
+  WindowUnit = 2,
+  EVVar
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}
@@ -26,6 +34,7 @@ EVExportWBST_FR(EVFile = EVFile, STVar, outfn, AverageResults = 0,
 This function exports the broadband single targets frequency response
 }
 \examples{
+\dontrun{
 #To be added - Needs Example data
 #Starting Echoview
 echoview = StartEchoview()
@@ -40,6 +49,7 @@ ST <- EVSTWideband(EVFile=EVFile,EVVar=EVVar,Operand2=Operand2)
 ST <- EVSTWideband(EVFile=EVFile,EVVar=EVVar,Operand2=Operand2,TsThreshold=-90)
 #Export the single target frequency response
 EVExportWBST_FR(ST,"WB_ST_FR.csv",0,0,1,2,EVVar)
+}
 
 }
 \references{

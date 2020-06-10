@@ -1,7 +1,7 @@
 Package: EchoviewR
 Type: Package
 Title: Control of Echoview via COM
-Version: 1.1.15
+Version: 1.1.17
 Authors@R: c(person("Martin", "Cox", email = "martin.cox@aad.gov.au", role = c("aut", "cre")),
 	     person("Sven", "Gastauer", role="aut"),
 	     person("Lisa-Marie", "Harrison", role="aut"))
@@ -22,5 +22,5 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Encoding: UTF-8

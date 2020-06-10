@@ -4,8 +4,7 @@
 \alias{EVPingSubset}
 \title{Control an Echoview ping subset virtual variable using COM scripting.}
 \usage{
-EVPingSubset(EVFile, acoVarName, pingsubsetString,
-  includePingRanges = TRUE)
+EVPingSubset(EVFile, acoVarName, pingsubsetString, includePingRanges = TRUE)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

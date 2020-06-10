@@ -17,6 +17,7 @@
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
 #' #To be added - Needs Example data
+#' \dontrun{
 #' #Starting Echoview
 #' echoview = StartEchoview()
 #' #Create a new EV File
@@ -28,6 +29,7 @@
 #' ST <- EVSTWideband(EVFile=EVFile,EVVar=EVVar,Operand2=Operand2)
 #' # Change TS detection threshold
 #' ST <- EVSTWideband(EVFile=EVFile,EVVar=EVVar,Operand2=Operand2,TsThreshold=-90)
+#' }
 #' 
 
 

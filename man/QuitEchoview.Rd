@@ -9,8 +9,6 @@ QuitEchoview(EVAppObj)
 QuitEchoview(EVAppObj)
 }
 \arguments{
-\item{EVAppObj}{An Echoview Application COM object}
-
 \item{EVAppObj}{Echoview Application Object}
 }
 \value{
@@ -29,7 +27,9 @@ EVAppObj=StartEchoview()
 QuitEchoview(EVAppObj)
 
 }
-EVAppObj <- StartEchoview()
+\dontrun{
+EVAppObj <- QuitEchoview()
+}
 }
 \references{
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}

@@ -4,8 +4,12 @@
 \alias{EVsetExclusionLines}
 \title{Change the top and bottom exclusion lines in an Echoview acoustic variable}
 \usage{
-EVsetExclusionLines(EVFile, acoVarName, newAboveExclusionLine = NULL,
-  newBelowExclusionLine = NULL)
+EVsetExclusionLines(
+  EVFile,
+  acoVarName,
+  newAboveExclusionLine = NULL,
+  newBelowExclusionLine = NULL
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

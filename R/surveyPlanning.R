@@ -11,8 +11,9 @@
 #' @param lineSpacingkm inter-transect spacing in km (see details).
 #' @param startBearingdeg Orientation of survey grid in degrees.
 #' @param numOfLines Number of transects.
-#' @return Geographical coordinate list of start and end of line positions
+#' @return Data frame of geographical coordinates of start (SOL) and end of line (EOL) positions
 #' @export
+#' @importFrom geosphere destPoint
 #' @details Line spacing can be fixed, so specified by a single number or pseudo random (random draws from a uniform distribution), which is specified by a vector of two numbers, the minimun and maximum transect separation.
 #' @seealso \code{\link{zigzagSurvey}}
 #' @author Martin Cox \email{martin.cox@@aad.gov.au}
@@ -31,8 +32,8 @@
 #'}
 lawnSurvey=function(startLon,startLat,lineLengthkm,lineSpacingkm,startBearingdeg,numOfLines)
 {
-  if(length(lineSpacingkm)==1) lineSpacingkm=rep(lineSpacingkm,numOfLines)
-  if(length(lineSpacingkm)==2) lineSpacingkm=runif(n=numOfLines,min=lineSpacingkm[1],max=lineSpacingkm[2])
+  if(length(lineSpacingkm)==1) lineSpacingkm=rep(lineSpacingkm,numOfLines-1)
+  if(length(lineSpacingkm)==2) lineSpacingkm=runif(n=numOfLines-1,min=lineSpacingkm[1],max=lineSpacingkm[2])
   lineLengthm=lineLengthkm*1e3;lineSpacingm=lineSpacingkm*1e3
   direct=startBearingdeg+90
   direct[direct>360]=direct-360
@@ -44,15 +45,15 @@ lawnSurvey=function(startLon,startLat,lineLengthkm,lineSpacingkm,startBearingdeg
                                  'line',sort(rep(1:numOfLines,2)),sep=''),
                            c('lon','lat')))
   out[1,]=c(startLon,startLat)
-  out[2,]= destPoint(p=out[1,],b=startBearingdeg,d=lineLengthm) 
+  out[2,]= geosphere::destPoint(p=out[1,],b=startBearingdeg,d=lineLengthm) 
   if(numOfLines>1){
     for(i in 1:(numOfLines-1))
     {  
-      out[(i*2)+1,]=destPoint(p=out[i*2,],b=direct,d=lineSpacingm[i])
-      out[(i*2)+2,]=destPoint(p=out[(i*2)+1,],b=lineBearings[ifelse(i%%2==1,2,1)],d=lineLengthm) 
+      out[(i*2)+1,]=geosphere::destPoint(p=out[i*2,],b=direct,d=lineSpacingm[i])
+      out[(i*2)+2,]=geosphere::destPoint(p=out[(i*2)+1,],b=lineBearings[ifelse(i%%2==1,2,1)],d=lineLengthm) 
     }
   }
-  return(out)
+  return(data.frame(out))
 }
 
 

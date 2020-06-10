@@ -4,8 +4,12 @@
 \alias{exportMIF}
 \title{Write a map info file for import into Echoview.}
 \usage{
-exportMIF(coords, pathAndFileName, pointNameExport = FALSE,
-  pointNameScaleFactor = c(0.05, 0.03))
+exportMIF(
+  coords,
+  pathAndFileName,
+  pointNameExport = FALSE,
+  pointNameScaleFactor = c(0.05, 0.03)
+)
 }
 \arguments{
 \item{coords}{a set of coordinates as a two column (longitude and latitude) matrix.}

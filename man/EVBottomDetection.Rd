@@ -4,12 +4,24 @@
 \alias{EVBottomDetection}
 \title{Bottom Detection}
 \usage{
-EVBottomDetection(EVFile, EVVar, LineName = "Bottom", algorithm = NULL,
-  StartDepth = NULL, StopDepth = NULL, MinSv = NULL,
-  UseBackstep = NULL, DiscriminationLevel = NULL,
-  BackstepRange = NULL, PeakThreshold = NULL, MaxDropouts = NULL,
-  WindowRadius = NULL, MinPeakAssymmetry = NULL,
-  replaceOldBottom = TRUE, SpanGaps = TRUE)
+EVBottomDetection(
+  EVFile,
+  EVVar,
+  LineName = "Bottom",
+  algorithm = NULL,
+  StartDepth = NULL,
+  StopDepth = NULL,
+  MinSv = NULL,
+  UseBackstep = NULL,
+  DiscriminationLevel = NULL,
+  BackstepRange = NULL,
+  PeakThreshold = NULL,
+  MaxDropouts = NULL,
+  WindowRadius = NULL,
+  MinPeakAssymmetry = NULL,
+  replaceOldBottom = TRUE,
+  SpanGaps = TRUE
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}
@@ -34,21 +46,22 @@ EVBottomDetection(EVFile, EVVar, LineName = "Bottom", algorithm = NULL,
 
 \item{PeakThreshold}{numeric [dB] Threshold for peak detection}
 
+\item{MaxDropouts}{numeric [samples] Maximum number of dropout samples before bottom detection fails}
+
+\item{WindowRadius}{numeric [samples] Search window size}
+
 \item{MinPeakAssymmetry}{numeric}
 
 \item{replaceOldBottom}{Boolean (TRUE or FALSE) If TRUE and a line with the same name as LineName already exists, the old line will be overwritten with the new one}
 
 \item{SpanGaps}{Boolean (TRUE or FALSE) Decides wheteher span gaps is activated or notm default=TRUE}
-
-\item{MaxDropOuts}{numeric [samples] Maximum number of dropout samples before bottom detection fails}
-
-\item{windowRadius}{numeric [samples] Search window size}
 }
 \description{
 This function runs a bottom detection on an echogram
 Bottom algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
 }
 \examples{
+\dontrun{
 #To be added - Needs Example data
 #Starting Echoview
 echoview = StartEchoview()
@@ -58,6 +71,7 @@ Varname <- "Fileset 1: Sv pulse compressed wideband pings T1"
 bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
 # Change the algorithm to Best bottom candidate
 bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
+}
 
 }
 \references{

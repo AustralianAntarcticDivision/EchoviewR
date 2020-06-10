@@ -4,8 +4,15 @@
 \alias{EVNewLineRelativeRegion}
 \title{Creates a new line relative region in the current variable}
 \usage{
-EVNewLineRelativeRegion(EVFile, varName, regionName, line1, line2,
-  firstPing = NA, lastPing = NA)
+EVNewLineRelativeRegion(
+  EVFile,
+  varName,
+  regionName,
+  line1,
+  line2,
+  firstPing = NA,
+  lastPing = NA
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

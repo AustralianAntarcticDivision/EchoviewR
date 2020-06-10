@@ -4,10 +4,15 @@
 \alias{EVsplitBeamSingleTargetPars}
 \title{Change the SPLIT-BEAM single target settings for an Echoview split-beam single target virtual variable}
 \usage{
-EVsplitBeamSingleTargetPars(EVFile, acoVarName,
-  BeamCompensationModel = "SimradLobe", MaximumBeamCompensation = NULL,
+EVsplitBeamSingleTargetPars(
+  EVFile,
+  acoVarName,
+  BeamCompensationModel = "SimradLobe",
+  MaximumBeamCompensation = NULL,
   MaximumStdDevOfMajorAxisAngles = NULL,
-  MaximumStdDevOfMinorAxisAngles = NULL, verbose = FALSE)
+  MaximumStdDevOfMinorAxisAngles = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{EVFile}{("COMIDispatch) An Echoview file COM object}

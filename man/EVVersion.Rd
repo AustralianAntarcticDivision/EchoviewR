@@ -13,12 +13,14 @@ EVVersion(EVApp = NULL)
 This function returns the version of Echoview that was started through EchoviewR
 }
 \examples{
+\dontrun{
 #Create an Echoview application object and start Echoview
 EVApp <- StartEchoview()
 #get the current version of the Echoview App started through EchoviewR
 EVVersion(EVApp)
 #Quit the application again
 QuitEchoview(EVApp)
+}
 
 }
 \references{

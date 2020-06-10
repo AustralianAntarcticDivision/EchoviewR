@@ -1,16 +1,20 @@
-#'The Jolly and Hampton (1990) estimator
+#'@title  The random sampling theory estimator of Jolly and Hampton (1990)
 #'
-#'The Jolly and Hampton (1990) estimator is often used to calculate mean pelagic animal densities and associated variances.
+#'@description The Jolly and Hampton (1990) estimator is often used to calculate mean pelagic animal densities and associated variances. Users are encouraged to review Jolly and Hampton (1990) before using this function. 
 #'
-#'@param transectLength vector of parameter lengths
-#'@param transectMeanDen transect weighted mean densities. See details.
+#'@param transectLength [numeric, vector] of transect lengths
+#'@param transectMeanDen [numeric, vector] transect weighted mean densities. See details.
 #'@param transectName =NULL Optional character vector of transect names.
 #'@param svyName =NULL Optional character variable of survey names.  Must be used if the \link{jhMultipleStrataF} function is used to estimate mean and variance across multiple strata.
-#'@param area =NULL Optional character variable of the survey or stratum name.  Must be used if the \link{jhMultipleStrataF} function is used to estimate mean and variance across multiple strata.
-#'@return two element list. 
+#'@param area =NULL Optional variable of the survey or stratum area.  Must be used if the \link{jhMultipleStrataF} function is used to estimate mean and variance across multiple strata.
+#'@return two element list. \code{$summaryStats} and \code{$transects}. See details
 #'@references Jolly, G. M., and Hampton, I. 1990. A stratified random transect design for acoustic surveys of fish stocks. Canadian Journal of Fisheries and Aquatic Sciences, 47: 1282-1291.
 #'@seealso \link{jhMultipleStrataF}
 #'@details The \code{transectMeanDen} In the case of acoustic data, each element (areal density value) is multiplied by the integration interval (along transect) length.  The distance multiplication must take place outside of this function.
+#'
+#'The function returns a two element list.  The first element \code{$summaryStats} is a vector with names \code{$svy} - the survey name; MeanWeightedDensity - mean
+#'density as per Jolly and Hampton (1990) \code{$variance} - variance calculated as per Jolly and Hampton (1990), and \code{$totalTransectLength} total transect length.  If survey area is provided \code{area} then biomass \code{$biomass} with confidence internal \code{$lowerIntervalBiomass} and \code{$upperIntervalBiomass}. The secord element of the list returned in \code{$transects} statistics fo each trasect.
+#'
 #'@export
 #'@examples
 #'\dontrun{
@@ -38,13 +42,14 @@ jhF=function(transectLength,transectMeanDen,transectName=NULL,svyName=NULL,area=
   svy='Survey'
   if(!is.null(svyName)) svy=svyName
   stats=data.frame(surveyName=svy,MeanWeightedDensity=meanTransectDensityWt,
-                   variance=sum(df$transWtsqTimesDD)/(nrow(df)*(nrow(df)-1)))
+                   variance=sum(df$transWtsqTimesDD)/(nrow(df)*(nrow(df)-1)),
+                   totalTransectLength=sum(df$tranectLength))
   stats$CV=sqrt(stats$variance)/stats$MeanWeightedDensity
   if(!is.null(area)){
     stats$area=area
-    stats$BiomassTonnes=area*meanTransectDensityWt/1e6
-    stats$lowerIntervalBiomassTonnes=area*(meanTransectDensityWt-1.96*sqrt(stats$variance))/1e6
-    stats$upperIntervalBiomassTonnes=area*(meanTransectDensityWt+1.96*sqrt(stats$variance))/1e6}
+    stats$Biomass=area*meanTransectDensityWt
+    stats$lowerIntervalBiomass=area*(meanTransectDensityWt-1.96*sqrt(stats$variance))
+    stats$upperIntervalBiomass=area*(meanTransectDensityWt+1.96*sqrt(stats$variance))}
   return(list(summaryStats=stats,transects=df))                 
 }
 
@@ -94,9 +99,9 @@ jhMultipleStrataF=function(strata)
                                 overallVar=overallVar,
                                 overallCV=sqrt(overallVar)/overallMean,
                                 overallArea.m2=area,
-                                BiomassTonnes=area*overallMean/1e6,
-                                lowerIntervalBiomassTonnes=area*(overallMean-1.96*sqrt(overallVar))/1e6,
-                                upperIntervalBiomassTonnes=area*(overallMean+1.96*sqrt(overallVar))/1e6)
+                                Biomass=area*overallMean,
+                                lowerIntervalBiomass=area*(overallMean-1.96*sqrt(overallVar)),
+                                upperIntervalBiomass=area*(overallMean+1.96*sqrt(overallVar)))
   if(is.null(area))
     overallEstimates=data.frame(overallMean=overallMean.g.m2,overallVar=overallVar,
                                 overallCV=sqrt(overallVar)/overallMean,overallArea.m2=area)

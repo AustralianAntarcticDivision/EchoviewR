@@ -4,19 +4,33 @@
 \alias{EVFishTracking}
 \title{Detect Fish Tracks}
 \usage{
-EVFishTracking(EVFile, EVVar,
-  FishTrackRegionClass = "Unclassified regions", export = NULL,
-  DataDimensions = NULL, Alpha.MajorAxis = NULL,
-  Alpha.MinorAxis = NULL, Alpha.Range = NULL, Beta.MajorAxis = NULL,
-  Beta.MinorAxis = NULL, Beta.Range = NULL,
+EVFishTracking(
+  EVFile,
+  EVVar,
+  FishTrackRegionClass = "Unclassified regions",
+  export = NULL,
+  DataDimensions = NULL,
+  Alpha.MajorAxis = NULL,
+  Alpha.MinorAxis = NULL,
+  Alpha.Range = NULL,
+  Beta.MajorAxis = NULL,
+  Beta.MinorAxis = NULL,
+  Beta.Range = NULL,
   ExclusionDistance.MajorAxis = NULL,
-  ExclusionDistance.MinorAxis = NULL, ExclusionDistance.Range = NULL,
+  ExclusionDistance.MinorAxis = NULL,
+  ExclusionDistance.Range = NULL,
   MissedPingExpansion.MajorAxis = NULL,
   MissedPingExpansion.MinorAxis = NULL,
-  MissedPingExpansion.Range = NULL, Weights.MajorAxis = NULL,
-  Weights.MinorAxis = NULL, Weights.Range = NULL, Weights.TS = NULL,
-  Weights.PingGap = NULL, MinimumTargets = NULL, MinimumPings = NULL,
-  MaximumGap = NULL)
+  MissedPingExpansion.Range = NULL,
+  Weights.MajorAxis = NULL,
+  Weights.MinorAxis = NULL,
+  Weights.Range = NULL,
+  Weights.TS = NULL,
+  Weights.PingGap = NULL,
+  MinimumTargets = NULL,
+  MinimumPings = NULL,
+  MaximumGap = NULL
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}
@@ -54,6 +68,7 @@ This function runs a bottom detection on an echogram
 Bottom algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
 }
 \examples{
+\dontrun{
 #To be added - Needs Example data
 #Starting Echoview
 echoview = StartEchoview()
@@ -63,6 +78,7 @@ Varname <- "Fileset 1: Sv pulse compressed wideband pings T1"
 bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
 # Change the algorithm to Best bottom candidate
 bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
+}
 
 }
 \references{

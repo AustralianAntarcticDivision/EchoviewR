@@ -22,6 +22,7 @@
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
+#' \dontrun{
 #' #To be added - Needs Example data
 #' #Starting Echoview
 #' echoview = StartEchoview()
@@ -31,6 +32,7 @@
 #' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
 #' # Change the algorithm to Best bottom candidate
 #' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
+#' }
 #' 
 
 EVFishTracking <- function(EVFile, EVVar, FishTrackRegionClass = "Unclassified regions",

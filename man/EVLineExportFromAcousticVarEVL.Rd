@@ -4,8 +4,12 @@
 \alias{EVLineExportFromAcousticVarEVL}
 \title{Export an Echoview line file for an existing line associated with an Acoustic Variable.}
 \usage{
-EVLineExportFromAcousticVarEVL(EVFile, acoVar, lineNameToExport,
-  pathAndFileName)
+EVLineExportFromAcousticVarEVL(
+  EVFile,
+  acoVar,
+  lineNameToExport,
+  pathAndFileName
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}

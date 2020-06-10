@@ -13,8 +13,8 @@
 #' @param UseBackstep Boolean [True or False]
 #' @param BackstepRange numeric [m] Backstep range
 #' @param DiscriminationLevel numeric [dB] Minimum discrimination threshold
-#' @param MaxDropOuts numeric [samples] Maximum number of dropout samples before bottom detection fails
-#' @param windowRadius numeric [samples] Search window size
+#' @param MaxDropouts numeric [samples] Maximum number of dropout samples before bottom detection fails
+#' @param WindowRadius numeric [samples] Search window size
 #' @param PeakThreshold numeric [dB] Threshold for peak detection
 #' @param MinPeakAssymmetry numeric
 #' @param replaceOldBottom Boolean (TRUE or FALSE) If TRUE and a line with the same name as LineName already exists, the old line will be overwritten with the new one
@@ -23,6 +23,7 @@
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
+#' \dontrun{
 #' #To be added - Needs Example data
 #' #Starting Echoview
 #' echoview = StartEchoview()
@@ -32,6 +33,7 @@
 #' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
 #' # Change the algorithm to Best bottom candidate
 #' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
+#' }
 #' 
 
 EVBottomDetection <- function(EVFile, EVVar, LineName="Bottom",

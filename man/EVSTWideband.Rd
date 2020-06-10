@@ -4,11 +4,18 @@
 \alias{EVSTWideband}
 \title{Broadband Single target detection}
 \usage{
-EVSTWideband(EVFile, EVVar, Operand2, TsThreshold = NULL,
-  MinimumPulseLength = NULL, MaximumPulseLength = NULL,
-  BeamCompensationModel = NULL, MaximumBeamCompensation = NULL,
+EVSTWideband(
+  EVFile,
+  EVVar,
+  Operand2,
+  TsThreshold = NULL,
+  MinimumPulseLength = NULL,
+  MaximumPulseLength = NULL,
+  BeamCompensationModel = NULL,
+  MaximumBeamCompensation = NULL,
   MaximumStdDevOfMajorAxisAngles = NULL,
-  MaximumStdDevOfMinorAxisAngles = NULL)
+  MaximumStdDevOfMinorAxisAngles = NULL
+)
 }
 \arguments{
 \item{EVFile}{An Echoview file COM object}
@@ -36,6 +43,7 @@ This function creates a Wideband Single Target Detection Variable
 }
 \examples{
 #To be added - Needs Example data
+\dontrun{
 #Starting Echoview
 echoview = StartEchoview()
 #Create a new EV File
@@ -47,6 +55,7 @@ Operand2 <- "Fileset 1: angular position pulse compressed wideband pings T1"
 ST <- EVSTWideband(EVFile=EVFile,EVVar=EVVar,Operand2=Operand2)
 # Change TS detection threshold
 ST <- EVSTWideband(EVFile=EVFile,EVVar=EVVar,Operand2=Operand2,TsThreshold=-90)
+}
 
 }
 \references{

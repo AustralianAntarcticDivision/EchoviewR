@@ -7,12 +7,14 @@
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
+#' \dontrun{
 #' #Create an Echoview application object and start Echoview
 #' EVApp <- StartEchoview()
 #' #get the current version of the Echoview App started through EchoviewR
 #' EVVersion(EVApp)
 #' #Quit the application again
 #' QuitEchoview(EVApp)
+#' }
 #' 
 
 
