@@ -9,10 +9,11 @@
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @examples
+#' \dontrun{
 #'EVAppObj=COMCreate('EchoviewCom.EvApplication')
 #'EVOpenFile(EVAppObj,'~\\example1.EV')
 #'EVpingSubset(EVFile=EVFile,acoVarName='Ping subset 38',pingsubsetString='2-7')
-#'
+#'}
 #'
 EVFreqSubset=function(EVFile,acoVarName,frequency)
 {
