@@ -41,7 +41,16 @@ You can install all these packages with the following  ```R``` code:
 install.packages(c('sp','geosphere','maptools','RDCOMClient','lubridate'))
 ```
 
-If ```RDCOMClient``` fails try:
+
+If ```RDCOMClient``` fails or if Echoview is crashing more frequently then exprected when using EchoviewR:
+
+Please install RDCOMClient through:
+
+```{r altRDCOMClient, eval=FALSE}
+devtools::install_github("dkyleward/RDCOMClient")
+```
+
+In older versions of ```R``` it was recommended to install RDCOMClient through:  
 ```{r dependPacks, eval=FALSE}
 devtools::install_github("omegahat/RDCOMClient")
 ```
