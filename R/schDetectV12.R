@@ -15,6 +15,7 @@
 #' @keywords Echoview COM scripting
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @seealso \code{\link{EVSchoolsDetSet}}
+#' @export
 #' @examples 
 #' \dontrun{
 #' library(EchoviewR)

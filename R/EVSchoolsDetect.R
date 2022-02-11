@@ -2,7 +2,8 @@
 #' Schools Detection in Echoview
 #' 
 #' This function performs schools detection in Echoview using COM scripting.
-#' @param EVFile An Echoview file COM object
+#' @param EVApp =NULL An Echoview Application COM object
+#' @param EVFile =NULL An Echoview file COM object
 #' @param acoVarName A string containing the name of the acoustic variable to perform the analysis on
 #' @param outputRegionClassName A string containing the name of the output region
 #' @param deleteExistingRegions Logical TRUE or FALSE 
@@ -39,7 +40,8 @@
 
 
 EVSchoolsDetect <- function(
-  EVFile,
+  EVApp=NULL,
+  EVFile=NULL,
   acoVarName,
   outputRegionClassName,
   deleteExistingRegions,
@@ -85,15 +87,32 @@ EVSchoolsDetect <- function(
   msgV     <- c(msgV, thresRes$msg)
   
   #set schools detection parameters
-  
-  schoolDetSet <- EVSchoolsDetSet(EVFile = EVFile, varObj = varObj, distanceMode = distanceMode,
-                                  maximumHorizontalLink = maximumHorizontalLink,
-                                  maximumVerticalLink = maximumVerticalLink,
-                                  minimumCandidateHeight = minimumCandidateHeight,
-                                  minimumCandidateLength = minimumCandidateLength,
-                                  minimumSchoolHeight = minimumSchoolHeight,
-                                  minimumSchoolLength = minimumSchoolLength)
-  msgV <- c(msgV, schoolDetSet$msg)
+  #check EV version
+  EV_version=NULL
+  if(!is.null(EVApp)) {EV_version=as.numeric(strsplit(EVApp$Version(),'\\.')[[1]][1])
+  msg=paste(Sys.time(),": Echoview version is",EV_version)
+  message(msg)
+  msgV=c(msgV,msg)}
+  if(is.null(EV_version)){ #assume if EVApp is not passed in then EV version <12
+    schoolDetSet <- EVSchoolsDetSet(EVFile = EVFile, varObj = varObj, distanceMode = distanceMode,
+                                    maximumHorizontalLink = maximumHorizontalLink,
+                                    maximumVerticalLink = maximumVerticalLink,
+                                    minimumCandidateHeight = minimumCandidateHeight,
+                                    minimumCandidateLength = minimumCandidateLength,
+                                    minimumSchoolHeight = minimumSchoolHeight,
+                                    minimumSchoolLength = minimumSchoolLength)}
+  if(EV_version>11){
+    if(grep('GPS',distanceMode)==1) distanceMode='GPSDistance' #catch the version>11 difference in distance specification
+    schoolDetSet <- EVSchoolsDetSetV12(EVApp=EVApp,
+      EVFile = EVFile, varObj = varObj, distanceMode = distanceMode,
+                                                    maximumHorizontalLink = maximumHorizontalLink,
+                                                    maximumVerticalLink = maximumVerticalLink,
+                                                    minimumCandidateHeight = minimumCandidateHeight,
+                                                    minimumCandidateLength = minimumCandidateLength,
+                                                    minimumSchoolHeight = minimumSchoolHeight,
+                                                    minimumSchoolLength = minimumSchoolLength)}
+    
+    msgV <- c(msgV, schoolDetSet$msg)
   msg  <- paste(Sys.time(), ' : Detecting schools in variable ', varObj$name(), sep = '')
   message(msg)
   msgV <- c(msgV,msg)
