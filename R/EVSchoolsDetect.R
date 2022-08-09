@@ -88,12 +88,12 @@ EVSchoolsDetect <- function(
   
   #set schools detection parameters
   #check EV version
-  EV_version=NULL
+  EV_version=11 #assume if EVApp is not passed in then EV version <12
   if(!is.null(EVApp)) {EV_version=as.numeric(strsplit(EVApp$Version(),'\\.')[[1]][1])
   msg=paste(Sys.time(),": Echoview version is",EV_version)
   message(msg)
   msgV=c(msgV,msg)}
-  if(is.null(EV_version)){ #assume if EVApp is not passed in then EV version <12
+  if(EV_version<=11){ 
     schoolDetSet <- EVSchoolsDetSet(EVFile = EVFile, varObj = varObj, distanceMode = distanceMode,
                                     maximumHorizontalLink = maximumHorizontalLink,
                                     maximumVerticalLink = maximumVerticalLink,
