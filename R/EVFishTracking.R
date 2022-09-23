@@ -35,7 +35,9 @@
 #' }
 #' 
 
-EVFishTracking <- function(EVFile, EVVar, FishTrackRegionClass = "Unclassified regions",
+EVFishTracking <- function(EVFile, 
+                           EVVar, 
+                           FishTrackRegionClass = "Unclassified regions",
                            export = NULL,
                            DataDimensions = NULL,#4
                            Alpha.MajorAxis = NULL,#0.1
@@ -100,10 +102,23 @@ EVFishTracking <- function(EVFile, EVVar, FishTrackRegionClass = "Unclassified r
   if(!is.null(MaximumGap)){setlp[["MaximumGap"]] <- MaximumGap}
   
 
-  EVFile$DetectFishTracks(EVVar, 0, 0)
-  EVFindRegionByName(EVFile,"Unclassified regions")
-  EVFindRegionClass("Unclassified regions")
-  EVVar$DetectFishTracks("Unclassified regions")
+  Ntracks <- EVVar$DetectFishTracks(FishTrackRegionClass)
+  if(Ntracks == 0) {
+    msg <- paste(Sys.time(), ' : No fish tracks detected.', sep = '')
+    warning(msg)
+  } else {
+    msg <- paste(Sys.time(), ' : ', Ntracks,
+                 " fish tracks were detected and assigned to ",
+                 FishTrackRegionClass, " Region Class.", sep = '')
+    message(msg)
+  }
   
-  EVVar$ExportFishTracksByRegions(export, EVFindRegionByName(EVFile,FishTrackRegionClass))
+  if(!is.null(export)){
+    # This is a temporary fix - I can't get $ExportFishTracksByRegions to work.
+    FileExported <- EVVar$ExportFishTracksByRegionsAll(export)
+    if(FileExported){
+      msg <- paste(Sys.time(), ' : ', export, " was successfully exported.", sep = '')
+      message(msg)
+    }
+  }
 }
