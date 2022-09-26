@@ -1,37 +1,46 @@
 #' Detect Fish Tracks
 #' 
-#' This function runs a bottom detection on an echogram
-#' Bottom algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
-#' 
+#' This function runs fish track detection on an single target echogram
+#' Fish track algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
+#'
 #' @param EVFile An Echoview file COM object
-#' @param EVVar An Echoview Variable, accepts inputs as Character, list or Variable object (COMIDispatch)
-#' @param LineName Character of the output name for the detected Line
-#' @param algorithm numeric [0 - 2] Defines which bottom detection algorithm should be used: 0 for Delta Sv, 1 for Maximum Sv, 2 for Best bottom Candidate
-#' @param StartDepth numeric [m] Minimum bottom detection depth
-#' @param StopDepth numeric [m] maximum bottom detection detpth
-#' @param MinSv numeric [dB] minimum detection Sv
-#' @param UseBackstep Boolean [True or False]
-#' @param BackstepRange numeric [m] Backstep range
-#' @param DiscriminationLevel numeric [dB] Minimum discrimination threshold
-#' @param MaxDropOuts numeric [samples] Maximum number of dropout samples before bottom detection fails
-#' @param windowRadius numeric [samples] Search window size
-#' @param PeakThreshold numeric [dB] Threshold for peak detection
-#' @param MinPeakAssymmetry numeric
-#' @param replaceOldBottom Boolean (TRUE or FALSE) If TRUE and a line with the same name as LineName already exists, the old line will be overwritten with the new one
-#' @keywords Echoview COM scripting
+#' @param EVVar An Echoview single target variable as a character string
+#' @param FishTrackRegionClass string indicating the region class name for the fish tracks to be assigned
+#' @param export full file path as a text string for an export file (i.e. "C:/FishTracking/Exports/FishTracks.csv"). NULL value skips export of fish tracks. 
+#' @param DataDimensions numeric Determine which algorithim is used for fish tracks. Accepted values are 2 (single or dual beam) or 4 (split beam)
+#' @param Alpha.MajorAxis numeric Increases Alpha gain setting of Major Axis
+#' @param Alpha.MinorAxis numeric Increases Alpha gain setting of Minor Axis
+#' @param Alpha.Range numeric Increases Alpha gain setting of Range
+#' @param Beta.MajorAxis numeric Increases Beta gain setting of Major Axis
+#' @param Beta.MinorAxis numeric Increases Beta gain setting of Minor Axis
+#' @param Beta.Range numeric Increases Beta gain setting of Range
+#' @param ExclusionDistance.MajorAxis numeric Increases distance value of major axis in target gate parameters
+#' @param ExclusionDistance.MinorAxis numeric Increases distance value of minor axis in target gate parameters
+#' @param ExclusionDistance.Range numeric Increases distance value of range in target gate parameters
+#' @param MissedPingExpansion.MajorAxis numeric Increases expansion value of major axis in target gate parameters
+#' @param MissedPingExpansion.MinorAxis numeric Increases expansion value ofminor axis in target gate parameters 
+#' @param MissedPingExpansion.Range numeric Increases expansion value of missed pings range in target gate parameters. 0 disables missed ping expansion
+#' @param Weights.MajorAxis numeric 1-100 Assigns the weighting of the major axis
+#' @param Weights.MinorAxis numeric 1-100 Assigns the weighting of the minor axis
+#' @param Weights.Range numeric 1-100 Assigns the weighting of the range
+#' @param Weights.TS numeric 1-100 Assigns the weighting of the target strength
+#' @param Weights.PingGap numeric 1-100 
+#' @param MinimumTargets numeric Minimum number of single targets to be considered a fish track
+#' @param MinimumPings numeric Maximum number of pings in a track
+#' @param MaximumGap numeric Maximum ping gap between tracks
+#'
+#' @return
 #' @export
-#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
+#'
 #' @examples
 #' \dontrun{
-#' #To be added - Needs Example data
-#' #Starting Echoview
-#' echoview = StartEchoview()
-#' #Create a new EV File
-#' EVFile <- EVCreateNew(EVAppObj=echoview, dataFiles = "rawfile.raw")$EVFile
-#' Varname <- "Fileset 1: Sv pulse compressed wideband pings T1"
-#' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
-#' # Change the algorithm to Best bottom candidate
-#' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
+#' EVAppObj <- COMCreate('EchoviewCom.EvApplication')
+#' EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
+#' EVFishTracking(EVFile = EvFile,
+#' EVVar = "Single target detection - wideband 1",
+#' FishTrackRegionClass = "FishTracks",
+#' MinimumTargets = 5,
+#' export = "C:/FishTracking/Exports/FishTracks.csv")
 #' }
 #' 
 

@@ -35,55 +35,67 @@ EVFishTracking(
 \arguments{
 \item{EVFile}{An Echoview file COM object}
 
-\item{EVVar}{An Echoview Variable, accepts inputs as Character, list or Variable object (COMIDispatch)}
+\item{EVVar}{An Echoview single target variable as a character string}
 
-\item{LineName}{Character of the output name for the detected Line}
+\item{FishTrackRegionClass}{string indicating the region class name for the fish tracks to be assigned}
 
-\item{algorithm}{numeric [0 - 2] Defines which bottom detection algorithm should be used: 0 for Delta Sv, 1 for Maximum Sv, 2 for Best bottom Candidate}
+\item{export}{full file path as a text string for an export file (i.e. "C:/FishTracking/Exports/FishTracks.csv"). NULL value skips export of fish tracks.}
 
-\item{StartDepth}{numeric [m] Minimum bottom detection depth}
+\item{DataDimensions}{numeric Determine which algorithim is used for fish tracks. Accepted values are 2 (single or dual beam) or 4 (split beam)}
 
-\item{StopDepth}{numeric [m] maximum bottom detection detpth}
+\item{Alpha.MajorAxis}{numeric Increases Alpha gain setting of Major Axis}
 
-\item{MinSv}{numeric [dB] minimum detection Sv}
+\item{Alpha.MinorAxis}{numeric Increases Alpha gain setting of Minor Axis}
 
-\item{UseBackstep}{Boolean [True or False]}
+\item{Alpha.Range}{numeric Increases Alpha gain setting of Range}
 
-\item{BackstepRange}{numeric [m] Backstep range}
+\item{Beta.MajorAxis}{numeric Increases Beta gain setting of Major Axis}
 
-\item{DiscriminationLevel}{numeric [dB] Minimum discrimination threshold}
+\item{Beta.MinorAxis}{numeric Increases Beta gain setting of Minor Axis}
 
-\item{MaxDropOuts}{numeric [samples] Maximum number of dropout samples before bottom detection fails}
+\item{Beta.Range}{numeric Increases Beta gain setting of Range}
 
-\item{windowRadius}{numeric [samples] Search window size}
+\item{ExclusionDistance.MajorAxis}{numeric Increases distance value of major axis in target gate parameters}
 
-\item{PeakThreshold}{numeric [dB] Threshold for peak detection}
+\item{ExclusionDistance.MinorAxis}{numeric Increases distance value of minor axis in target gate parameters}
 
-\item{MinPeakAssymmetry}{numeric}
+\item{ExclusionDistance.Range}{numeric Increases distance value of range in target gate parameters}
 
-\item{replaceOldBottom}{Boolean (TRUE or FALSE) If TRUE and a line with the same name as LineName already exists, the old line will be overwritten with the new one}
+\item{MissedPingExpansion.MajorAxis}{numeric Increases expansion value of major axis in target gate parameters}
+
+\item{MissedPingExpansion.MinorAxis}{numeric Increases expansion value ofminor axis in target gate parameters}
+
+\item{MissedPingExpansion.Range}{numeric Increases expansion value of missed pings range in target gate parameters. 0 disables missed ping expansion}
+
+\item{Weights.MajorAxis}{numeric 1-100 Assigns the weighting of the major axis}
+
+\item{Weights.MinorAxis}{numeric 1-100 Assigns the weighting of the minor axis}
+
+\item{Weights.Range}{numeric 1-100 Assigns the weighting of the range}
+
+\item{Weights.TS}{numeric 1-100 Assigns the weighting of the target strength}
+
+\item{Weights.PingGap}{numeric 1-100}
+
+\item{MinimumTargets}{numeric Minimum number of single targets to be considered a fish track}
+
+\item{MinimumPings}{numeric Maximum number of pings in a track}
+
+\item{MaximumGap}{numeric Maximum ping gap between tracks}
 }
 \description{
-This function runs a bottom detection on an echogram
-Bottom algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
+This function runs fish track detection on an single target echogram
+Fish track algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
 }
 \examples{
 \dontrun{
-#To be added - Needs Example data
-#Starting Echoview
-echoview = StartEchoview()
-#Create a new EV File
-EVFile <- EVCreateNew(EVAppObj=echoview, dataFiles = "rawfile.raw")$EVFile
-Varname <- "Fileset 1: Sv pulse compressed wideband pings T1"
-bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom")
-# Change the algorithm to Best bottom candidate
-bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
+EVAppObj <- COMCreate('EchoviewCom.EvApplication')
+EVFile <- EVOpenFile(EVAppObj,'~~/KAOS/KAOStemplate.EV')$EVFile
+EVFishTracking(EVFile = EvFile,
+EVVar = "Single target detection - wideband 1",
+FishTrackRegionClass = "FishTracks",
+MinimumTargets = 5,
+export = "C:/FishTracking/Exports/FishTracks.csv")
 }
 
 }
-\references{
-\url{http://support.echoview.com/WebHelp/Echoview.htm/}
-}
-\keyword{COM}
-\keyword{Echoview}
-\keyword{scripting}
