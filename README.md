@@ -44,13 +44,13 @@ install.packages(c('sp','geosphere','maptools','RDCOMClient','lubridate'))
 
 If ```RDCOMClient``` fails or if Echoview is crashing more frequently then exprected when using EchoviewR (likely behaviour for ```R > v4.x```):
 
-Please install RDCOMClient through (see for details](install.packages("RDCOMClient", repos = "http://www.omegahat.net/R", type = "win.binary")):
+Please install RDCOMClient through (see for details](https://github.com/omegahat/RDCOMClient)):
 
 ```{r dependPacks, eval=FALSE}
 devtools::install_github("omegahat/RDCOMClient")
 ```
  
-In older versions of ```R``` it was recommended to install RDCOMClient through ([see for details](https://rdrr.io/github/dkyleward/caliperR/f/README.md):  
+In older versions of ```R``` it was recommended to install RDCOMClient through ([see for details](https://rdrr.io/github/dkyleward/caliperR/f/README.md)):  
 
 ```{r altRDCOMClient, eval=FALSE}
 devtools::install_github("dkyleward/RDCOMClient")
