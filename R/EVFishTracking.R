@@ -1,7 +1,7 @@
 #' Detect Fish Tracks
 #' 
 #' This function runs fish track detection on an single target echogram
-#' Fish track algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
+#' Fish track algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Echoview.htm')
 #'
 #' @param EVFile An Echoview file COM object
 #' @param EVVar An Echoview single target variable as a character string
@@ -28,8 +28,8 @@
 #' @param MinimumTargets numeric Minimum number of single targets to be considered a fish track
 #' @param MinimumPings numeric Maximum number of pings in a track
 #' @param MaximumGap numeric Maximum ping gap between tracks
-#'
-#' @return
+#' 
+#' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 #' @export
 #'
 #' @examples

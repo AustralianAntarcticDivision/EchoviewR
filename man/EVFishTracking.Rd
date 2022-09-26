@@ -85,7 +85,7 @@ EVFishTracking(
 }
 \description{
 This function runs fish track detection on an single target echogram
-Fish track algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Reference/Algorithms/Line_picking_algorithm.htm')
+Fish track algorithms and settings are explained in the [Echoview Help File]('https://support.echoview.com/WebHelp/Echoview.htm')
 }
 \examples{
 \dontrun{
@@ -98,4 +98,7 @@ MinimumTargets = 5,
 export = "C:/FishTracking/Exports/FishTracks.csv")
 }
 
+}
+\references{
+\url{http://support.echoview.com/WebHelp/Echoview.htm/}
 }
