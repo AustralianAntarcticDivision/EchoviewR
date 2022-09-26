@@ -101,7 +101,9 @@ EVFishTracking <- function(EVFile,
   if(!is.null(MinimumPings)){setlp[["MinimumPings"]] <- MinimumPings}
   if(!is.null(MaximumGap)){setlp[["MaximumGap"]] <- MaximumGap}
   
-
+  # Detect fish tracks
+  # DetectFishTracks returns number of tracks if successful
+  
   Ntracks <- EVVar$DetectFishTracks(FishTrackRegionClass)
   if(Ntracks == 0) {
     msg <- paste(Sys.time(), ' : No fish tracks detected.', sep = '')
@@ -113,12 +115,21 @@ EVFishTracking <- function(EVFile,
     message(msg)
   }
   
+  # if export file has been provided, export the fish tracks
   if(!is.null(export)){
-    # This is a temporary fix - I can't get $ExportFishTracksByRegions to work.
-    FileExported <- EVVar$ExportFishTracksByRegionsAll(export)
-    if(FileExported){
-      msg <- paste(Sys.time(), ' : ', export, " was successfully exported.", sep = '')
+      FileExported <- EVVar$ExportFishTracksByRegions(
+      export, 
+      EVFile[["RegionClasses"]]$FindByName(FishTrackRegionClass))
+      
+      # FileExported returns TRUE if export was successful
+      if(FileExported){
+      msg <- paste(Sys.time(), ' : ', 'Fish tracks from ', FishTrackRegionClass, 
+                   " was successfully exported as ", export, sep = '')
       message(msg)
-    }
+      }
+      # Provide alternative error message if FALSE
+      if(!FileExported){
+        warning("Fish tracks were not exported.")
+      }
   }
 }
