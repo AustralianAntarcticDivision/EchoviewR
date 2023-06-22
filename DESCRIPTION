@@ -15,8 +15,7 @@ Depends:
 Imports:
     lubridate,
     sp,
-    geosphere,
-    maptools
+    geosphere
 Suggests:
     knitr,
     qpdf,
