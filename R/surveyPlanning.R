@@ -14,6 +14,7 @@
 #' @return Data frame of geographical coordinates of start (SOL) and end of line (EOL) positions
 #' @export
 #' @importFrom geosphere destPoint
+#' @importFrom stats runif
 #' @details Line spacing can be fixed, so specified by a single number or pseudo random (random draws from a uniform distribution), which is specified by a vector of two numbers, the minimun and maximum transect separation.
 #' @seealso \code{\link{zigzagSurvey}}
 #' @author Martin Cox \email{martin.cox@@aad.gov.au}
