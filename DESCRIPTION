@@ -21,6 +21,6 @@ Suggests:
     qpdf,
     rmarkdown
 VignetteBuilder: knitr
-LinkingTo: fields, sp, geosphere, maptools, RDCOMClient, rgeos
-RoxygenNote: 7.1.1
+LinkingTo: fields, sp, geosphere, RDCOMClient, rgeos
+RoxygenNote: 7.2.3
 Encoding: UTF-8
