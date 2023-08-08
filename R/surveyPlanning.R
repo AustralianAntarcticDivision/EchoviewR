@@ -14,6 +14,7 @@
 #' @return Data frame of geographical coordinates of start (SOL) and end of line (EOL) positions
 #' @export
 #' @importFrom geosphere destPoint
+#' @importFrom stats runif
 #' @details Line spacing can be fixed, so specified by a single number or pseudo random (random draws from a uniform distribution), which is specified by a vector of two numbers, the minimun and maximum transect separation.
 #' @seealso \code{\link{zigzagSurvey}}
 #' @author Martin Cox \email{martin.cox@@aad.gov.au}
@@ -73,8 +74,7 @@ lawnSurvey=function(startLon,startLat,lineLengthkm,lineSpacingkm,startBearingdeg
 #' @param unrotated \code{FALSE} return rotated coordinates \code{TRUE} list of rotated and unrotated coordinates.
 #' @return Geographical coordinates of start and end of line positions.  \code{unrotated=TRUE} list of rotated and unrotated coordinates
 #' @export
-#' @importFrom sp SpatialPoints CRS
-#' @importFrom maptools elide
+#' @importFrom sp SpatialPoints CRS elide
 #' @importFrom stats na.omit
 #' @importFrom utils capture.output read.csv read.table write.table
 #' @seealso \link{zigzagSurvey}
@@ -146,6 +146,7 @@ zigzagSurvey=function(startLon,startLat,lineLengthkm,startBearingdeg,rotationdeg
 #'@return Line transect coordinates as specified in \link{zigzagSurvey}
 #'@details The call of \link{zigzagSurvey} has \code{unrotated=FALSE}
 #'@importFrom geosphere geomean distHaversine
+#'@importFrom sp elide
 #'@export
 #'@examples
 #'\dontrun{
@@ -190,7 +191,7 @@ centreZigZagOnPosition=function(centreLon,centreLat,
 #'@param ... other arguments to be passed into \link{lawnSurvey}
 #'@return Line transect coordinates (lon, lat) as specified in \link{lawnSurvey}
 #'@importFrom geosphere geomean distHaversine
-#'@importFrom maptools elide
+#'@importFrom sp elide
 #'@export
 #'@examples
 #'\dontrun{
