@@ -18,20 +18,15 @@
 #' bottom <- EVBottomDetection(EVFile, EVVar=Varname, LineName="Bottom",algorithm=2)
 #' }
 #' @export
-
 EVGetVariables <- function(EVFile){
-  #number of variables in EV FIles
-  nvar = EVFile$EVFile[['Variables']]$Count()
-  #create list of variables
-  vars = apply(matrix(1:nvar),1,
-        FUN=function(x){EVFile$EVFile[['Variables']]$Item(x)$Name()})
-  if(length(vars) > 0){
-    msgV = paste0(Sys.time(),": Success ", nvar, " variables detected")
-  }else{
-    msgV = paste0(Sys.time(),": Error - No variables detected")
-  }
+  nvar <- EVFile[['Variables']]$Count() ## number of variables in EV FIles
+  ## create list of variables
+  vars <- vapply(seq_len(nvar), function(x) as.character(EVFile[['Variables']]$Item(x - 1)$Name()), FUN.VALUE = "")
+  msgv <- if (length(vars) > 0) {
+              paste0(Sys.time(), ": Success ", nvar, " variables detected")
+          } else {
+              paste0(Sys.time(), ": Error - No variables detected")
+          }
   message(msgV)
-        
-  return(list(variables=vars,msg=msgV))
+  list(variables = vars, msg = msgV)
 }
-  
