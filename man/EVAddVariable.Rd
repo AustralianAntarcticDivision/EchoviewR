@@ -4,7 +4,7 @@
 \alias{EVAddVariable}
 \title{Add a variable to an Echoview file}
 \usage{
-EVAddVariable(EVFile, acoVarName, EOperator, addedVarName = NULL)
+EVAddVariable(EVFile, acoVarName, EOperator, addedVarName = NULL, ...)
 }
 \arguments{
 \item{EVFile}{Echoview file COM object}
@@ -14,9 +14,11 @@ EVAddVariable(EVFile, acoVarName, EOperator, addedVarName = NULL)
 \item{EOperator}{The 'EOperator' number of the variable to add. See notes}
 
 \item{addedVarName}{=NULL. Name of the added variable.}
+
+\item{...}{additional arguments. Use these to assign parent variable to the added variable, e.g. single target detection}
 }
 \value{
-list with three elements: $varObj acoustic variable COM object; $objName new name of the variable object;$msg message vector
+list with three elements: $varObj acoustic variable COM object; $objName new name of the variable object; $msg message vector
 }
 \description{
 This function adds an Echoview variable to an existing Echoview file.  The variable is added by specifying the existing variable to which the new variable is added and the new variable type.
@@ -34,7 +36,7 @@ This function is under development.  We hope to add an 'EOperator' look up table
 \link{EVAcoVarNameFinder}
 }
 \author{
-Martin Cox
+Martin Cox, modified by Yang Yang
 }
 \keyword{COM}
 \keyword{Echoview}
