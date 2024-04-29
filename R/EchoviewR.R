@@ -730,7 +730,7 @@ EVFilesInFileset <- function (EVFile, filesetName) {
   nbr.of.raw.in.fileset <- fileset.loc[["DataFiles"]]$Count()
   
   raw.names <- 0
-  for (i in 0:(nbr.of.raw.in.fileset - 1)) {
+  for (i in (seq_len(nbr.of.raw.in.fileset) - 1)) {
     raw.names[i + 1] <- basename(fileset.loc[["DataFiles"]]$Item(i)$FileName())
   }
   
