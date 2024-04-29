@@ -110,8 +110,6 @@ EVChangeVariableGrid(showenum = TRUE)
 }
 \author{
 Martin Cox
-
-Martin Cox
 }
 \keyword{COM}
 \keyword{Echoview}
