@@ -7,7 +7,7 @@
 #' @param NewValue Calibration values (numeric, vector)
 #' @param maxNlines = 200. Maximum number of lines in ECS file to search (numeric).
 #' @param nBlanks2Stop =4. Stop searching ECS file when this number of consecutive blanks has been encountered (numeric).
-#' @param FileNameSuffix = NULL filename suffix used to generate modified ECS file (character).
+#' @param ECSPathAndFileOut Generated Echoview calibration path and filename (character).
 #' @note This function is under development and has only been tested on ECS files generated in the 'SimradEK60Raw' format and that include FILESET and SOURCECAL settings only 
 #' @note Currently the length of the NewValue parameter must equal the number of instances of the ECStargetVar found in the ECS file.
 #' @details This function can be used to modify parameters in an Echoview calibration file.  The current form of the function is quite limited and we strongly recommend that users carefully check any resultant modified ECS files. Found instances of the target calibration parameter be retained by setting the corresponding element in the NewValue vector to NA.

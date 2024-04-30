@@ -24,7 +24,7 @@ modifyECS(
 
 \item{nBlanks2Stop}{=4. Stop searching ECS file when this number of consecutive blanks has been encountered (numeric).}
 
-\item{FileNameSuffix}{= NULL filename suffix used to generate modified ECS file (character).}
+\item{ECSPathAndFileOut}{Generated Echoview calibration path and filename (character).}
 }
 \description{
 This function parses an EX60/70 Echoview calibration, finds a calibration parameter and changes its value.

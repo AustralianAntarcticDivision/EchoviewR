@@ -2,7 +2,7 @@
 #' 
 #' This function gets the calibration values of an Echoview acousic variable using COM. 
 #' @details The function can read three types of calibration values "default", "set" and "used".
-#''@param EVFile ("COMIDispatch) An Echoview file COM object 
+#' @param EVFile ("COMIDispatch) An Echoview file COM object 
 #' @param acoVarName (character) Name of Echoview single target virtual variable
 #' @param pingNumber = 0 (numeric) Ping number from which to extract calibration values.
 #' @param type = =c('default','set','used') (character) Calibration value type.

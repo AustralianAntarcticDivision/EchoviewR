@@ -13,6 +13,8 @@ EVgetCalParValues(
 )
 }
 \arguments{
+\item{EVFile}{("COMIDispatch) An Echoview file COM object}
+
 \item{acoVarName}{(character) Name of Echoview single target virtual variable}
 
 \item{pingNumber}{= 0 (numeric) Ping number from which to extract calibration values.}
@@ -26,7 +28,6 @@ This function gets the calibration values of an Echoview acousic variable using 
 }
 \details{
 The function can read three types of calibration values "default", "set" and "used".
-'@param EVFile ("COMIDispatch) An Echoview file COM object
 }
 \references{
 \url{http://support.echoview.com/WebHelp/Echoview.htm/}

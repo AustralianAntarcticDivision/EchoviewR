@@ -5,7 +5,8 @@
 #' @param EVFile An Echoview file COM object
 #' @param STVar An Wideband Single Target Detection Echoview Variable, accepts inputs as Character, list or Variable object (COMIDispatch)
 #' @param outfn FIlename for the TS export
-#' @param MinMax Include Min and Max
+#' @param AverageResults [Binary] 0 clears Average results. 1 selects Average results
+#' @param MinMax [Binary] 0 clears Include min and max. 1 selects Include min and max. 
 #' @param WindowSize Set the WIndow Size
 #' @param WindowUnit Unit of the window 0 = Meters, 1 = Pulse Lengths, 2 = Samples
 #' @param EVVar Specifies a TS pulse compressed wideband variable for frequency response calculations.

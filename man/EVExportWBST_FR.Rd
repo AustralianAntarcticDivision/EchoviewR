@@ -22,7 +22,9 @@ EVExportWBST_FR(
 
 \item{outfn}{FIlename for the TS export}
 
-\item{MinMax}{Include Min and Max}
+\item{AverageResults}{[Binary] 0 clears Average results. 1 selects Average results}
+
+\item{MinMax}{[Binary] 0 clears Include min and max. 1 selects Include min and max.}
 
 \item{WindowSize}{Set the WIndow Size}
 

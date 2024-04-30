@@ -1,3 +1,6 @@
+#' Internal function for displaying Echoview line information
+#' @noRd
+#' @keywords internal
 summary.evl=function(x){
   cat(paste(rep('-',50),collapse = ''),'\n')
   cat('ECHOVIEW LINE OBJECT SUMMARY','\n')
