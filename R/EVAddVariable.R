@@ -8,39 +8,27 @@
 #' @param acoVarName The acoustic variable name to which a new variable will be added.
 #' @param EOperator The 'EOperator' number of the variable to add. See notes
 #' @param addedVarName =NULL. Name of the added variable.
-#' @param ... additional arguments. Use these to assign parent variable to the added variable, e.g. single target detection
 #' @return list with three elements: $varObj acoustic variable COM object; $objName new name of the variable object; $msg message vector
 
 #' @keywords Echoview COM scripting
-#' @author Martin Cox, modified by Yang Yang
+#' @author Martin Cox
 #' @seealso \link{EVAcoVarNameFinder}
 #' @export
 #' @references \url{http://support.echoview.com/WebHelp/Echoview.htm/}
 
-EVAddVariable <- function(EVFile, acoVarName, EOperator, addedVarName = NULL, ...) {
+EVAddVariable <- function(EVFile, acoVarName, EOperator, addedVarName = NULL) {
   msgV <- paste(Sys.time(), 'Attempted to add variable EOperator number to', acoVarName)
   message(msgV)
-  
   AObj <- EVAcoVarNameFinder(EVFile = EVFile, acoVarName)
   msgV <- c(msgV, AObj$msg)
   AObj <- AObj$EVVar
-  
   newAObj <- AObj$AddVariable(EOperator)
-  
   cNewName <- newAObj$Name()
-  
   if (class(newAObj)[1] != "COMIDispatch") {
     msg <- paste(Sys.time(), 'New acoustic variable not created')
     warning(msg)
     msgV <- c(msgV, msg)
     return(list(varObj = NULL, objName = NULL, msg = msgV))
-  }
-  
-  ## Process additional optional arguments
-  extra_args <- list(...)
-  for (i in seq_along(extra_args)) {
-    AObj <- EVAcoVarNameFinder(EVFile = EVFile, extra_args[[i]])
-    newAObj$SetOperand(i, AObj$EVVar)
   }
 
   if (!is.null(addedVarName)) {
@@ -50,6 +38,3 @@ EVAddVariable <- function(EVFile, acoVarName, EOperator, addedVarName = NULL, ..
   }
 
 }
-
-
-
