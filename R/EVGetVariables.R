@@ -22,7 +22,7 @@ EVGetVariables <- function(EVFile){
   nvar <- EVFile[['Variables']]$Count() ## number of variables in EV FIles
   ## create list of variables
   vars <- vapply(seq_len(nvar), function(x) as.character(EVFile[['Variables']]$Item(x - 1)$Name()), FUN.VALUE = "")
-  msgv <- if (length(vars) > 0) {
+  msgV <- if (length(vars) > 0) {
               paste0(Sys.time(), ": Success ", nvar, " variables detected")
           } else {
               paste0(Sys.time(), ": Error - No variables detected")
