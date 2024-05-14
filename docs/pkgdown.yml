@@ -1,6 +1,12 @@
-pandoc: 1.19.2.1
-pkgdown: 1.1.0
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
-  Getting_Started: ../../../../../../../c:/z/analysis/projects/martin_cox/EchoviewR/vignettes/Getting_Started.html
+  BroadbandST: BroadbandST.html
+  Getting_Started: Getting_Started.html
+  Introduction: Introduction.html
+last_built: 2024-05-14T02:25Z
+urls:
+  reference: http://australianantarcticdivision.github.io/EchoviewR/reference
+  article: http://australianantarcticdivision.github.io/EchoviewR/articles
 
