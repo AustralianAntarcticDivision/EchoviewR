@@ -2,7 +2,7 @@
 #'
 #'This function writes a polygon MIF file for import into Echoview and will
 #'typically be used to export survey line transects from, for example, 
-#'\link{centreLawnOnPosition}.
+#'\link{lawnSurvey}.
 #'@param coords a set of coordinates as a two column (longitude and latitude) matrix.
 #'@param pathAndFileName character string MIF file export path and filename
 #'@param pointNameExport Boolean (default=FALSE) export the name of each point.  
@@ -17,8 +17,8 @@
 #'@export
 #'@examples
 #'\dontrun{
-#'coords=centreLawnOnPosition(centreLon=-33,centreLat=-55.5,lineLengthkm=100,lineSpacingkm=10,
-#'startBearingdeg=30,numOfLines=50)
+#'coords=lawnSurvey(startLon=-170,startLat=-60,lineLengthkm=2,lineSpacingkm=0.5,
+#'startBearingdeg=30,numOfLines=5)
 #'exportMIF(coords=coords,pathAndFileName='c:\\Users\\martin_cox\\Documents\\test4.mif')
 #'}
 exportMIF=function(coords,pathAndFileName,pointNameExport=FALSE,pointNameScaleFactor=c(0.05,0.03))

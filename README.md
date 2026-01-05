@@ -33,13 +33,14 @@ citation('EchoviewR')
 ### Installing EchoviewR
 Currently, ```EchoviewR``` has quite a few dependencies, something we are hoping to rectify.  Meanwhile, you will need to install the following ```R``` packages:
 
-```sp```,```geosphere```,```maptools```,```RDCOMClient``` and ```lubridate```
+```sf```,```geosphere```,```maptools```,```RDCOMClient``` and ```lubridate```
   
 You can install all these packages with the following  ```R``` code:
 
 ```{r dependPacks,eval=FALSE}
-install.packages(c('sp','geosphere','maptools','RDCOMClient','lubridate'))
+install.packages(c('sf','geosphere','maptools','RDCOMClient','lubridate'))
 ```
+NB in EchoviewR version v1.3.0 we replaced the ```sp``` package with the ```sf``` package.  If you are using an older version of EchoviewR (v1.2.0 or older) please install the ```sp``` package instead of the ```sf``` package.
 
 
 If ```RDCOMClient``` fails or if Echoview is crashing more frequently then exprected when using EchoviewR (likely behaviour for ```R > v4.x```):

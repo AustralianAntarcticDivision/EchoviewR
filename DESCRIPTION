@@ -1,7 +1,7 @@
 Package: EchoviewR
 Type: Package
 Title: Control of Echoview via COM
-Version: 1.2.0
+Version: 1.3.0
 Authors@R: c(person("Martin", "Cox", email = "martin.cox@aad.gov.au", role = c("aut", "cre")),
 	     person("Sven", "Gastauer", role="aut"),
 	     person("Lisa-Marie", "Harrison", role="aut"))
@@ -14,13 +14,13 @@ Depends:
     RDCOMClient
 Imports:
     lubridate,
-    sp,
+    sf,
     geosphere
 Suggests:
     knitr,
     qpdf,
     rmarkdown
 VignetteBuilder: knitr
-LinkingTo: fields, sp, geosphere, RDCOMClient
-RoxygenNote: 7.3.1
+LinkingTo: fields, sf, geosphere, RDCOMClient
+RoxygenNote: 7.3.3
 Encoding: UTF-8

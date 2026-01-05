@@ -11,69 +11,104 @@ zigzagSurvey(
   startBearingdeg,
   rotationdeg,
   numOfLines,
-  proj4string = CRS("+proj=longlat +datum=WGS84"),
+  planar_epsg = 6932,
   unrotated = FALSE
 )
 }
 \arguments{
-\item{startLon}{start longitude of survey.}
+\item{startLon}{Numeric. Starting longitude of the survey (decimal degrees).}
 
-\item{startLat}{start latitude of survey.}
+\item{startLat}{Numeric. Starting latitude of the survey (decimal degrees).}
 
-\item{lineLengthkm}{transect line length in km.}
+\item{lineLengthkm}{Numeric. Length of each transect line in kilometres.}
 
-\item{startBearingdeg}{Bearing of each transect in degrees.}
+\item{startBearingdeg}{Numeric. Bearing of the first transect in degrees.}
 
-\item{rotationdeg}{rotation angle for entire survey pattern.}
+\item{rotationdeg}{Numeric. Rotation angle (degrees) applied to the entire survey
+pattern. Positive values rotate counter-clockwise.}
 
-\item{numOfLines}{Number of transects.}
+\item{numOfLines}{Integer. Number of transects.}
 
-\item{proj4string}{projection string of class \link{CRS-class}}
+\item{planar_epsg}{Integer. EPSG code of a projected coordinate reference system
+(units in metres) used internally for rotation. Default is 6932
+(Cylindrical Equal Area as used in \code{CCAMLRGIS}).}
 
-\item{unrotated}{\code{FALSE} return rotated coordinates \code{TRUE} list of rotated and unrotated coordinates.}
+\item{unrotated}{Logical. If \code{FALSE} (default), return only rotated coordinates.
+If \code{TRUE}, return a list containing both rotated and unrotated coordinates.}
 }
 \value{
-Geographical coordinates of start and end of line positions.  \code{unrotated=TRUE} list of rotated and unrotated coordinates
+If \code{unrotated = FALSE}, a numeric matrix with columns
+  \code{lon} and \code{lat} giving the geographic coordinates of the start and end
+  points of each transect.
+
+  If \code{unrotated = TRUE}, a list with elements:
+  \describe{
+    \item{unrotatedGeogs}{Matrix of unrotated geographic coordinates}
+    \item{rotatedGeogs}{Matrix of rotated geographic coordinates}
+  }
 }
 \description{
-The coordinate list is generated in degrees decimal degree format (dd.ddd), with 
-Southern hemisphere denoted by negative numbers. Transect length are specified in km 
-and bearings in degress where North 0 deg, East 90 deg, South 180 deg and West 270 deg.
+Generates a zig-zag survey track as a sequence of geographic
+coordinates (longitude/latitude, decimal degrees). Transect lengths are specified
+in kilometres and bearings in degrees, where North = 0°, East = 90° etc.
+}
+\details{
+Survey geometry is constructed in geographic coordinates (WGS84; EPSG:4326).
+If a non-zero rotation is requested \code{rotationdeg}, the full survey pattern 
+is projected to a planar coordinate reference system (default EPSG:6932, metres), 
+rotated about the first point, and then transformed back to geographic coordinates for output.
+NB \code{planar_epsg} can be used to define the planar coordinate system.
 }
 \examples{
 \dontrun{
-coords=zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,
-startBearingdeg=30,
-rotationdeg=10,numOfLines=11)
-plot(0,0,xlim=range(coords[,1]),ylim=range(coords[,2]),type='n',
-xlab='Longitude, deg',ylab='Latitude, deg')
-arrows(x0=coords[1:(nrow(coords)-1),1], y0=coords[1:(nrow(coords)-1),2], 
-      x1 = coords[2:nrow(coords),1], y1 = coords[2:nrow(coords),2])
-text(coords,row.names(coords),cex=0.6)
+coords <- zigzagSurvey(
+  startLon = -100,
+  startLat = -60,
+  lineLengthkm = 2,
+  startBearingdeg = 30,
+  rotationdeg = 10,
+  numOfLines = 11
+)
+
+plot(0, 0,
+     xlim = range(coords[,1]),
+     ylim = range(coords[,2]),
+     type = "n",
+     xlab = "Longitude, deg",
+     ylab = "Latitude, deg")
+
+arrows(coords[-nrow(coords),1], coords[-nrow(coords),2],
+       coords[-1,1], coords[-1,2])
+
 points(coords[1,1],coords[1,2],col='blue',pch=17,cex=2)
 points(coords[nrow(coords),1],coords[nrow(coords),2],col='blue',pch=15,cex=2)
-legend('topright',c('Beginning','End'),col='blue',pch=c(17,15))
-#Use unrotated=TRUE and check coordinates in the- 
-#-returned coordinate list object are identical:
-coordL= zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,
-startBearingdeg=30,
-rotationdeg=0,numOfLines=11,unrotated=TRUE)
-identical(coordL[[1]],coordL[[2]])
-#display rotated and unrotated coordinates"
-coordL= zigzagSurvey(startLon=-100,startLat=-60,lineLengthkm=2,
-startBearingdeg=30,
-rotationdeg=5,numOfLines=11,unrotated=TRUE) 
-coords=coordL$unrotatedGeogs; coordsRotate=coordL$rotatedGeogs
-plot(0,0,xlim=range(c(coords[,1],coordsRotate[,1])),
-ylim=range(c(coords[,2],coordsRotate[,2])),type='n',
-xlab='Longitude, deg',ylab='Latitude, deg')
-arrows(x0=coords[1:(nrow(coords)-1),1], y0=coords[1:(nrow(coords)-1),2], 
-      x1 = coords[2:nrow(coords),1], y1 = coords[2:nrow(coords),2])
-arrows(x0=coordsRotate[1:(nrow(coordsRotate)-1),1], 
-y0=coordsRotate[1:(nrow(coordsRotate)-1),2], 
-      x1 = coordsRotate[2:nrow(coordsRotate),1], 
-      y1 = coordsRotate[2:nrow(coordsRotate),2],col='blue')
-legend('bottomleft',c('Unrotated','Rotated'),lty=1,col=c(1,'blue'))
+legend('topleft',c('Beginning','End'),col='blue',pch=c(17,15))
+coordL <- zigzagSurvey(
+  startLon = -100,
+  startLat = -60,
+  lineLengthkm = 2,
+  startBearingdeg = 30,
+  rotationdeg = 10,
+  numOfLines = 11,
+  unrotated = TRUE
+)
+
+plot(0, 0,
+      xlim = range(coordL$rotatedGeogs[,1]),
+     ylim = range(coordL$rotatedGeogs[,2]),
+     type = "n",
+     xlab = "Longitude, deg",
+     ylab = "Latitude, deg")
+arrows(coordL$rotatedGeogs[-nrow(coordL$rotatedGeogs),1], 
+ coordL$rotatedGeogs[-nrow(coordL$rotatedGeogs),2],
+       coordL$rotatedGeogs[-1,1], 
+       coordL$rotatedGeogs[-1,2])
+points(coordL$rotatedGeogs[1,1],
+ coordL$rotatedGeogs[1,2],col='blue',pch=17,cex=2)
+points(coordL$rotatedGeogs[nrow(coordL$rotatedGeogs),1],
+ coordL$rotatedGeogs[nrow(coordL$rotatedGeogs),2],
+ col='blue',pch=15,cex=2)
+legend('topleft',c('Beginning','End'),col='blue',pch=c(17,15))
 }
 }
 \seealso{

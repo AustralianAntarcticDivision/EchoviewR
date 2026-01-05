@@ -26,7 +26,7 @@ Nothing
 \description{
 This function writes a polygon MIF file for import into Echoview and will
 typically be used to export survey line transects from, for example, 
-\link{centreLawnOnPosition}.
+\link{lawnSurvey}.
 }
 \details{
 Exporting the name of each point uses the row name in the \code{coords} argument.  
@@ -38,8 +38,8 @@ c(lon_i,lat_i)+diff(range(lon_1..n,lat_1..n))*pointNameScaleFactor where n is th
 }
 \examples{
 \dontrun{
-coords=centreLawnOnPosition(centreLon=-33,centreLat=-55.5,lineLengthkm=100,lineSpacingkm=10,
-startBearingdeg=30,numOfLines=50)
+coords=lawnSurvey(startLon=-170,startLat=-60,lineLengthkm=2,lineSpacingkm=0.5,
+startBearingdeg=30,numOfLines=5)
 exportMIF(coords=coords,pathAndFileName='c:\\\\Users\\\\martin_cox\\\\Documents\\\\test4.mif')
 }
 }
